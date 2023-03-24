@@ -7,6 +7,8 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    networks:
+      - nextcloud
     volumes:
       - conf:/etc/nginx/conf.d
       - vhost:/etc/nginx/vhost.d
@@ -50,3 +52,7 @@ volumes:
   html:
   certs:
   acme:
+
+networks:
+  nextcloud:
+    name: nextcloud
