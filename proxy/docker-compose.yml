@@ -11,7 +11,7 @@ services:
       - nextcloud
     volumes:
       - conf:/etc/nginx/conf.d
-      - vhost:/etc/nginx/vhost.d
+      - ./nginx_config:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - certs:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
@@ -27,7 +27,7 @@ services:
     environment:
       - DEFAULT_EMAIL=mail@dominik-schwaiger.ch
     volumes:
-      - vhost:/etc/nginx/vhost.d
+      - ./nginx_config:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - certs:/etc/nginx/certs
       - acme:/etc/acme.sh
@@ -48,7 +48,6 @@ services:
 
 volumes:
   conf:
-  vhost:
   html:
   certs:
   acme:
