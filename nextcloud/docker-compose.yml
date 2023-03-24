@@ -6,22 +6,39 @@ services:
     restart: always
     networks:
       - nextcloud-extern
+      - nextcloud-intern
     environment:
       VIRTUAL_HOST: "nextcloud.team-crystal.ch"
+      LETSENCRYPT_HOST: "nextcloud.team-crystal.ch"
       VIRTUAL_PORT: "80"
+      MYSQL_DATABASE: "nextcloud"
+      MYSQL_USER: "nextcloud"
+      MYSQL_PASSWORD: "${DB_PW}"
+      MYSQL_HOST: "nextcloud-database"
     volumes:
-    # TODO
-
+      - /mnt/raid5/nextcloud/main_dir:/var/www/html
 
   nextcloud-database:
     image: "mariadb:10.7"
     restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: "${DB_PW}"
+      MARIADB_DATABASE: "nextcloud"
+      MARIADB_USER: "nextcloud"
+      MARIADB_PASSWORD: "${DB_PW}"
+    networks:
+      - nextcloud-intern
     volumes:
-    # TODO
+      - /mnt/raid5/nextcloud/database:/var/lib/mysql
 
+volumes:
+  nextcloud:
+  nextcloud-database:
 
 
 networks:
   nextcloud-extern:
     name: nextcloud
     external: true
+
+  nextcloud-intern:

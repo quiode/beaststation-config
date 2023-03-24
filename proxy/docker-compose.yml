@@ -9,6 +9,7 @@ services:
       - "443:443"
     networks:
       - nextcloud
+      - proxy
     volumes:
       - conf:/etc/nginx/conf.d
       - ./nginx_config:/etc/nginx/vhost.d
@@ -26,6 +27,9 @@ services:
       - nginx-proxy
     environment:
       - DEFAULT_EMAIL=mail@dominik-schwaiger.ch
+    networks:
+      - proxy
+      - nextcloud
     volumes:
       - ./nginx_config:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
@@ -56,3 +60,5 @@ volumes:
 networks:
   nextcloud:
     name: nextcloud
+
+  proxy:
