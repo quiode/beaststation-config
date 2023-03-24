@@ -8,8 +8,8 @@ services:
       - nextcloud-extern
       - nextcloud-intern
     environment:
-      VIRTUAL_HOST: "nextcloud.team-crystal.ch"
-      LETSENCRYPT_HOST: "nextcloud.team-crystal.ch"
+      VIRTUAL_HOST: "nextcloud.dominik-schwaiger.ch"
+      LETSENCRYPT_HOST: "nextcloud.dominik-schwaiger.ch"
       VIRTUAL_PORT: "80"
       MYSQL_DATABASE: "nextcloud"
       MYSQL_USER: "nextcloud"
