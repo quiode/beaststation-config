@@ -1,4 +1,4 @@
-version: '2'
+version: '3.9'
 
 services:
   nginx-proxy:
@@ -13,21 +13,23 @@ services:
       - html:/usr/share/nginx/html
       - certs:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
-    network_mode: bridge
+    labels:
+      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
     restart: always
 
   acme-companion:
     image: nginxproxy/acme-companion:2.2
     container_name: nginx-proxy-acme
+    depends_on:
+      - nginx-proxy
     environment:
       - DEFAULT_EMAIL=mail@dominik-schwaiger.ch
-    volumes_from:
-      - nginx-proxy
     volumes:
-      - certs:/etc/nginx/certs:rw
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs
       - acme:/etc/acme.sh
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    network_mode: bridge
     restart: always
 
   watchtower:
@@ -40,7 +42,8 @@ services:
       WATCHTOWER_NOTIFICATION_REPORT: "true"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-     
+    restart: always
+
 volumes:
   conf:
   vhost:
