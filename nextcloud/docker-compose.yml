@@ -15,6 +15,11 @@ services:
       MYSQL_USER: "nextcloud"
       MYSQL_PASSWORD: "${DB_PW}"
       MYSQL_HOST: "nextcloud-database"
+      NEXTCLOUD_ADMIN_USER: "admin"
+      NEXTCLOUD_ADMIN_PASSWORD: "${NEXTCLOUD_ADMIN_PASSWORD}"
+      REDIS_HOST: "nextcloud-cache"
+      APACHE_DISABLE_REWRITE_IP: "1"
+      TRUSTED_PROXIES: "nginx-proxy"
     volumes:
       - /mnt/raid5/nextcloud/main_dir:/var/www/html
 
@@ -30,6 +35,12 @@ services:
       - nextcloud-intern
     volumes:
       - /mnt/raid5/nextcloud/database:/var/lib/mysql
+
+  nextcloud-cache:
+    image: "redis:7.0-alpine"
+    restart: always
+    networks:
+      - nextcloud-intern
 
 volumes:
   nextcloud:

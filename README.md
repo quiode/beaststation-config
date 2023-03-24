@@ -10,3 +10,5 @@ Docker compose files for my server (Beaststation).
   - telegram token for watchtower bot
 - `DB_PW`
   - password for databases
+- `NEXTCLOUD_ADMIN_PASSWORD`
+  - admin password for nextcloud
