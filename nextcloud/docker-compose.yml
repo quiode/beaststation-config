@@ -4,12 +4,15 @@ services:
   nextcloud:
     image: "nextcloud:production-apache"
     restart: always
+    depends_on:
+      - nextcloud-database
+      - nextcloud-cache
     networks:
       - nextcloud-extern
       - nextcloud-intern
     environment:
-      VIRTUAL_HOST: "nextcloud.dominik-schwaiger.ch"
-      LETSENCRYPT_HOST: "nextcloud.dominik-schwaiger.ch"
+      VIRTUAL_HOST: "nextcloud.team-crystal.ch"
+      LETSENCRYPT_HOST: "nextcloud.team-crystal.ch"
       VIRTUAL_PORT: "80"
       MYSQL_DATABASE: "nextcloud"
       MYSQL_USER: "nextcloud"
@@ -20,8 +23,27 @@ services:
       REDIS_HOST: "nextcloud-cache"
       APACHE_DISABLE_REWRITE_IP: "1"
       TRUSTED_PROXIES: "nginx-proxy"
+      SMTP_HOST: "smtppro.zoho.eu"
+      SMTP_SECURE: "tls"
+      SMTP_NAME: "info@team-crystal.ch"
+      SMTP_PORT: "587"
+      SMTP_PASSWORD: "${NEXTCLOUD_SMTP_PASSWORD}"
+      MAIL_FROM_ADDRESS: "info"
+      MAIL_DOMAIN: "team-crystal.ch"
     volumes:
       - /mnt/raid5/nextcloud/main_dir:/var/www/html
+
+  # cron job to allow nextcloud to use cron (instead of custom image https://github.com/nextcloud/docker/blob/master/.examples/docker-compose/insecure/mariadb/apache/docker-compose.yml)
+  nextcloud-cron:
+    image: "nextcloud:production-apache"
+    restart: always
+    volumes:
+      - /mnt/raid5/nextcloud/main_dir:/var/www/html
+    entrypoint: /cron.sh
+    networks:
+      - nextcloud-intern
+    depends_on:
+      - nextcloud
 
   nextcloud-database:
     image: "mariadb:10.7"

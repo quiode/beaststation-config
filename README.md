@@ -12,3 +12,5 @@ Docker compose files for my server (Beaststation).
   - password for databases
 - `NEXTCLOUD_ADMIN_PASSWORD`
   - admin password for nextcloud
+- `NEXTCLOUD_SMTP_PASSWORD`
+  - password for mail@team-crystal.ch
