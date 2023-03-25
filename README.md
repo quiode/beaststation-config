@@ -14,3 +14,21 @@ Docker compose files for my server (Beaststation).
   - admin password for nextcloud
 - `NEXTCLOUD_SMTP_PASSWORD`
   - password for mail@nextcloud.dominik-schwaiger.ch
+
+## Volumes
+
+- `/mnt/raid5/openvpn`
+- `/mnt/raid5/nextcloud/data`
+- `/mnt/raid5/nextcloud/apps`
+- `/mnt/raid5/nextcloud/config`
+- `/mnt/raid5/nextcloud/themes`
+- `/mnt/raid5/nextcloud/database`
+- `/mnt/raid5/minecraft/server`
+- `/mnt/raid5/focalboard`
+
+## Ports
+
+- 80
+- 443
+- 25565
+- 1194
