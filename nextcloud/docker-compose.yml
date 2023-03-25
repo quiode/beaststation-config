@@ -45,6 +45,24 @@ services:
     depends_on:
       - nextcloud
 
+  collabora:
+    image: "collabora/code"
+    networks:
+      - nextcloud-extern
+    environment:
+      aliasgroup1: "nextcloud\\.team-crystal\\.ch:443"
+      username: "admin"
+      password: "${NEXTCLOUD_ADMIN_PASSWORD}"
+      VIRTUAL_HOST: "office.team-crystal.ch"
+      LETSENCRYPT_HOST: "office.team-crystal.ch"
+      dictionaries: "en de fr fr_FR de_DE de_CH en_GB en_US"
+      DONT_GEN_SSL_CERT: "true"
+      server_name: "office.team-crystal.ch"
+      extra_params: "--o:ssl.enable=false"
+    restart: always
+    depends_on:
+      - nextcloud
+
   nextcloud-database:
     image: "mariadb:10.7"
     restart: always
