@@ -9,6 +9,7 @@ services:
       - "443:443"
     networks:
       - nextcloud
+      - dominik-schwaiger
       - proxy
     volumes:
       - conf:/etc/nginx/conf.d
@@ -30,6 +31,7 @@ services:
     networks:
       - proxy
       - nextcloud
+      - dominik-schwaiger
     volumes:
       - ./nginx_config:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
@@ -60,5 +62,8 @@ volumes:
 networks:
   nextcloud:
     name: nextcloud
+
+  dominik-schwaiger:
+    name: dominik-schwaiger
 
   proxy:

@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+  website:
+    image: quiooo/dominik-schwaiger.ch
+    container_name: dominik-schwaiger.ch
+    restart: always
+    networks:
+      - dominik-schwaiger
+    environment:
+      VIRTUAL_HOST: "dominik-schwaiger.ch"
+      LETSENCRYPT_HOST: "dominik-schwaiger.ch"
+    labels:
+      - 'com.centurylinklabs.watchtower.enable=true'
+
+networks:
+  dominik-schwaiger:
+    name: dominik-schwaiger
+    external: true
