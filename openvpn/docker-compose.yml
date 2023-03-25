@@ -11,4 +11,4 @@ services:
     container_name: openvpn
     restart: always
     volumes:
-      - openvpn:/etc/openvpn
+      - /mnt/raid5/openvpn:/etc/openvpn

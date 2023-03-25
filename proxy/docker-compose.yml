@@ -11,6 +11,7 @@ services:
       - nextcloud
       - dominik-schwaiger
       - proxy
+      - focalboard
     volumes:
       - conf:/etc/nginx/conf.d
       - ./nginx_config:/etc/nginx/vhost.d
@@ -32,6 +33,7 @@ services:
       - proxy
       - nextcloud
       - dominik-schwaiger
+      - focalboard
     volumes:
       - ./nginx_config:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
@@ -65,5 +67,8 @@ networks:
 
   dominik-schwaiger:
     name: dominik-schwaiger
+
+  focalboard:
+    name: focalboard
 
   proxy:
