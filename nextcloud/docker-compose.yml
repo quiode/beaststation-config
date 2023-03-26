@@ -57,6 +57,7 @@ services:
     depends_on:
       - nextcloud
 
+  # currently not working, not even build in :/
   collabora:
     image: "collabora/code"
     networks:
