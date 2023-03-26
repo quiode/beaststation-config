@@ -62,7 +62,7 @@ services:
     networks:
       - nextcloud-extern
     environment:
-      aliasgroup1: "nextcloud\\.dominik-schwaiger\\.ch:443"
+      aliasgroup1: "https://nextcloud\\.dominik-schwaiger\\.ch:443"
       username: "admin"
       password: "${NEXTCLOUD_ADMIN_PASSWORD}"
       VIRTUAL_HOST: "office.dominik-schwaiger.ch"
