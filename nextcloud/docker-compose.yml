@@ -69,7 +69,7 @@ services:
       LETSENCRYPT_HOST: "office.dominik-schwaiger.ch"
       dictionaries: "en de fr fr_FR de_DE de_CH en_GB en_US"
       DONT_GEN_SSL_CERT: "true"
-      server_name: "office.dominik-schwaiger.ch"
+      server_name: "office\\.dominik-schwaiger\\.ch"
       extra_params: "--o:ssl.enable=false"
     restart: always
     cap_add:
