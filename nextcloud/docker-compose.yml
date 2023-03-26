@@ -72,6 +72,8 @@ services:
       server_name: "office.dominik-schwaiger.ch"
       extra_params: "--o:ssl.enable=false"
     restart: always
+    cap_add:
+      - "MKNOD"
     depends_on:
       - nextcloud
 
