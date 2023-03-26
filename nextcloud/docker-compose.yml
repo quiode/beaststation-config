@@ -23,6 +23,7 @@ services:
       REDIS_HOST: "nextcloud-cache"
       APACHE_DISABLE_REWRITE_IP: "1"
       TRUSTED_PROXIES: "nginx-proxy nextcloud https://nextcloud.dominik-schwaiger.ch http://nextcloud.dominik-schwaiger.ch nextcloud.dominik-schwaiger.ch"
+      NEXTCLOUD_TRUSTED_DOMAINS: "nextcloud.dominik-schwaiger.ch"
       SMTP_HOST: "smtppro.zoho.eu"
       SMTP_SECURE: "tls"
       SMTP_NAME: "info@nextcloud.dominik-schwaiger.ch"
