@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  website-chris:
+    image: "quiooo/website-chris"
+    restart: always
+    environment:
+      VIRTUAL_HOST: "christoph-baertsch.ch"
+      LETSENCRYPT_HOST: "christoph-baertsch.ch"
+    volumes:
+      - /mnt/raid5/website_chris/data:/var/app/assets
+    networks:
+      - website-chris-extern
+      - website-chris-intern
+
+  website-chris-db:
+    image: "postgres:15-alpine"
+    networks:
+      - website-chris-intern
+    environment:
+      POSTGRES_PASSWORD: "1234"
+      POSTGRES_USER: "chris_api"
+      POSTGRES_DB: "website_chris"
+    volumes:
+      - "/mnt/raid5/website_chris/database:/var/lib/postgresql/data"
+    restart: always
+
+networks:
+  website-chris-extern:
+    name: "website-chris"
+    external: true
+
+  website-chris-intern:

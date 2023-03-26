@@ -25,6 +25,8 @@ Docker compose files for my server (Beaststation).
 - `/mnt/raid5/nextcloud/database`
 - `/mnt/raid5/minecraft/server`
 - `/mnt/raid5/focalboard`
+- `/mnt/raid5/website_chris/database`
+- `/mnt/raid5/website_chris/data`
 
 ## Ports
 
