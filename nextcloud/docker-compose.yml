@@ -3,7 +3,6 @@ version: "3.9"
 services:
   nextcloud:
     image: "nextcloud:production-apache"
-    user: root
     restart: always
     depends_on:
       - nextcloud-database
@@ -23,7 +22,7 @@ services:
       NEXTCLOUD_ADMIN_PASSWORD: "${NEXTCLOUD_ADMIN_PASSWORD}"
       REDIS_HOST: "nextcloud-cache"
       APACHE_DISABLE_REWRITE_IP: "1"
-      TRUSTED_PROXIES: "nginx-proxy"
+      TRUSTED_PROXIES: "nginx-proxy nextcloud https://nextcloud.dominik-schwaiger.ch http://nextcloud.dominik-schwaiger.ch nextcloud.dominik-schwaiger.ch"
       SMTP_HOST: "smtppro.zoho.eu"
       SMTP_SECURE: "tls"
       SMTP_NAME: "info@nextcloud.dominik-schwaiger.ch"
@@ -42,7 +41,6 @@ services:
   nextcloud-cron:
     image: "nextcloud:production-apache"
     restart: always
-    user: root
     volumes:
       - nextcloud:/var/www/html
       - /mnt/raid5/nextcloud/data:/var/www/html/data
