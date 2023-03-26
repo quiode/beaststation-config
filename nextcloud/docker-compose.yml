@@ -3,6 +3,7 @@ version: "3.9"
 services:
   nextcloud:
     image: "nextcloud:production-apache"
+    user: root
     restart: always
     depends_on:
       - nextcloud-database
@@ -41,6 +42,7 @@ services:
   nextcloud-cron:
     image: "nextcloud:production-apache"
     restart: always
+    user: root
     volumes:
       - nextcloud:/var/www/html
       - /mnt/raid5/nextcloud/data:/var/www/html/data
