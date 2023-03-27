@@ -59,6 +59,7 @@ services:
 
   onlyoffice:
     image: "onlyoffice/documentserver"
+    restart: always
     networks:
       - onlyoffice
       - nextcloud-intern
