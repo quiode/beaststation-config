@@ -50,7 +50,7 @@ services:
 
   watchtower:
     image: "containrrr/watchtower:1.5.3"
-    command: --cleanup --interval 3600
+    command: --cleanup --schedule "0 0 3 * * *"
     environment:
       REPO_USER: "quiooo"
       REPO_PASSWORD: "${DOCKER_PW}"
