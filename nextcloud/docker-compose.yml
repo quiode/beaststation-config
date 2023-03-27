@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   nextcloud:
-    build: "./nextcloud"
+    image: "nextcloud:production-apache"
     restart: always
     depends_on:
       - nextcloud-database
@@ -43,7 +43,7 @@ services:
 
   # cron job to allow nextcloud to use cron (instead of custom image https://github.com/nextcloud/docker/blob/master/.examples/docker-compose/insecure/mariadb/apache/docker-compose.yml)
   nextcloud-cron:
-    build: "./nextcloud"
+    image: "nextcloud:production-apache"
     restart: always
     volumes:
       - nextcloud:/var/www/html
