@@ -3,6 +3,7 @@ version: '3.9'
 services:
   focalboard:
     image: "mattermost/focalboard:latest"
+    restart: always
     environment:
       VIRTUAL_HOST: "focalboard.dominik-schwaiger.ch"
       LETSENCRYPT_HOST: "focalboard.dominik-schwaiger.ch"
