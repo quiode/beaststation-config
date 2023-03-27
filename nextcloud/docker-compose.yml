@@ -66,6 +66,7 @@ services:
     volumes:
       - office-logs:/var/log/onlyoffice
       - office-data:/var/www/onlyoffice/Data
+      - office-config:/etc/onlyoffice/documentserver
 
   nextcloud-database:
     image: "mariadb:10.7"
