@@ -11,7 +11,6 @@ services:
       - nextcloud
       - dominik-schwaiger
       - proxy
-      - focalboard
       - website-chris
       - onlyoffice
     volumes:
@@ -37,7 +36,6 @@ services:
       - proxy
       - nextcloud
       - dominik-schwaiger
-      - focalboard
       - website-chris
       - onlyoffice
     volumes:
@@ -73,9 +71,6 @@ networks:
 
   dominik-schwaiger:
     name: dominik-schwaiger
-
-  focalboard:
-    name: focalboard
 
   website-chris:
     name: website-chris
