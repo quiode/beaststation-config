@@ -59,6 +59,9 @@ services:
 
   onlyoffice:
     image: "onlyoffice/documentserver"
+    networks:
+      - onlyoffice
+      - nextcloud-intern
     environment:
       LETSENCRYPT_HOST: "office.dominik-schwaiger.ch"
       VIRTUAL_HOST: "office.dominik-schwaiger.ch"
