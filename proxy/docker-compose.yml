@@ -13,7 +13,6 @@ services:
       - proxy
       - website-chris
       - onlyoffice
-      - websockets
     volumes:
       - conf:/etc/nginx/conf.d
       - ./nginx_config:/etc/nginx/vhost.d
@@ -39,7 +38,6 @@ services:
       - dominik-schwaiger
       - website-chris
       - onlyoffice
-      - websockets
     volumes:
       - ./nginx_config:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
@@ -79,8 +77,5 @@ networks:
 
   onlyoffice:
     name: onlyoffice
-
-  websockets:
-    name: websockets
 
   proxy:
