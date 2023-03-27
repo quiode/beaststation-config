@@ -91,6 +91,7 @@ volumes:
   nextcloud:
   office-logs:
   office-data:
+  office-config:
 
 
 networks:
