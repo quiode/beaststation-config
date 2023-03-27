@@ -104,6 +104,6 @@ networks:
 
   nextcloud-intern:
 
-  onlfyoffice:
+  onlyoffice:
     name: onlyoffice
     external: true
