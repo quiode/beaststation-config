@@ -9,6 +9,15 @@ services:
       VIRTUAL_HOST: "dev.meal-finder.dominik-schwaiger.ch"
       LETSENCRYPT_HOST: "dev.meal-finder.dominik-schwaiger.ch"
 
+  backend:
+    image: quiooo/meal-finder-backend:dev
+    restart: always
+    networks:
+      - meal-finder-dev
+    environment:
+      VIRTUAL_HOST: "service.dev.meal-finder.dominik-schwaiger.ch"
+      LETSENCRYPT_HOST: "service.dev.meal-finder.dominik-schwaiger.ch"
+
 networks:
   meal-finder-dev:
     name: meal-finder-dev
