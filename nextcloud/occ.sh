@@ -1,1 +1,1 @@
-alias occ="docker exec --user www-data nextcloud php occ"
+alias occ="sudo docker exec --user www-data nextcloud php occ"
