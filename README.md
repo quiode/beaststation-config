@@ -14,6 +14,8 @@ Docker compose files for my server (Beaststation).
   - admin password for nextcloud
 - `NEXTCLOUD_SMTP_PASSWORD`
   - password for mail@nextcloud.dominik-schwaiger.ch
+- `JWT_SECRET`
+  - secret for jwt's (onlyoffice)
 
 ## Volumes
 

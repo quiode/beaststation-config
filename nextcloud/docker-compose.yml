@@ -68,6 +68,7 @@ services:
       LETSENCRYPT_HOST: "office.dominik-schwaiger.ch"
       VIRTUAL_HOST: "office.dominik-schwaiger.ch"
       VIRTUAL_PORT: "80"
+      JWT_SECRET: "${JWT_SECRET}"
     volumes:
       - office-logs:/var/log/onlyoffice
       - office-data:/var/www/onlyoffice/Data
