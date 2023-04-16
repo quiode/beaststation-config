@@ -10,9 +10,10 @@ services:
       LETSENCRYPT_HOST: "watcher.dominik-schwaiger.ch"
       INTERVAL: "-1"
       LOG: "debug"
+    env_file:
+      - /etc/environment
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /etc/environment:/etc/environment:ro
       - /home/domina/beaststation-docker-compose:/app/repository:rw
       - /home/domina/.ssh:/root/.ssh:ro
     restart: always
