@@ -3,3 +3,6 @@
 /.idea/beaststation-docker-compose.iml
 /.idea/modules.xml
 /.idea/vcs.xml
+
+# Proxy default config
+#proxy/nginx_config/default
