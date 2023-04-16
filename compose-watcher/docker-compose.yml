@@ -12,8 +12,8 @@ services:
       LOG: "debug"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ../../beaststation-docker-compose:/app/repository:rw
-      - $HOME/.ssh:/root/.ssh:ro
+      - /home/domina/beaststation-docker-compose:/app/repository:rw
+      - home/domina/.ssh:/root/.ssh:ro
     restart: always
 
 networks:
