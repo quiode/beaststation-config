@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  compose-watcher:
+    image: "quiooo/compose-watcher"
+    environment:
+      VIRTUAL_HOST: "watcher.dominik-schwaiger.ch"
+      LETSENCRYPT_HOST: "watcher.dominik-schwaiger.ch"
+      INTERVAL: "-1"
+      REMOTE_URL: "git@github.com:quiode/beaststation-docker-compose.git"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ../:/repository
+    restart: always
