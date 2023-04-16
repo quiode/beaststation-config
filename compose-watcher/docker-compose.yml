@@ -13,7 +13,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ../../beaststation-docker-compose:/app/repository
-      - $HOME/.ssh:/home/watcher/.ssh
+      - $HOME/.ssh:/root/.ssh
     restart: always
 
 networks:
