@@ -9,7 +9,6 @@ services:
       VIRTUAL_HOST: "watcher.dominik-schwaiger.ch"
       LETSENCRYPT_HOST: "watcher.dominik-schwaiger.ch"
       INTERVAL: "-1"
-      REMOTE_URL: "git@github.com:quiode/beaststation-docker-compose.git"
       LOG: "debug"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
