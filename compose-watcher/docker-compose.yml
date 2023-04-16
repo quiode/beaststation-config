@@ -9,7 +9,7 @@ services:
       VIRTUAL_HOST: "watcher.dominik-schwaiger.ch"
       LETSENCRYPT_HOST: "watcher.dominik-schwaiger.ch"
       INTERVAL: "-1"
-      LOG: "debug"
+      LOG: "info"
     env_file:
       - /etc/environment
     volumes:
