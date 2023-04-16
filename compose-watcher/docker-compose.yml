@@ -12,7 +12,7 @@ services:
       LOG: "debug"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ../:/repository
+      - ../../beaststation-docker-compose:/repository
     restart: always
 
 networks:
