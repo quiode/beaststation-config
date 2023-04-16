@@ -14,6 +14,7 @@ services:
       - website-chris
       - onlyoffice
       - meal-finder-dev
+      - compose-watcher
     volumes:
       - conf:/etc/nginx/conf.d
       - ./nginx_config:/etc/nginx/vhost.d
@@ -40,6 +41,7 @@ services:
       - website-chris
       - onlyoffice
       - meal-finder-dev
+      - compose-watcher
     volumes:
       - ./nginx_config:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
@@ -82,5 +84,8 @@ networks:
 
   meal-finder-dev:
     name: meal-finder-dev
+
+  compose-watcher:
+    name: compose-watcher
 
   proxy:

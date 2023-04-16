@@ -3,6 +3,8 @@ version: '3.9'
 services:
   compose-watcher:
     image: "quiooo/compose-watcher"
+    networks:
+      - compose-watcher
     environment:
       VIRTUAL_HOST: "watcher.dominik-schwaiger.ch"
       LETSENCRYPT_HOST: "watcher.dominik-schwaiger.ch"
@@ -12,3 +14,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ../:/repository
     restart: always
+
+networks:
+  compose-watcher:
+    name: compose-watcher
+    external: true
