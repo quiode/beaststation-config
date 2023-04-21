@@ -10,7 +10,7 @@ services:
       VIRTUAL_HOST: "watcher.dominik-schwaiger.ch"
       LETSENCRYPT_HOST: "watcher.dominik-schwaiger.ch"
       INTERVAL: "-1"
-      LOG: "info"
+      LOG: "debug"
       WEBHOOK_SECRET: "${WEBHOOK_SECRET}"
       WATCHER_TELEGRAM_TOKEN: "${WATCHER_TELEGRAM_TOKEN}"
       WATCHER_CHAT_ID: "${WATCHER_CHAT_ID}"
