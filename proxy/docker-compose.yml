@@ -53,6 +53,7 @@ services:
   watchtower:
     image: "containrrr/watchtower:1.5.3"
     command: --cleanup --schedule "0 0 3 * * *"
+    container_name: watchtower
     environment:
       REPO_USER: "quiooo"
       REPO_PASSWORD: "${DOCKER_PW}"

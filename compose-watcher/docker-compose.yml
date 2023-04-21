@@ -3,6 +3,7 @@ version: '3.9'
 services:
   compose-watcher:
     image: "quiooo/compose-watcher"
+    container_name: compose-watcher
     networks:
       - compose-watcher
     environment:

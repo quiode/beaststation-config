@@ -46,6 +46,7 @@ services:
   nextcloud-cron:
     image: "nextcloud:production-apache"
     restart: always
+    container_name: nextcloud-cron
     volumes:
       - nextcloud:/var/www/html
       - /mnt/raid5/nextcloud/data:/var/www/html/data
@@ -60,6 +61,7 @@ services:
 
   onlyoffice:
     image: "onlyoffice/documentserver"
+    container_name: onlyoffice
     restart: always
     networks:
       - onlyoffice
@@ -76,6 +78,7 @@ services:
 
   nextcloud-database:
     image: "mariadb:10.7"
+    container_name: nextcloud-database
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: "${DB_PW}"
@@ -89,6 +92,7 @@ services:
 
   nextcloud-cache:
     image: "redis:7.0-alpine"
+    container_name: nextcloud-cache
     restart: always
     networks:
       - nextcloud-intern

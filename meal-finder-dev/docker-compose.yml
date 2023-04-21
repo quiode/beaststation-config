@@ -2,6 +2,7 @@ version: '3.9'
 services:
   website:
     image: quiooo/meal-finder-frontend:dev
+    container_name: meal-finder-frontend-dev
     restart: always
     networks:
       - meal-finder-dev
@@ -11,6 +12,7 @@ services:
 
   backend:
     image: quiooo/meal-finder-backend:dev
+    container_name: meal-finder-backend-dev
     restart: always
     networks:
       - meal-finder-dev

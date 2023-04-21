@@ -3,6 +3,7 @@ version: '3.9'
 services:
   website-chris:
     image: "quiooo/website-chris"
+    container_name: website-chris
     restart: always
     environment:
       VIRTUAL_HOST: "christoph-baertsch.ch"
@@ -15,6 +16,7 @@ services:
 
   website-chris-db:
     image: "postgres:15-alpine"
+    container_name: website-chris-db
     networks:
       - website-chris-intern
     environment:
