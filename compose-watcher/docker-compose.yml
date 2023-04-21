@@ -9,9 +9,9 @@ services:
     environment:
       VIRTUAL_HOST: "watcher.dominik-schwaiger.ch"
       LETSENCRYPT_HOST: "watcher.dominik-schwaiger.ch"
-      INTERVAL: "-1"
-      LOG: "info"
-      WEBHOOK_SECRET: "${WEBHOOK_SECRET}"
+      WATCHER_INTERVAL: "-1"
+      WATCHER_LOG: "info"
+      WATCHER_WEBHOOK_SECRET: "${WEBHOOK_SECRET}"
       WATCHER_TELEGRAM_TOKEN: "${WATCHER_TELEGRAM_TOKEN}"
       WATCHER_CHAT_ID: "${WATCHER_CHAT_ID}"
     env_file:
