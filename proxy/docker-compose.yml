@@ -17,7 +17,7 @@ services:
       - compose-watcher
     volumes:
       - conf:/etc/nginx/conf.d
-      - ./nginx_config:/etc/nginx/vhost.d:ro
+      - /home/domina/beaststation-docker-compose/proxy/nginx_config:/etc/nginx/vhost.d:ro
       - html:/usr/share/nginx/html
       - certs:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
