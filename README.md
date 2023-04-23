@@ -16,6 +16,12 @@ Docker compose files for my server (Beaststation).
   - password for mail@nextcloud.dominik-schwaiger.ch
 - `JWT_SECRET`
   - secret for jwt's (onlyoffice)
+- `WEBHOOK_SECRET`
+  - github webhook secreto for compose-watcher
+- `WATCHER_TELEGRAM_TOKEN`
+  - telegram token for compose-watcher telegram bot
+- `WATCHER_CHAT_ID`
+  - chat id for compose watcher
 
 ## Volumes
 
