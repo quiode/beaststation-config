@@ -34,6 +34,7 @@ Docker compose files for my server (Beaststation).
 - `/mnt/raid5/minecraft/server`
 - `/mnt/raid5/website_chris/database`
 - `/mnt/raid5/website_chris/data`
+- `/mnt/raid5/portainer/data`
 
 ## Ports
 

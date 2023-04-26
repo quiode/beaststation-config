@@ -89,4 +89,7 @@ networks:
   compose-watcher:
     name: compose-watcher
 
+  portainer:
+    name: portainer
+
   proxy:
