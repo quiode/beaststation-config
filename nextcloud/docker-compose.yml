@@ -77,7 +77,7 @@ services:
       - office-config:/etc/onlyoffice/documentserver
 
   nextcloud-database:
-    image: "mariadb:10.7"
+    image: "mariadb:10"
     container_name: nextcloud-database
     restart: always
     environment:
@@ -91,7 +91,7 @@ services:
       - /mnt/raid5/nextcloud/database:/var/lib/mysql
 
   nextcloud-cache:
-    image: "redis:7.0-alpine"
+    image: "redis:7-alpine"
     container_name: nextcloud-cache
     restart: always
     networks:
