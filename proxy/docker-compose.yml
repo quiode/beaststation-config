@@ -15,6 +15,7 @@ services:
       - onlyoffice
       - meal-finder-dev
       - compose-watcher
+      - portainer
     volumes:
       - conf:/etc/nginx/conf.d
       - /home/domina/beaststation-docker-compose/proxy/nginx_config:/etc/nginx/vhost.d
@@ -42,6 +43,7 @@ services:
       - onlyoffice
       - meal-finder-dev
       - compose-watcher
+      - portainer
     volumes:
       - /home/domina/beaststation-docker-compose/proxy/nginx_config:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
