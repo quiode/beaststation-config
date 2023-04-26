@@ -35,6 +35,10 @@ Docker compose files for my server (Beaststation).
 - `/mnt/raid5/website_chris/database`
 - `/mnt/raid5/website_chris/data`
 - `/mnt/raid5/portainer/data`
+- `/var/run/docker.sock`
+- `/home/domina/beaststation-docker-compose/proxy/nginx_config`
+- `/home/domina/beaststation-docker-compose`
+- `/home/domina/.ssh`
 
 ## Ports
 
