@@ -9,7 +9,8 @@ services:
     environment:
       VIRTUAL_HOST: "portainer.dominik-schwaiger.ch"
       LETSENCRYPT_HOST: "portainer.dominik-schwaiger.ch"
-      VIRTUAL_PORT: "9000"
+      VIRTUAL_PORT: "9443"
+      VIRTUAL_PROTO: "https"
     container_name: portainer
     restart: always
 
