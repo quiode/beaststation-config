@@ -20,6 +20,7 @@ services:
       LETSENCRYPT_HOST: "service.christoph-baertsch.ch"
       # Database
       TYPEORM_HOST: "website-chris-db"
+      TYPEORM_LOGGING: "false"
     volumes:
       - /mnt/raid5/website_chris/data:/app/assets
     networks:
