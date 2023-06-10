@@ -13,7 +13,6 @@ services:
       - proxy
       - website-chris
       - onlyoffice
-      - meal-finder-dev
       - compose-watcher
       - portainer
     volumes:
@@ -41,7 +40,6 @@ services:
       - dominik-schwaiger
       - website-chris
       - onlyoffice
-      - meal-finder-dev
       - compose-watcher
       - portainer
     volumes:
@@ -84,9 +82,6 @@ networks:
 
   onlyoffice:
     name: onlyoffice
-
-  meal-finder-dev:
-    name: meal-finder-dev
 
   compose-watcher:
     name: compose-watcher
