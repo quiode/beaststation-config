@@ -1,15 +1,27 @@
 version: '3.9'
 
 services:
-  website-chris:
-    image: "quiooo/website-chris"
-    container_name: website-chris
+  website-chris-frontend:
+    image: "quiooo/website-chris-frontend"
+    container_name: website-chris-frontend
     restart: always
     environment:
       VIRTUAL_HOST: "christoph-baertsch.ch"
       LETSENCRYPT_HOST: "christoph-baertsch.ch"
+    networks:
+      - website-chris-extern
+
+  website-chris-backend:
+    image: "quiooo/website-chris-backend"
+    container_name: website-chris-backend
+    restart: always
+    environment:
+      VIRTUAL_HOST: "service.christoph-baertsch.ch"
+      LETSENCRYPT_HOST: "service.christoph-baertsch.ch"
+      # Database
+      TYPEORM_HOST: "website-chris-db"
     volumes:
-      - /mnt/raid5/website_chris/data:/var/app/assets
+      - /mnt/raid5/website_chris/data:/app/assets
     networks:
       - website-chris-extern
       - website-chris-intern
