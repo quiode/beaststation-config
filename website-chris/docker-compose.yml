@@ -18,7 +18,6 @@ services:
     environment:
       VIRTUAL_HOST: "service.christoph-baertsch.ch"
       LETSENCRYPT_HOST: "service.christoph-baertsch.ch"
-      VIRTUAL_PORT: "3000"
       # Database
       TYPEORM_HOST: "website-chris-db"
     volumes:
