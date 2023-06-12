@@ -41,6 +41,7 @@ Docker compose files for my server (Beaststation).
 - `/mnt/raid5/portainer/data`
 - `/mnt/raid5/bitwarden/data`
 - `/mnt/raid5/bitwarden/database`
+- `/mnt/raid5/bitwarden/logs`
 - `/var/run/docker.sock`
 - `/home/domina/beaststation-docker-compose/proxy/nginx_config`
 - `/home/domina/beaststation-docker-compose`

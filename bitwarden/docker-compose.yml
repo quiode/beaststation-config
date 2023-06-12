@@ -16,6 +16,7 @@ services:
     restart: always
     volumes:
       - /mnt/raid5/bitwarden/data:/etc/bitwarden
+      - /mnt/raid5/bitwarden/logs:/var/log/bitwarden
     networks:
       - bitwarden-internal
       - bitwarden-external
