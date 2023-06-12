@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
   bitwarden:
+    container_name: bitwarden
     depends_on:
       - bitwarden-db
     environment:
@@ -36,6 +37,7 @@ services:
       - bitwarden-external
 
   bitwarden-db:
+    container_name: bitwarden-db
     environment:
       MARIADB_USER: "bitwarden"
       MARIADB_PASSWORD: "super_strong_password"
