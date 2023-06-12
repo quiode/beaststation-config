@@ -8,6 +8,8 @@ services:
     depends_on:
       - bitwarden-db
     environment:
+      BW_INSTALLATION_ID: "${BW_INSTALLATION_ID}"
+      BW_INSTALLATION_KEY: "${BW_INSTALLATION_KEY}"
       # Nginx Proxy
       VIRTUAL_HOST: "bitwarden.dominik-schwaiger.ch"
       LETSENCRYPT_HOST: "bitwarden.dominik-schwaiger.ch"
