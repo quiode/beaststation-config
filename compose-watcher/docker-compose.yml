@@ -17,7 +17,6 @@ services:
     env_file:
       - /etc/environment
     volumes:
-    tasdf
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /home/domina/beaststation-docker-compose:/app/repository:rw
       - /home/domina/.ssh:/root/.ssh:ro
