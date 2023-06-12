@@ -4,6 +4,8 @@ services:
   website-chris-frontend:
     image: "quiooo/website-chris-frontend"
     container_name: website-chris-frontend
+    depends_on:
+      - website-chris-backend
     restart: always
     environment:
       VIRTUAL_HOST: "christoph-baertsch.ch"
@@ -15,6 +17,8 @@ services:
     image: "quiooo/website-chris-backend"
     container_name: website-chris-backend
     restart: always
+    depends_on:
+      - website-chris-db
     environment:
       VIRTUAL_HOST: "service.christoph-baertsch.ch"
       LETSENCRYPT_HOST: "service.christoph-baertsch.ch"
