@@ -13,7 +13,7 @@ Docker compose files for my server (Beaststation).
 - `NEXTCLOUD_ADMIN_PASSWORD`
   - admin password for nextcloud
 - `NEXTCLOUD_SMTP_PASSWORD`
-  - password for mail@nextcloud.dominik-schwaiger.ch
+  - password for <mail@nextcloud.dominik-schwaiger.ch>
 - `JWT_SECRET`
   - secret for jwt's (onlyoffice)
 - `WEBHOOK_SECRET`
@@ -22,6 +22,10 @@ Docker compose files for my server (Beaststation).
   - telegram token for compose-watcher telegram bot
 - `WATCHER_CHAT_ID`
   - chat id for compose watcher
+- `BW_INSTALLATION_ID`
+  - get from <https://bitwarden.com/host/>
+- `BW_INSTALLATION_KEY`
+  - get from <https://bitwarden.com/host/>
 
 ## Volumes
 
@@ -35,6 +39,8 @@ Docker compose files for my server (Beaststation).
 - `/mnt/raid5/website_chris/database`
 - `/mnt/raid5/website_chris/data`
 - `/mnt/raid5/portainer/data`
+- `/mnt/raid5/bitwarden/data`
+- `/mnt/raid5/bitwarden/database`
 - `/var/run/docker.sock`
 - `/home/domina/beaststation-docker-compose/proxy/nginx_config`
 - `/home/domina/beaststation-docker-compose`
