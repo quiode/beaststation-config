@@ -3,27 +3,11 @@ version: "3.8"
 services:
   bitwarden:
     container_name: bitwarden
+    env_file:
+      - settings.env
     depends_on:
       - bitwarden-db
     environment:
-      # Bitwarden
-      BW_DOMAIN: "bitwarden.dominik-schwaiger.ch"
-      BW_DB_PROVIDER: "mariadb"
-      BW_DB_SERVER: "bitwarden-db"
-      BW_DB_DATABASE: "bitwarden_vault"
-      BW_DB_USERNAME: "bitwarden"
-      BW_DB_PASSWORD: "super_strong_password"
-      BW_INSTALLATION_ID: "${BW_INSTALLATION_ID}"
-      BW_INSTALLATION_KEY: "${BW_INSTALLATION_KEY}"
-      BW_ENABLE_SSL: "false"
-      BW_PORT_HTTP: "8080"
-      adminSettings__admins: "mail@dominik-schwaiger.ch"
-      globalSettings__mail__replyToEmail: "mail@dominik-schwaiger.ch"
-      globalSettings__mail__smtp__host: "smtppro.zoho.eu"
-      globalSettings__mail__smtp__port: "587"
-      globalSettings__mail__smtp__ssl: "false"
-      globalSettings__mail__smtp__username: "info@nextcloud.dominik-schwaiger.ch"
-      globalSettings__mail__smtp__password: "${NEXTCLOUD_SMTP_PASSWORD}"
       # Nginx Proxy
       VIRTUAL_HOST: "bitwarden.dominik-schwaiger.ch"
       LETSENCRYPT_HOST: "bitwarden.dominik-schwaiger.ch"
