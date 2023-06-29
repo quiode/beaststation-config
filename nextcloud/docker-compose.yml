@@ -73,8 +73,7 @@ services:
       JWT_SECRET: "${JWT_SECRET}"
     volumes:
       - office-logs:/var/log/onlyoffice
-      - office-data:/var/www/onlyoffice/Data
-      - office-config:/etc/onlyoffice/documentserver
+      - office-certs:/var/www/onlyoffice/Data
 
   nextcloud-database:
     image: "mariadb:10"
@@ -100,8 +99,7 @@ services:
 volumes:
   nextcloud:
   office-logs:
-  office-data:
-  office-config:
+  office-certs:
 
 
 networks:
