@@ -11,7 +11,6 @@ services:
       - nextcloud
       - dominik-schwaiger
       - proxy
-      - website-chris
       - onlyoffice
       - compose-watcher
       - portainer
@@ -39,7 +38,6 @@ services:
       - proxy
       - nextcloud
       - dominik-schwaiger
-      - website-chris
       - onlyoffice
       - compose-watcher
       - portainer
@@ -78,9 +76,6 @@ networks:
 
   dominik-schwaiger:
     name: dominik-schwaiger
-
-  website-chris:
-    name: website-chris
 
   onlyoffice:
     name: onlyoffice
