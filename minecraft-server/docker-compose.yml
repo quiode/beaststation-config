@@ -15,3 +15,14 @@ services:
     tty: true
     stdin_open: true
     restart: always
+  minecraft-backup:
+    container_name: minecraft-backup
+    image: "itzg/mc-backup"
+    environment:
+      BACKUP_INTERVAL: "2h"
+      RCON_HOST: minecraft
+      PAUSE_IF_NO_PLAYERS: "true"
+    restart: always
+    volumes:
+      - "/mnt/raid5/minecraft/backups:/backups"
+      - "/mnt/raid5/minecraft/server:/data:ro"
