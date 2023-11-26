@@ -22,6 +22,7 @@ services:
       BACKUP_INTERVAL: "2h"
       RCON_HOST: minecraft
       PAUSE_IF_NO_PLAYERS: "true"
+      LINK_LATEST: "true"
     restart: always
     volumes:
       - "/mnt/raid5/minecraft/backups:/backups"
