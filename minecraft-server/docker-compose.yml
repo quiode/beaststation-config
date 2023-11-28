@@ -11,8 +11,7 @@ services:
     environment:
       EULA: "true"
       VERSION: "LATEST"
-      INIT_MEMORY: "4GB"
-      MAX_MEMORY: "12GB"
+      MEMORY: "8G"
     tty: true
     stdin_open: true
     restart: always
