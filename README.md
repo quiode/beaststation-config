@@ -36,6 +36,7 @@ Docker compose files for my server (Beaststation).
 - `/mnt/raid5/nextcloud/themes`
 - `/mnt/raid5/nextcloud/database`
 - `/mnt/raid5/minecraft/server`
+- `/mnt/raid5/minecraft/backups`
 - `/mnt/raid5/portainer/data`
 - `/mnt/raid5/bitwarden/data`
 - `/mnt/raid5/bitwarden/database`
