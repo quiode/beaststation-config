@@ -24,6 +24,7 @@ services:
       RCON_HOST: minecraft
       PAUSE_IF_NO_PLAYERS: "true"
       LINK_LATEST: "true"
+      PRUNE_BACKUPS_DAYS: "14"
     restart: always
     volumes:
       - "/mnt/raid5/minecraft/backups:/backups"
