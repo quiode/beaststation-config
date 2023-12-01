@@ -15,6 +15,7 @@ services:
     tty: true
     stdin_open: true
     restart: always
+
   minecraft-backup:
     container_name: minecraft-backup
     image: "itzg/mc-backup"
