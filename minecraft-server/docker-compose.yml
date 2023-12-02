@@ -12,6 +12,11 @@ services:
       EULA: "true"
       VERSION: "LATEST"
       MEMORY: "12G"
+      TZ: "Europe/Zurich"
+      MOTD: "A Vanilla Minecraft Server powered by the power of Love"
+      OVERRIDE_ICON: "true"
+      ICON: ""
+      SERVER_NAME: "Crystal"
     tty: true
     stdin_open: true
     restart: always
