@@ -28,13 +28,13 @@ services:
       OVERWRITEPROTOCOL: "https"
       OVERWRITEWEBROOT: "/"
       NEXTCLOUD_TRUSTED_DOMAINS: "nextcloud.dominik-schwaiger.ch"
-      SMTP_HOST: "smtppro.zoho.eu"
+      SMTP_HOST: "dominik-schwaiger.vsos.ethz.ch"
       SMTP_SECURE: "tls"
-      SMTP_NAME: "info@nextcloud.dominik-schwaiger.ch"
+      SMTP_NAME: "nextcloud@dominik-schwaiger.ch"
       SMTP_PORT: "587"
       SMTP_PASSWORD: "${NEXTCLOUD_SMTP_PASSWORD}"
-      MAIL_FROM_ADDRESS: "info"
-      MAIL_DOMAIN: "nextcloud.dominik-schwaiger.ch"
+      MAIL_FROM_ADDRESS: "nextcloud"
+      MAIL_DOMAIN: "dominik-schwaiger.ch"
     volumes:
       - nextcloud:/var/www/html
       - /mnt/raid5/nextcloud/data:/var/www/html/data
