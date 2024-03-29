@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   bitwarden:
-    image: bitwarden/self-host:2024.1.0-beta
+    image: bitwarden/self-host:beta
     container_name: bitwarden
     env_file:
       - settings.env
