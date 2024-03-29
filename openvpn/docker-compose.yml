@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   # https://github.com/kylemanna/docker-openvpn/blob/master/docs/docker-compose.md
   openvpn:
