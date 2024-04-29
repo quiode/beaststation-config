@@ -1,13 +1,13 @@
 services:
   stationboard:
-    container_name: stationboard
     image: quiooo/stationboard
+    container_name: stationboard
     restart: always
+    networks:
+      - stationboard
     environment:
       VIRTUAL_HOST: "stationboard.dominik-schwaiger.ch"
       LETSENCRYPT_HOST: "stationboard.dominik-schwaiger.ch"
-    networks:
-      - stationboard
 
 networks:
   stationboard:
