@@ -8,8 +8,6 @@ services:
     environment:
       VIRTUAL_HOST: "dominik-schwaiger.ch"
       LETSENCRYPT_HOST: "dominik-schwaiger.ch"
-    labels:
-      - 'com.centurylinklabs.watchtower.enable=true'
 
 networks:
   dominik-schwaiger:

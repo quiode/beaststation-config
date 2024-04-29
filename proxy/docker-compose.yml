@@ -13,6 +13,7 @@ services:
       - compose-watcher
       - portainer
       - bitwarden
+      - stationboard
     volumes:
       - conf:/etc/nginx/conf.d
       - /home/domina/beaststation-docker-compose/proxy/nginx_config:/etc/nginx/vhost.d
@@ -40,6 +41,7 @@ services:
       - compose-watcher
       - portainer
       - bitwarden
+      - stationboard
     volumes:
       - /home/domina/beaststation-docker-compose/proxy/nginx_config:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
@@ -86,5 +88,8 @@ networks:
   
   bitwarden:
     name: bitwarden
+
+  stationboard:
+    name: stationboard
 
   proxy:

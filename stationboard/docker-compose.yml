@@ -1,0 +1,15 @@
+services:
+  stationboard:
+    container_name: stationboard
+    image: quiooo/stationboard
+    restart: always
+    environment:
+      VIRTUAL_HOST: "stationboard.dominik-schwaiger.ch"
+      LETSENCRYPT_HOST: "stationboard.dominik-schwaiger.ch"
+    networks:
+      - stationboard
+
+networks:
+  stationboard:
+    name: stationboard
+    external: true
