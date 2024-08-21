@@ -9,7 +9,7 @@ services:
       VIRTUAL_HOST: "dominik-schwaiger.ch"
       LETSENCRYPT_HOST: "dominik-schwaiger.ch"
     volumes:
-      - /mnt/raid5/dominik-schwaiger.ch/images:/dominik-schwaiger.ch/public/images
+      - /mnt/raid5/dominik-schwaiger.ch/images:/dominik-schwaiger.ch/images
     env_file:
       - /etc/environment
 
