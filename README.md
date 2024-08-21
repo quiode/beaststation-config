@@ -26,6 +26,8 @@ Docker compose files for my server (Beaststation).
   - get from <https://bitwarden.com/host/>
 - `BW_INSTALLATION_KEY`
   - get from <https://bitwarden.com/host/>
+- `SCHWAIGER_ADMIN_PASSWORD`
+  - password to enter admin panel of <https://dominik-schwaiger.ch>
 
 ## Volumes
 
@@ -41,6 +43,7 @@ Docker compose files for my server (Beaststation).
 - `/mnt/raid5/bitwarden/data`
 - `/mnt/raid5/bitwarden/database`
 - `/mnt/raid5/bitwarden/logs`
+- `/mnt/raid5/dominik-schwaiger.ch/images`
 - `/var/run/docker.sock`
 - `/home/domina/beaststation-docker-compose/proxy/nginx_config`
 - `/home/domina/beaststation-docker-compose`
