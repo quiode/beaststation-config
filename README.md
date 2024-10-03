@@ -44,6 +44,7 @@ Docker compose files for my server (Beaststation).
 - `/mnt/raid5/bitwarden/database`
 - `/mnt/raid5/bitwarden/logs`
 - `/mnt/raid5/dominik-schwaiger.ch/images`
+- `/mnt/raid5/gitlab-runner/config`
 - `/var/run/docker.sock`
 - `/home/domina/beaststation-docker-compose/proxy/nginx_config`
 - `/home/domina/beaststation-docker-compose`
