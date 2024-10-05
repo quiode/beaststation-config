@@ -2,6 +2,7 @@ services:
   website:
     image: quiooo/dominik-schwaiger.ch
     container_name: dominik-schwaiger.ch
+    restart: always
     networks:
       - dominik-schwaiger
     environment:
