@@ -6,6 +6,7 @@ services:
     #hostname: gitlab.dominik-schwaiger.ch
     networks:
       - gitlab
+      - gitlab-local
     environment:
       VIRTUAL_HOST: "gitlab.dominik-schwaiger.ch"
       LETSENCRYPT_HOST: "gitlab.dominik-schwaiger.ch"
@@ -28,6 +29,8 @@ services:
   runner:
     image: gitlab/gitlab-runner
     container_name: gitlab-runner
+    networks:
+      - gitlab-local
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -37,3 +40,5 @@ networks:
   gitlab:
     name: gitlab
     external: true
+
+  gitlab-local:
