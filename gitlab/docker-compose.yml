@@ -3,7 +3,7 @@ services:
     image: gitlab/gitlab-ce
     container_name: gitlab
     restart: always
-    hostname: gitlab.dominik-schwaiger.ch
+    #hostname: gitlab.dominik-schwaiger.ch
     networks:
       - gitlab
     environment:
