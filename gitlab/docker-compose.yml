@@ -13,7 +13,7 @@ services:
         # Add any other gitlab.rb configuration here, each on its own line
         external_url 'https://gitlab.dominik-schwaiger.ch'
     ports:
-      - "22:22"
+      - "2424:22" # TODO: Change to 22 and change ssh port of server
     volumes:
       - /mnt/raid5/gitlab/config:/etc/gitlab
       - /mnt/raid5/gitlab/logs:/var/log/gitlab
