@@ -11,7 +11,7 @@ services:
       LETSENCRYPT_HOST: "gitlab.dominik-schwaiger.ch"
       GITLAB_OMNIBUS_CONFIG: |
         # Add any other gitlab.rb configuration here, each on its own line
-        external_url 'http://gitlab.dominik-schwaiger.ch'
+        external_url 'https://gitlab.dominik-schwaiger.ch'
         letsencrypt['enabled'] = false
         nginx['enable'] = true
         nginx['listen_port'] = 80
