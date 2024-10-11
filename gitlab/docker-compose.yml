@@ -17,7 +17,6 @@ services:
         nginx['enable'] = true
         nginx['listen_port'] = 80
         nginx['listen_https'] = false
-
         # Mail Config
         gitlab_rails['smtp_enable'] = true
         gitlab_rails['smtp_address'] = "dominik-schwaiger.vsos.ethz.ch"
