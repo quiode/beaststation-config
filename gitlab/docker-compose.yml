@@ -17,22 +17,6 @@ services:
         nginx['enable'] = true
         nginx['listen_port'] = 80
         nginx['listen_https'] = false
-
-        # Mail Config
-        gitlab_rails['smtp_enable'] = true
-        gitlab_rails['smtp_address'] = "dominik-schwaiger.vsos.ethz.ch"
-        gitlab_rails['smtp_port'] = 465
-        gitlab_rails['smtp_user_name'] = "nextcloud@dominik-schwaiger.ch"
-        gitlab_rails['smtp_password'] = "${GITLAB_SMTP_PASSWORD}"
-        gitlab_rails['smtp_domain'] = "dominik-schwaiger.ch"
-        gitlab_rails['smtp_authentication'] = "login"
-        gitlab_rails['smtp_enable_starttls_auto'] = true
-        gitlab_rails['smtp_openssl_verify_mode'] = 'peer'
-
-        # If your SMTP server does not like the default 'From: gitlab@localhost' you
-        # can change the 'From' with this setting.
-        gitlab_rails['gitlab_email_from'] = 'gitlab@dominik-schwaiger.ch'
-        gitlab_rails['gitlab_email_reply_to'] = 'gitlab@dominik-schwaiger.ch'
     ports:
       - "2424:22" # TODO: Change to 22 and change ssh port of server
     volumes:
