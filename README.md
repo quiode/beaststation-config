@@ -28,6 +28,8 @@ Docker compose files for my server (Beaststation).
   - get from <https://bitwarden.com/host/>
 - `SCHWAIGER_ADMIN_PASSWORD`
   - password to enter admin panel of <https://dominik-schwaiger.ch>
+- `GITLAB_SMTP_PASSWORD`
+  - email password for gitlab
 
 ## Volumes
 
