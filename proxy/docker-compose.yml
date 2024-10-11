@@ -14,6 +14,7 @@ services:
       - portainer
       - bitwarden
       - stationboard
+      - gitlab
     volumes:
       - conf:/etc/nginx/conf.d
       - /home/domina/beaststation-docker-compose/proxy/nginx_config:/etc/nginx/vhost.d
@@ -42,6 +43,7 @@ services:
       - portainer
       - bitwarden
       - stationboard
+      - gitlab
     volumes:
       - /home/domina/beaststation-docker-compose/proxy/nginx_config:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
@@ -91,5 +93,8 @@ networks:
 
   stationboard:
     name: stationboard
+
+  gitlab:
+    name: gitlab
 
   proxy:
