@@ -30,7 +30,7 @@ services:
         # Email account username
         # With third party providers, this is usually the full email address.
         # With self-hosted email servers, this is usually the user part of the email address.
-        gitlab_rails['incoming_email_email'] = "gitlab"
+        gitlab_rails['incoming_email_email'] = "gitlab@dominik-schwaiger.ch"
         # Email account password
         gitlab_rails['incoming_email_password'] = "${GITLAB_SMTP_PASSWORD}"
 
