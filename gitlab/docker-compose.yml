@@ -6,6 +6,8 @@ services:
     networks:
       - gitlab
       - gitlab-local
+    env_file:
+      - /etc/environment
     environment:
       VIRTUAL_HOST: "gitlab.dominik-schwaiger.ch"
       LETSENCRYPT_HOST: "gitlab.dominik-schwaiger.ch"
