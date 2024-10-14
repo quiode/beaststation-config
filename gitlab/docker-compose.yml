@@ -18,6 +18,44 @@ services:
         nginx['listen_port'] = 80
         nginx['listen_https'] = false
         # Mail Config
+        gitlab_rails['incoming_email_enabled'] = true
+
+        # The email address including the %{key} placeholder that will be replaced to reference the
+        # item being replied to. This %{key} should be included in its entirety within the email
+        # address and not replaced by another value.
+        # For example: emailaddress+%{key}@gitlab.example.com.
+        # The placeholder must appear in the "user" part of the address (before the `@`).
+        gitlab_rails['incoming_email_address'] = "gitlab+%{key}@dominik-schwaiger.ch"
+
+        # Email account username
+        # With third party providers, this is usually the full email address.
+        # With self-hosted email servers, this is usually the user part of the email address.
+        gitlab_rails['incoming_email_email'] = "gitlab"
+        # Email account password
+        gitlab_rails['incoming_email_password'] = "${GITLAB_SMTP_PASSWORD}"
+
+        # IMAP server host
+        gitlab_rails['incoming_email_host'] = "dominik-schwaiger.vsos.ethz.ch"
+        # IMAP server port
+        gitlab_rails['incoming_email_port'] = 993
+        # Whether the IMAP server uses SSL
+        gitlab_rails['incoming_email_ssl'] = true
+        # Whether the IMAP server uses StartTLS
+        gitlab_rails['incoming_email_start_tls'] = false
+
+        # The mailbox where incoming mail will end up. Usually "inbox".
+        gitlab_rails['incoming_email_mailbox_name'] = "inbox"
+        # The IDLE command timeout.
+        gitlab_rails['incoming_email_idle_timeout'] = 60
+
+        # If you are using Microsoft Graph instead of IMAP, set this to false to retain
+        # messages in the inbox because deleted messages are auto-expunged after some time.
+        gitlab_rails['incoming_email_delete_after_delivery'] = true
+
+        # Whether to expunge (permanently remove) messages from the mailbox when they are marked as deleted after delivery
+        # Only applies to IMAP. Microsoft Graph will auto-expunge any deleted messages.
+        gitlab_rails['incoming_email_expunge_deleted'] = true
+
         gitlab_rails['smtp_enable'] = true 
         gitlab_rails['smtp_address'] = "dominik-schwaiger.vsos.ethz.ch"
         gitlab_rails['smtp_port'] = 465    
