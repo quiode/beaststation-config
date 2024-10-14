@@ -60,7 +60,7 @@ services:
         gitlab_rails['smtp_address'] = "dominik-schwaiger.vsos.ethz.ch"
         gitlab_rails['smtp_port'] = 465    
         gitlab_rails['smtp_user_name'] = "gitlab@dominik-schwaiger.ch"
-        gitlab_rails['smtp_password'] = "asdjfkajfkdajksfjlkajksl""
+        gitlab_rails['smtp_password'] = "${GITLAB_SMTP_PASSWORD}"
         gitlab_rails['smtp_tls'] = true    
         gitlab_rails['smtp_openssl_verify_mode'] = 'peer'
     ports:
