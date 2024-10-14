@@ -39,6 +39,7 @@ services:
         gitlab_rails['smtp_password'] = "${GITLAB_SMTP_PASSWORD}"
         gitlab_rails['smtp_tls'] = true    
         gitlab_rails['smtp_openssl_verify_mode'] = "peer"
+        gitlab_rails['smtp_domain'] = "dominik-schwaiger.ch"
         gitlab_rails['gitlab_email_from'] = "gitlab@dominik-schwaiger.ch"
         gitlab_rails['gitlab_email_reply_to'] = "noreply@dominik-schwaiger.ch"
     ports:
