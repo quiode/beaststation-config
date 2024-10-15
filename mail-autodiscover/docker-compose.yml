@@ -1,0 +1,45 @@
+services:
+  autodiscover:
+    image: monogramm/autodiscover-email-settings
+    container_name: autodiscover    
+    networks:
+      - autodiscover
+    environment:
+      - VIRTUAL_HOST=autodiscover.dominik-schwaiger.ch,autoconfig.dominik-schwaiger.ch
+      - LETSENCRYPT_HOST=autodiscover.dominik-schwaiger.ch,autoconfig.dominik-schwaiger.ch
+      - COMPANY_NAME=Dominik Schwaiger
+      - SUPPORT_URL=https://autodiscover.dominik-schwaiger.ch
+      - DOMAIN=dominik-schwaiger.ch
+      # IMAP configuration (host mandatory to enable)
+      - IMAP_HOST=dominik-schwaiger.vsos.ethz.ch
+      - IMAP_PORT=993
+      - IMAP_SOCKET=SSL
+      # POP configuration (host mandatory to enable)
+      #- POP_HOST=pop3.dominik-schwaiger.vsos.ethz.ch
+      #- POP_PORT=995
+      #- POP_SOCKET=SSL
+      # SMTP configuration (host mandatory to enable)
+      - SMTP_HOST=dominik-schwaiger.vsos.ethz.ch
+      - SMTP_PORT=465
+      - SMTP_SOCKET=SSL
+      # MobileSync/ActiveSync configuration (url mandatory to enable)
+      #- MOBILESYNC_URL=https://sync.dominik-schwaiger.ch
+      #- MOBILESYNC_NAME=sync.dominik-schwaiger.ch
+      # LDAP configuration (host mandatory to enable)
+      #- LDAP_HOST=ldap.dominik-schwaiger.ch
+      #- LDAP_PORT=636
+      #- LDAP_SOCKET=SSL
+      #- LDAP_BASE=dc=ldap,dc=dominik-schwaiger,dc=ch
+      #- LDAP_USER_FIELD=uid
+      #- LDAP_USER_BASE=ou=People,dc=ldap,dc=dominik-schwaiger,dc=ch
+      #- LDAP_SEARCH=(|(objectClass=PostfixBookMailAccount))
+      # Apple mobile config identifiers (identifier mandatory to enable)
+      - PROFILE_IDENTIFIER=ch.dominik-schwaiger.autodiscover
+      #- PROFILE_UUID=92943D26-CAB3-4086-897D-DC6C0D8B1E86
+      #- MAIL_UUID=7A981A9E-D5D0-4EF8-87FE-39FD6A506FAC
+      #- LDAP_UUID=6ECB6BA9-2208-4ABF-9E60-4E9F4CD7309E
+
+networks:
+  autodiscover:
+    name: autodiscover
+    external: true
