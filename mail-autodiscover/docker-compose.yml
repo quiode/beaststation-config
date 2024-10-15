@@ -7,6 +7,7 @@ services:
     environment:
       - VIRTUAL_HOST=autodiscover.dominik-schwaiger.ch,autoconfig.dominik-schwaiger.ch
       - LETSENCRYPT_HOST=autodiscover.dominik-schwaiger.ch,autoconfig.dominik-schwaiger.ch
+      - VIRTUAL_PORT=8000
       - COMPANY_NAME=Dominik Schwaiger
       - SUPPORT_URL=https://autodiscover.dominik-schwaiger.ch
       - DOMAIN=dominik-schwaiger.ch
