@@ -15,8 +15,6 @@ services:
       OVERRIDE_ICON: "true"
       ICON: "https://raw.githubusercontent.com/quiode/beaststation-docker-compose/main/minecraft-server/crystal_kontur_lila_moon.png"
       SERVER_NAME: "Crystal"
-      ENABLE_AUTOPAUSE: "true"
-      MAX_TICK_TIME: "-1"
     tty: true
     stdin_open: true
     restart: always
