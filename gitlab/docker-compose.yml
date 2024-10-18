@@ -22,7 +22,7 @@ services:
         # Mail Config
         gitlab_rails['incoming_email_enabled'] = true
         gitlab_rails['incoming_email_address'] = "gitlab+%{key}@dominik-schwaiger.ch"
-        gitlab_rails['incoming_email_email'] = "gitlab"
+        gitlab_rails['incoming_email_email'] = "gitlab@dominik-schwaiger.ch"
         gitlab_rails['incoming_email_password'] = "${GITLAB_SMTP_PASSWORD}"
         gitlab_rails['incoming_email_host'] = "dominik-schwaiger.vsos.ethz.ch"
         gitlab_rails['incoming_email_port'] = 993
