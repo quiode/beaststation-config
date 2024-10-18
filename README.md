@@ -61,4 +61,4 @@ Docker compose files for my server (Beaststation).
 - 443 (nginx)
 - 25565 (Minecraft)
 - 1194 (OpenVPN)
-- 20 (Gitlab)
+- 22 (Gitlab)

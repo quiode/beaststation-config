@@ -43,7 +43,7 @@ services:
         gitlab_rails['gitlab_email_from'] = "gitlab@dominik-schwaiger.ch"
         gitlab_rails['gitlab_email_reply_to'] = "noreply@dominik-schwaiger.ch"
     ports:
-      - "2424:22" # TODO: Change to 22 and change ssh port of server
+      - "22:22"
     volumes:
       - /mnt/raid5/gitlab/config:/etc/gitlab
       - /mnt/raid5/gitlab/logs:/var/log/gitlab
