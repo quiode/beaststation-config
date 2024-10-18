@@ -6,7 +6,7 @@ services:
     restart: always
     networks:
       - gitlab
-      - gitlab-local
+      - gitlab-internal
     env_file:
       - /etc/environment
     environment:
@@ -60,7 +60,7 @@ services:
     image: gitlab/gitlab-runner
     container_name: gitlab-runner
     networks:
-      - gitlab-local
+      - gitlab-internal
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -71,4 +71,6 @@ networks:
     name: gitlab
     external: true
 
-  gitlab-local:
+  gitlab-internal:
+    name: gitlab-internal
+    internal: true

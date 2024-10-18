@@ -36,6 +36,7 @@ services:
 networks:
   bitwarden-internal:
     name: "bitwarden-internal"
+    internal: true
   
   bitwarden-external:
     name: "bitwarden"
