@@ -21,7 +21,8 @@ services:
         nginx['enable'] = true
         nginx['listen_port'] = 80
         nginx['listen_https'] = false
-        # Mail Config
+
+        # Mail Config - Incoming
         gitlab_rails['incoming_email_enabled'] = true
         gitlab_rails['incoming_email_address'] = "gitlab+%{key}@dominik-schwaiger.ch"
         gitlab_rails['incoming_email_email'] = "gitlab@dominik-schwaiger.ch"
@@ -30,17 +31,20 @@ services:
         gitlab_rails['incoming_email_port'] = 993
         gitlab_rails['incoming_email_ssl'] = true
         gitlab_rails['incoming_email_start_tls'] = false
-        gitlab_rails['incoming_email_mailbox_name'] = "INBOX"
-        gitlab_rails['incoming_email_idle_timeout'] = 60
-        gitlab_rails['incoming_email_delete_after_delivery'] = true
-        gitlab_rails['incoming_email_expunge_deleted'] = true
+        #gitlab_rails['incoming_email_mailbox_name'] = "INBOX"
+        #gitlab_rails['incoming_email_idle_timeout'] = 60
+        #gitlab_rails['incoming_email_delete_after_delivery'] = true
+        #gitlab_rails['incoming_email_expunge_deleted'] = true
+
+        # Mail Config - SMTP
         gitlab_rails['smtp_enable'] = true 
         gitlab_rails['smtp_address'] = "dominik-schwaiger.vsos.ethz.ch"
         gitlab_rails['smtp_port'] = 465    
         gitlab_rails['smtp_user_name'] = "gitlab@dominik-schwaiger.ch"
         gitlab_rails['smtp_password'] = "${GITLAB_SMTP_PASSWORD}"
         gitlab_rails['smtp_tls'] = true    
-        gitlab_rails['smtp_openssl_verify_mode'] = "peer"
+        gitlab_rails['smtp_enable_starttls_auto'] = false
+        #gitlab_rails['smtp_openssl_verify_mode'] = "peer"
         gitlab_rails['smtp_domain'] = "dominik-schwaiger.ch"
         gitlab_rails['smtp_authentication'] = "login"
         gitlab_rails['gitlab_email_from'] = "gitlab@dominik-schwaiger.ch"
