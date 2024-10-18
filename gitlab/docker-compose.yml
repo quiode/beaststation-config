@@ -12,6 +12,7 @@ services:
       VIRTUAL_HOST: "gitlab.dominik-schwaiger.ch"
       LETSENCRYPT_HOST: "gitlab.dominik-schwaiger.ch"
       VIRTUAL_PORT: "80"
+      GITLAB_LOG_LEVEL: "DEBUG"
       GITLAB_OMNIBUS_CONFIG: |
         # Add any other gitlab.rb configuration here, each on its own line
         external_url 'https://gitlab.dominik-schwaiger.ch'
