@@ -34,6 +34,8 @@ services:
         #gitlab_rails['incoming_email_idle_timeout'] = 60
         gitlab_rails['incoming_email_delete_after_delivery'] = true
         gitlab_rails['incoming_email_expunge_deleted'] = true
+        gitlab_rails['incoming_email_delivery_method'] = "sidekiq"
+        gitlab_rails['service_desk_email_delivery_method'] = "sidekiq"
 
         # Mail Config - SMTP
         gitlab_rails['smtp_enable'] = true 
