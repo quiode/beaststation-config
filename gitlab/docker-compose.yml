@@ -31,7 +31,6 @@ services:
         gitlab_rails['incoming_email_ssl'] = true
         gitlab_rails['incoming_email_start_tls'] = false
         gitlab_rails['incoming_email_mailbox_name'] = "INBOX"
-        #gitlab_rails['incoming_email_idle_timeout'] = 60
         gitlab_rails['incoming_email_delete_after_delivery'] = true
         gitlab_rails['incoming_email_expunge_deleted'] = true
         gitlab_rails['incoming_email_delivery_method'] = "sidekiq"
