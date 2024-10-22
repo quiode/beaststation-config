@@ -47,9 +47,11 @@ Docker compose files for my server (Beaststation).
 - `/mnt/raid5/bitwarden/logs`
 - `/mnt/raid5/dominik-schwaiger.ch/images`
 - `/mnt/raid5/gitlab/runner/config`
-- `/mnt/raid5/gitlab/logs:/var/log/gitlab`
-- `/mnt/raid5/gitlab/config:/etc/gitlab`
-- `/mnt/raid5/gitlab/data:/var/opt/gitlab`
+- `/mnt/raid5/gitlab/logs`
+- `/mnt/raid5/gitlab/config`
+- `/mnt/raid5/gitlab/data`
+- `/mnt/raid5/registry/data`
+- `/mnt/raid5/registry/auth`
 - `/var/run/docker.sock`
 - `/home/domina/beaststation-docker-compose/proxy/nginx_config`
 - `/home/domina/beaststation-docker-compose`
