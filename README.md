@@ -2,7 +2,11 @@
 
 Docker compose files for my server (Beaststation).
 
+Assumption: User is named `domina` and this repository is cloned directly inside the home directory.
+
 ## Required Environment Variables
+
+These should be written inside `/etc/environment`.
 
 - `DOCKER_PW`
   - password for docker repo
@@ -31,7 +35,7 @@ Docker compose files for my server (Beaststation).
 - `GITLAB_SMTP_PASSWORD`
   - email password for gitlab
 
-## Volumes
+## Bind Volumes
 
 - `/mnt/raid5/openvpn`
 - `/mnt/raid5/nextcloud/data`
@@ -64,3 +68,7 @@ Docker compose files for my server (Beaststation).
 - 25565 (Minecraft)
 - 1194 (OpenVPN)
 - 22 (Gitlab)
+
+## Hosts (`/etc/hosts`)
+
+Create an entry for `registry.dominik-schwaiger` mapping to `localhost` (probably *127.0.0.1*), sucht that the self hosted docker registry works fine with docker inside the server.
