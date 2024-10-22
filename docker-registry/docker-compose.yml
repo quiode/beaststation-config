@@ -4,6 +4,8 @@ services:
     container_name: registry
     hostname: registry.dominik-schwaiger.ch
     restart: always
+    networks:
+      - registry
     volumes:
       - /mnt/raid5/registry/data:/var/lib/registry
       - /mnt/raid5/registry/auth:/auth:ro
@@ -23,3 +25,8 @@ volumes:
   certs:
     external: true
     name: "letsencrypt_certs"
+  
+networks:
+  registry:
+    name: registry
+    external: true

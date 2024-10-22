@@ -103,4 +103,7 @@ networks:
   autodiscover:
     name: autodiscover
 
+  registry:
+    name: registry
+
   proxy:
