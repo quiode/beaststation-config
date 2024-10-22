@@ -1,6 +1,6 @@
 services:
   bitwarden:
-    image: bitwarden/self-host:beta
+    image: bitwarden/self-host:2024.9.2-beta #TODO: reinstall docker compose when stable version releases
     container_name: bitwarden
     env_file:
       - settings.env
