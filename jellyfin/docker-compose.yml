@@ -14,10 +14,10 @@ services:
       # Update this configuration as desired
       - /mnt/raid5/jellyfin/media:/media
     restart: always
-    devices:
-      # VAAPI Devices
-      - /dev/dri/renderD128:/dev/dri/renderD128
-      - /dev/dri/card0:/dev/dri/card0
+    # devices:
+      # VAAPI Devices TODO: current setup does not have graphics capabilities
+      # - /dev/dri/renderD128:/dev/dri/renderD128
+      # - /dev/dri/card0:/dev/dri/card0
     labels:
       - 'traefik.enable=true'
       ## HTTP Router
