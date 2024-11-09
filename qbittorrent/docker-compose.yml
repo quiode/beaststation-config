@@ -1,0 +1,30 @@
+services:
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Zurich
+      - WEBUI_PORT=8080
+      - TORRENTING_PORT=6881
+    volumes:
+      - /mnt/raid5/qbittorrent/appdata:/config
+      - /mnt/raid5/qbittorrent/downloads:/downloads #optional
+    #ports:
+      #- 6881:6881
+      #- 6881:6881/udp
+    restart: always
+    networks:
+      - qbittorrent
+    labels:
+      - "traefik.http.routers.qbittorrent.rule=Host(`qbittorrent.dominik-schwaiger.ch`)"
+      - "traefik.http.routers.qbittorrent.tls=true"
+      - "traefik.http.routers.qbittorrent.tls.certresolver=letsencrypt"
+      - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"
+      - "traefik.enable=true"
+
+networks:
+  qbittorrent:
+    name: qbittorrent
+    external: true
