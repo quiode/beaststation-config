@@ -6,11 +6,6 @@ services:
       - settings.env
     depends_on:
       - bitwarden-db
-    environment:
-      # Nginx Proxy
-      VIRTUAL_HOST: "bitwarden.dominik-schwaiger.ch"
-      LETSENCRYPT_HOST: "bitwarden.dominik-schwaiger.ch"
-      VIRTUAL_PORT: "8080"
     restart: always
     volumes:
       - /mnt/raid5/bitwarden/data:/etc/bitwarden
@@ -18,13 +13,19 @@ services:
     networks:
       - bitwarden-internal
       - bitwarden-external
+    labels:
+      - "traefik.http.routers.bitwarden.rule=Host(`bitwarden.dominik-schwaiger.ch`)"
+      - "traefik.http.routers.bitwarden.tls=true"
+      - "traefik.http.routers.bitwarden.tls.certresolver=letsencrypt"
+      - "traefik.http.services.bitwarden.loadbalancer.server.port=8080"
+      - "traefik.enable=true"
 
   bitwarden-db:
     image: mariadb:10
     container_name: bitwarden-db
     environment:
       MARIADB_USER: "bitwarden"
-      MARIADB_PASSWORD: "super_strong_password"
+      MARIADB_PASSWORD: "super_strong_password" # TODO:
       MARIADB_DATABASE: "bitwarden_vault"
       MARIADB_RANDOM_ROOT_PASSWORD: "true"
     restart: always

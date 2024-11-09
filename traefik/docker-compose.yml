@@ -1,0 +1,78 @@
+services:
+  traefik:
+    image: traefik:3
+    container_name: traefik
+    restart: always
+    command:
+      - "--log.level=INFO" # TODO:
+      - "--api.dashboard=true"
+      - "--providers.docker"
+      - "--providers.docker.exposedByDefault=false"
+      - "--global.sendAnonymousUsage"
+      - "--entryPoints.web.address=:80"
+      - "--entryPoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entryPoints.web.http.redirections.entryPoint.scheme=https"
+      - "--entryPoints.websecure.address=:443"
+      - "--certificatesresolvers.letsencrypt.acme.email=mail@dominik-schwaiger.ch"
+      - "--certificatesresolvers.letsencrypt.acme.storage=acme.json"
+      - "--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web"
+      #TODO: - "--certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
+      - "--entryPoints.web.transport.respondingTimeouts.readTimeout=5m"
+      - "--entryPoints.websecure.transport.respondingTimeouts.readTimeout=5m"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /mnt/raid5/traefik/auth:/auth:ro
+      - /mnt/raid5/traefik/acme:/etc/traefik/acme
+    labels:
+      - "traefik.http.middlewares.dashboard-auth.basicauth.usersfile=/auth/users"
+      - "traefik.http.routers.dashboard.middlewares=dashboard-auth@docker"
+      - "traefik.http.routers.dashboard.service=api@internal"
+      - "traefik.http.routers.dashboard.rule=Host(`traefik.dominik-schwaiger.ch`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
+      - "traefik.http.routers.dashboard.tls=true"
+      - "traefik.http.routers.dashboard.tls.certresolver=letsencrypt"
+      - "traefik.enable=true"
+    networks:
+      - nextcloud
+      - dominik-schwaiger
+      - onlyoffice
+      - compose-watcher
+      - portainer
+      - bitwarden
+      - stationboard
+      - gitlab
+      - autodiscover
+      - registry
+
+networks:
+  nextcloud:
+    name: nextcloud
+
+  dominik-schwaiger:
+    name: dominik-schwaiger
+
+  onlyoffice:
+    name: onlyoffice
+
+  compose-watcher:
+    name: compose-watcher
+
+  portainer:
+    name: portainer
+  
+  bitwarden:
+    name: bitwarden
+
+  stationboard:
+    name: stationboard
+
+  gitlab:
+    name: gitlab
+  
+  autodiscover:
+    name: autodiscover
+
+  registry:
+    name: registry

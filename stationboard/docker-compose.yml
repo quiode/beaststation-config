@@ -5,10 +5,11 @@ services:
     restart: always
     networks:
       - stationboard
-    environment:
-      VIRTUAL_HOST: "stationboard.dominik-schwaiger.ch"
-      LETSENCRYPT_HOST: "stationboard.dominik-schwaiger.ch"
-      VIRTUAL_PORT: "80"
+    labels:
+      - "traefik.http.routers.stationboard.rule=Host(`stationboard.dominik-schwaiger.ch`)"
+      - "traefik.http.routers.stationboard.tls=true"
+      - "traefik.http.routers.stationboard.tls.certresolver=letsencrypt"
+      - "traefik.enable=true"
 
 networks:
   stationboard:

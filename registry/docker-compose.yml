@@ -1,6 +1,6 @@
 services:
   registry:
-    image: registry
+    image: registry:2
     container_name: registry
     hostname: registry.dominik-schwaiger.ch
     restart: always
@@ -9,23 +9,17 @@ services:
     volumes:
       - /mnt/raid5/registry/data:/var/lib/registry
       - /mnt/raid5/registry/auth:/auth
-      - certs:/certs:ro
     environment:
-      VIRTUAL_HOST: "registry.dominik-schwaiger.ch"
-      LETSENCRYPT_HOST: "registry.dominik-schwaiger.ch"
-      VIRTUAL_PORT: "5000"
-      VIRTUAL_PROTO: "https"
-      REGISTRY_HTTP_TLS_CERTIFICATE: "/certs/registry.dominik-schwaiger.ch.crt"
-      REGISTRY_HTTP_TLS_KEY: "/certs/registry.dominik-schwaiger.ch.key"
       REGISTRY_AUTH: "htpasswd"
       REGISTRY_AUTH_HTPASSWD_PATH: "/auth/htpasswd"
       REGISTRY_AUTH_HTPASSWD_REALM: "ACME Docker Registry Realm"
+    labels:
+      - "traefik.http.routers.registry.rule=Host(`registry.dominik-schwaiger.ch`)"
+      - "traefik.http.routers.registry.tls=true"
+      - "traefik.http.routers.registry.tls.certresolver=letsencrypt"
+      - "traefik.http.services.registry.loadbalancer.server.port=5000"
+      - "traefik.enable=true"
 
-volumes:
-  certs:
-    external: true
-    name: "letsencrypt_certs"
-  
 networks:
   registry:
     name: registry

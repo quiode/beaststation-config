@@ -56,15 +56,16 @@ These should be written inside `/etc/environment`.
 - `/mnt/raid5/gitlab/data`
 - `/mnt/raid5/registry/data`
 - `/mnt/raid5/registry/auth`
+- `/mnt/raid5/traefik/auth`
+- `/mnt/raid5/traefik/acme`
 - `/var/run/docker.sock`
-- `/home/domina/beaststation-docker-compose/proxy/nginx_config`
 - `/home/domina/beaststation-docker-compose`
 - `/home/domina/.ssh`
 
 ## Ports
 
-- 80 (nginx)
-- 443 (nginx)
+- 80 (proxy)
+- 443 (proxy)
 - 25565 (Minecraft)
 - 1194 (OpenVPN)
 - 22 (Gitlab)

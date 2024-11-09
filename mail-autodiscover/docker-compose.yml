@@ -5,9 +5,6 @@ services:
     networks:
       - autodiscover
     environment:
-      - VIRTUAL_HOST=autodiscover.dominik-schwaiger.ch,autoconfig.dominik-schwaiger.ch
-      - LETSENCRYPT_HOST=autodiscover.dominik-schwaiger.ch,autoconfig.dominik-schwaiger.ch
-      - VIRTUAL_PORT=8000
       - COMPANY_NAME=Dominik Schwaiger
       - SUPPORT_URL=https://autodiscover.dominik-schwaiger.ch
       - DOMAIN=dominik-schwaiger.ch
@@ -39,6 +36,12 @@ services:
       #- PROFILE_UUID=92943D26-CAB3-4086-897D-DC6C0D8B1E86
       #- MAIL_UUID=7A981A9E-D5D0-4EF8-87FE-39FD6A506FAC
       #- LDAP_UUID=6ECB6BA9-2208-4ABF-9E60-4E9F4CD7309E
+    labels:
+      - "traefik.http.routers.autodiscover.rule=Host(`autodiscover.dominik-schwaiger.ch`) || Host(`autoconfig.dominik-schwaiger.ch`)"
+      - "traefik.http.routers.autodiscover.tls=true"
+      - "traefik.http.routers.autodiscover.tls.certresolver=letsencrypt"
+      - "traefik.http.services.autodiscover.loadbalancer.server.port=8000"
+      - "traefik.enable=true"
 
 networks:
   autodiscover:

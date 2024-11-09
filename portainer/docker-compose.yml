@@ -1,6 +1,10 @@
 services:
   portainer:
     image: "portainer/portainer-ce:alpine"
+    restart: always
+    container_name: portainer
+    networks:
+      - portainer
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /mnt/raid5/portainer/data:/data
@@ -9,10 +13,12 @@ services:
       LETSENCRYPT_HOST: "portainer.dominik-schwaiger.ch"
       VIRTUAL_PORT: "9443"
       VIRTUAL_PROTO: "https"
-    container_name: portainer
-    networks:
-      - portainer
-    restart: always
+    labels:
+      - "traefik.http.routers.portainer.rule=Host(`portainer.dominik-schwaiger.ch`)"
+      - "traefik.http.routers.portainer.tls=true"
+      - "traefik.http.routers.portainer.tls.certresolver=letsencrypt"
+      - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+      - "traefik.enable=true"
 
 networks:
   portainer:
