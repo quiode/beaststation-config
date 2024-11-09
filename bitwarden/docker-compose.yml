@@ -25,7 +25,7 @@ services:
     container_name: bitwarden-db
     environment:
       MARIADB_USER: "bitwarden"
-      MARIADB_PASSWORD: "super_strong_password" # TODO:
+      MARIADB_PASSWORD: "super_strong_password" # TODO: use the db password
       MARIADB_DATABASE: "bitwarden_vault"
       MARIADB_RANDOM_ROOT_PASSWORD: "true"
     restart: always
