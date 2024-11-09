@@ -8,6 +8,9 @@ providers:
   docker:
     exposedByDefault: false
 
+  file:
+    filename: "/traefik-provider.yml"
+
 global:
   sendAnonymousUsage: true
 
