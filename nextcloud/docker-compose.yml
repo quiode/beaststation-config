@@ -45,6 +45,10 @@ services:
       - "traefik.http.middlewares.nextcloud-header.headers.browserxssfilter=true"
       - "traefik.http.middlewares.nextcloud-header.headers.stsSeconds=155520011"
       - "traefik.http.routers.nextcloud.middlewares=nextcloud-header@docker"
+      - "traefik.http.routers.nextcloud.middlewares=nextcloud_redirectregex@docker"
+      - "traefik.http.middlewares.nextcloud_redirectregex.redirectregex.permanent=true"
+      - "traefik.http.middlewares.nextcloud_redirectregex.redirectregex.regex=https://(.*)/.well-known/(?:card|cal)dav"
+      - "traefik.http.middlewares.nextcloud_redirectregex.redirectregex.replacement=https://$${1}/remote.php/dav"
       - "traefik.enable=true"
 
   # cron job to allow nextcloud to use cron (instead of custom image https://github.com/nextcloud/docker/blob/master/.examples/docker-compose/insecure/mariadb/apache/docker-compose.yml)
