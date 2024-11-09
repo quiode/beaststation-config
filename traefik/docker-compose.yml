@@ -3,21 +3,6 @@ services:
     image: traefik:3
     container_name: traefik
     restart: always
-    command:
-      - "--log.level=INFO"
-      - "--api.dashboard=true"
-      - "--providers.docker"
-      - "--providers.docker.exposedByDefault=false"
-      - "--global.sendAnonymousUsage"
-      - "--entryPoints.web.address=:80"
-      - "--entryPoints.web.http.redirections.entryPoint.to=websecure"
-      - "--entryPoints.web.http.redirections.entryPoint.scheme=https"
-      - "--entryPoints.websecure.address=:443"
-      - "--certificatesresolvers.letsencrypt.acme.email=mail@dominik-schwaiger.ch"
-      - "--certificatesresolvers.letsencrypt.acme.storage=acme.json"
-      - "--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web"
-      - "--entryPoints.web.transport.respondingTimeouts.readTimeout=5m"
-      - "--entryPoints.websecure.transport.respondingTimeouts.readTimeout=5m"
     ports:
       - "80:80"
       - "443:443"
@@ -25,6 +10,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /mnt/raid5/traefik/auth:/auth:ro
       - /mnt/raid5/traefik/acme:/etc/traefik/acme
+      - /home/domina/beaststation-docker-compose/traefik/traefik.yml:/etc/traefik/traefik.yml:ro
     labels:
       - "traefik.http.middlewares.dashboard-auth.basicauth.usersfile=/auth/users"
       - "traefik.http.routers.dashboard.middlewares=dashboard-auth@docker"

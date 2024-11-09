@@ -60,6 +60,7 @@ These should be written inside `/etc/environment`.
 - `/mnt/raid5/traefik/acme`
 - `/var/run/docker.sock`
 - `/home/domina/beaststation-docker-compose`
+- `/home/domina/beaststation-docker-compose/traefik`
 - `/home/domina/.ssh`
 
 ## Ports
