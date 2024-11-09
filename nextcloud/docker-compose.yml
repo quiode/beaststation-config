@@ -43,7 +43,7 @@ services:
       - "traefik.http.services.nextcloud.loadbalancer.server.port=80"
       - "traefik.http.middlewares.nextcloud-header.headers.framedeny=true"
       - "traefik.http.middlewares.nextcloud-header.headers.browserxssfilter=true"
-      - "traefik.http.middlewares.nextcloud-header.headers.stsSeconds=155520011"
+      - "traefik.http.middlewares.nextcloud-header.headers.stsSeconds=63072000"
       - "traefik.http.routers.nextcloud.middlewares=nextcloud-header@docker"
       - "traefik.http.routers.nextcloud.middlewares=nextcloud_redirectregex@docker"
       - "traefik.http.middlewares.nextcloud_redirectregex.redirectregex.permanent=true"
