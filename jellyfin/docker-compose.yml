@@ -5,8 +5,8 @@ services:
     group_add: # by id as these may not exist within the container. Needed to provide permissions to the VAAPI Devices
       - '107' #render
       - '44' #video
-    # Network mode of 'host' exposes the ports on the host. This is needed for DLNA access.
-    network_mode: 'host'
+    # Network mode of 'host' exposes the ports on the host. This is needed for DLNA access. TODO: not needed for now and makes it less secure
+    #network_mode: 'host'
     volumes:
       - /mnt/raid5/jellyfin/config:/config
       - /mnt/raid5/jellyfin/cache:/cache
@@ -17,6 +17,8 @@ services:
       # VAAPI Devices TODO: current setup does not have graphics capabilities
       # - /dev/dri/renderD128:/dev/dri/renderD128
       # - /dev/dri/card0:/dev/dri/card0
+    networks:
+      - jellyfin
     labels:
       - 'traefik.enable=true'
       ## HTTP Router
@@ -50,6 +52,10 @@ services:
       - "traefik.http.middlewares.jellyfin-mw.headers.customFrameOptionsValue='allow-from https://jellyfin.dominik-schwaiger.ch'"
       ## HTTP Service
       # We define the port here as a port is required, but note that the service is pointing to the service defined in @file
-      - 'traefik.http.routers.jellyfin.service=jellyfin-svc@file'
-      - 'traefik.http.services.jellyfin-svc.loadBalancer.server.port=8096'
-      - 'traefik.http.services.jellyfin-svc.loadBalancer.passHostHeader=true'
+      - 'traefik.http.services.jellyfin.loadBalancer.server.port=8096'
+      - 'traefik.http.services.jellyfin.loadBalancer.passHostHeader=true'
+
+networks:
+  jellyfin:
+    name: jellyfin
+    external: true

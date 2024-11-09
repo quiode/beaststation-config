@@ -31,6 +31,7 @@ services:
       - gitlab
       - autodiscover
       - registry
+      - jellyfin
 
 networks:
   nextcloud:
@@ -62,3 +63,6 @@ networks:
 
   registry:
     name: registry
+
+  jellyfin:
+    name: jellyfin
