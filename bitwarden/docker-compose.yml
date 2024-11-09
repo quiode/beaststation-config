@@ -7,6 +7,8 @@ services:
     depends_on:
       - bitwarden-db
     restart: always
+    environment:
+      BW_DB_PASSWORD: "${DB_PW}"
     volumes:
       - /mnt/raid5/bitwarden/data:/etc/bitwarden
       - /mnt/raid5/bitwarden/logs:/var/log/bitwarden
@@ -25,7 +27,7 @@ services:
     container_name: bitwarden-db
     environment:
       MARIADB_USER: "bitwarden"
-      MARIADB_PASSWORD: "super_strong_password" # TODO:
+      MARIADB_PASSWORD: "${DB_PW}"
       MARIADB_DATABASE: "bitwarden_vault"
       MARIADB_RANDOM_ROOT_PASSWORD: "true"
     restart: always
