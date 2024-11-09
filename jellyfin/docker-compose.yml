@@ -51,7 +51,7 @@ services:
       #### overrides the FrameDeny option.
       - "traefik.http.middlewares.jellyfin-mw.headers.customFrameOptionsValue='allow-from https://jellyfin.dominik-schwaiger.ch'"
       ## HTTP Service
-      # We define the port here as a port is required, but note that the service is pointing to the service defined in @file
+      # We define the port here as a port is required
       - 'traefik.http.services.jellyfin.loadBalancer.server.port=8096'
       - 'traefik.http.services.jellyfin.loadBalancer.passHostHeader=true'
 
