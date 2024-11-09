@@ -73,9 +73,6 @@ services:
       - nextcloud-intern
     environment:
       JWT_SECRET: "${JWT_SECRET}"
-    volumes:
-      - office-logs:/var/log/onlyoffice
-      - office-certs:/var/www/onlyoffice/Data
     labels:
       - "traefik.http.routers.office.rule=Host(`office.dominik-schwaiger.ch`)"
       - "traefik.http.routers.office.tls=true"
@@ -105,9 +102,6 @@ services:
 
 volumes:
   nextcloud:
-  office-logs:
-  office-certs:
-
 
 networks:
   nextcloud-extern:
