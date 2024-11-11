@@ -87,6 +87,9 @@ services:
       - "traefik.http.routers.office.tls.certresolver=letsencrypt"
       - "traefik.enable=true"
       - "traefik.docker.network=onlyoffice"
+      # Workaround a bug in OnlyOffice, see the issue tracker: https://github.com/ONLYOFFICE/DocumentServer/issues/2186
+      - "traefik.http.middlewares.onlyoffice_redirect_http2https_header.headers.contentSecurityPolicy=upgrade-insecure-requests"
+      - "traefik.http.routers.office.middlewares=onlyoffice_redirect_http2https_header"
 
   nextcloud-database:
     image: "mariadb:lts"
