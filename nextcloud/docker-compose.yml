@@ -30,6 +30,7 @@ services:
       SMTP_PASSWORD: "${NEXTCLOUD_SMTP_PASSWORD}"
       MAIL_FROM_ADDRESS: "nextcloud"
       MAIL_DOMAIN: "dominik-schwaiger.ch"
+      TZ: "Europe/Zurich"
     volumes:
       - nextcloud:/var/www/html
       - /mnt/raid5/nextcloud/data:/var/www/html/data
@@ -58,6 +59,8 @@ services:
     image: "nextcloud:production-apache"
     restart: always
     container_name: nextcloud-cron
+    environment:
+      TZ: "Europe/Zurich"
     volumes:
       - nextcloud:/var/www/html
       - /mnt/raid5/nextcloud/data:/var/www/html/data
@@ -81,6 +84,7 @@ services:
       - nextcloud-intern
     environment:
       JWT_SECRET: "${JWT_SECRET}"
+      TZ: "Europe/Zurich"
     labels:
       - "traefik.http.routers.office.rule=Host(`office.dominik-schwaiger.ch`)"
       - "traefik.http.routers.office.tls=true"
@@ -101,6 +105,7 @@ services:
       MARIADB_USER: "nextcloud"
       MARIADB_PASSWORD: "${DB_PW}"
       MARIADB_AUTO_UPGRADE: 1
+      TZ: "Europe/Zurich"
     networks:
       - nextcloud-intern
     volumes:
@@ -112,6 +117,8 @@ services:
     restart: always
     networks:
       - nextcloud-intern
+    environment:
+      TZ: "Europe/Zurich"
 
 volumes:
   nextcloud:

@@ -5,6 +5,7 @@ services:
     networks:
       - autodiscover
     environment:
+      - TZ=Europe/Zurich
       - COMPANY_NAME=Dominik Schwaiger
       - SUPPORT_URL=https://autodiscover.dominik-schwaiger.ch
       - DOMAIN=dominik-schwaiger.ch

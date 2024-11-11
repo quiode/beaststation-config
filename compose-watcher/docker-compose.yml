@@ -10,6 +10,7 @@ services:
       WATCHER_WEBHOOK_SECRET: "${WEBHOOK_SECRET}"
       WATCHER_TELEGRAM_TOKEN: "${WATCHER_TELEGRAM_TOKEN}"
       WATCHER_CHAT_ID: "${WATCHER_CHAT_ID}"
+      TZ: "Europe/Zurich"
     env_file:
       - /etc/environment
     volumes:

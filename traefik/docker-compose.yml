@@ -3,6 +3,8 @@ services:
     image: traefik:3
     container_name: traefik
     restart: always
+    environment:
+      TZ: "Europe/Zurich"
     ports:
       - "80:80"
       - "443:443"

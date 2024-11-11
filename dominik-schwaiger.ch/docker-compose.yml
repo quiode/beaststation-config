@@ -3,6 +3,8 @@ services:
     image: quiooo/dominik-schwaiger.ch
     container_name: dominik-schwaiger.ch
     restart: always
+    environment:
+      TZ: "Europe/Zurich"
     networks:
       - dominik-schwaiger
     volumes:

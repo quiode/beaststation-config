@@ -9,10 +9,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /mnt/raid5/portainer/data:/data
     environment:
-      VIRTUAL_HOST: "portainer.dominik-schwaiger.ch"
-      LETSENCRYPT_HOST: "portainer.dominik-schwaiger.ch"
-      VIRTUAL_PORT: "9443"
-      VIRTUAL_PROTO: "https"
+      TZ: "Europe/Zurich"
     labels:
       - "traefik.http.routers.portainer.rule=Host(`portainer.dominik-schwaiger.ch`)"
       - "traefik.http.routers.portainer.tls=true"

@@ -10,6 +10,7 @@ services:
     env_file:
       - /etc/environment
     environment:
+      TZ: "Europe/Zurich"
       GITLAB_OMNIBUS_CONFIG: |
         # Add any other gitlab.rb configuration here, each on its own line
         external_url 'https://gitlab.dominik-schwaiger.ch'
@@ -66,6 +67,8 @@ services:
     networks:
       - gitlab-internal
     restart: always
+    environment:
+      TZ: "Europe/Zurich"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /mnt/raid5/gitlab/runner/config:/etc/gitlab-runner

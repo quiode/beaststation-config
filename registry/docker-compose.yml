@@ -13,6 +13,7 @@ services:
       REGISTRY_AUTH: "htpasswd"
       REGISTRY_AUTH_HTPASSWD_PATH: "/auth/htpasswd"
       REGISTRY_AUTH_HTPASSWD_REALM: "ACME Docker Registry Realm"
+      TZ: "Europe/Zurich"
     labels:
       - "traefik.http.routers.registry.rule=Host(`registry.dominik-schwaiger.ch`)"
       - "traefik.http.routers.registry.tls=true"

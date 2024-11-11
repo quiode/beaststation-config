@@ -9,5 +9,6 @@ services:
       REPO_PASSWORD: "${DOCKER_PW}"
       WATCHTOWER_NOTIFICATION_URL: "telegram://${TELEGRAM_WATCHTOWER_TOKEN}@telegram?chats=806378608%2C-1001816372793&preview=No"
       WATCHTOWER_NOTIFICATION_REPORT: "true"
+      TZ: "Europe/Zurich"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro

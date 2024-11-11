@@ -4,6 +4,8 @@ services:
     container_name: bitwarden
     env_file:
       - settings.env
+    environment:
+      TZ: "Europe/Zurich"
     depends_on:
       - bitwarden-db
     restart: always
@@ -30,6 +32,7 @@ services:
       MARIADB_DATABASE: "bitwarden_vault"
       MARIADB_RANDOM_ROOT_PASSWORD: "true"
       MARIADB_AUTO_UPGRADE: 1
+      TZ: "Europe/Zurich"
     restart: always
     volumes:
       - /mnt/raid5/bitwarden/database:/var/lib/mysql

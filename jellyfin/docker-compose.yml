@@ -7,6 +7,8 @@ services:
       - '44' #video
     # Network mode of 'host' exposes the ports on the host. This is needed for DLNA access. TODO: not needed for now and makes it less secure
     #network_mode: 'host'
+    environment:
+      TZ: "Europe/Zurich"
     volumes:
       - /mnt/raid5/jellyfin/config:/config
       - /mnt/raid5/jellyfin/cache:/cache

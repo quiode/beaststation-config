@@ -3,6 +3,8 @@ services:
     image: quiooo/stationboard
     container_name: stationboard
     restart: always
+    environment:
+      TZ: "Europe/Zurich"
     networks:
       - stationboard
     labels:
