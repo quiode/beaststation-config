@@ -54,6 +54,7 @@ services:
       # We define the port here as a port is required
       - 'traefik.http.services.jellyfin.loadBalancer.server.port=8096'
       - 'traefik.http.services.jellyfin.loadBalancer.passHostHeader=true'
+      - "traefik.docker.network=jellyfin"
 
 networks:
   jellyfin:

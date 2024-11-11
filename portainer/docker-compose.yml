@@ -19,6 +19,7 @@ services:
       - "traefik.http.routers.portainer.tls.certresolver=letsencrypt"
       - "traefik.http.services.portainer.loadbalancer.server.port=9000"
       - "traefik.enable=true"
+      - "traefik.docker.network=portainer"
 
 networks:
   portainer:

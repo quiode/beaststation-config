@@ -58,6 +58,7 @@ services:
       - "traefik.http.routers.gitlab.tls.certresolver=letsencrypt"
       - "traefik.http.services.gitlab.loadbalancer.server.port=80"
       - "traefik.enable=true"
+      - "traefik.docker.network=gitlab"
 
   runner:
     image: gitlab/gitlab-runner

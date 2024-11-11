@@ -23,6 +23,7 @@ services:
       - "traefik.http.routers.qbittorrent.tls.certresolver=letsencrypt"
       - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"
       - "traefik.enable=true"
+      - "traefik.docker.network=qbittorrent"
 
 networks:
   qbittorrent:

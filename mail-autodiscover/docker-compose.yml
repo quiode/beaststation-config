@@ -42,6 +42,7 @@ services:
       - "traefik.http.routers.autodiscover.tls.certresolver=letsencrypt"
       - "traefik.http.services.autodiscover.loadbalancer.server.port=8000"
       - "traefik.enable=true"
+      - "traefik.docker.network=autodiscover"
 
 networks:
   autodiscover:

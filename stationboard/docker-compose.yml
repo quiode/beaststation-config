@@ -10,6 +10,7 @@ services:
       - "traefik.http.routers.stationboard.tls=true"
       - "traefik.http.routers.stationboard.tls.certresolver=letsencrypt"
       - "traefik.enable=true"
+      - "traefik.docker.network=stationboard"
 
 networks:
   stationboard:

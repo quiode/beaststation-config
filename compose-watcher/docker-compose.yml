@@ -23,6 +23,7 @@ services:
       - "traefik.http.routers.watcher.tls=true"
       - "traefik.http.routers.watcher.tls.certresolver=letsencrypt"
       - "traefik.enable=true"
+      - "traefik.docker.network=compose-watcher"
 
 networks:
   compose-watcher:
