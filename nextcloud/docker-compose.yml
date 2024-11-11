@@ -81,8 +81,6 @@ services:
       - nextcloud-intern
     environment:
       JWT_SECRET: "${JWT_SECRET}"
-      ONLYOFFICE_HTTPS_HSTS_ENABLED: "false"
-      JWT_ENABLED: "false"
     labels:
       - "traefik.http.routers.office.rule=Host(`office.dominik-schwaiger.ch`)"
       - "traefik.http.routers.office.tls=true"
