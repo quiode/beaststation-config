@@ -71,7 +71,7 @@ services:
       - nextcloud
 
   onlyoffice: # TODO: doesn't currently work :c
-    image: "onlyoffice/documentserver:7.3"
+    image: "onlyoffice/documentserver"
     container_name: onlyoffice
     restart: always
     depends_on:
