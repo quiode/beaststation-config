@@ -74,6 +74,8 @@ services:
     image: "onlyoffice/documentserver"
     container_name: onlyoffice
     restart: always
+    depends_on:
+      - nextcloud
     networks:
       - onlyoffice
       - nextcloud-intern
