@@ -10,10 +10,10 @@ services:
     environment:
       TZ: "Europe/Zurich"
     volumes:
-      - /mnt/raid5/jellyfin/config:/config
-      - /mnt/raid5/jellyfin/cache:/cache
       # Update this configuration as desired
+      - /mnt/raid5/jellyfin/config:/config
       - /mnt/raid5/jellyfin/media:/media
+      - jellyfin_cache:/cache # store the cache on a named volume so it is stored on the ssd instead of hdd
     restart: always
     # devices:
       # VAAPI Devices TODO: current setup does not have graphics capabilities
