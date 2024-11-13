@@ -13,7 +13,7 @@ services:
       # Update this configuration as desired
       - /mnt/raid5/jellyfin/config:/config
       - /mnt/raid5/jellyfin/media:/media
-      - jellyfin_cache:/cache # store the cache on a named volume so it is stored on the ssd instead of hdd
+      - cache:/cache # store the cache on a named volume so it is stored on the ssd instead of hdd
     restart: always
     # devices:
       # VAAPI Devices TODO: current setup does not have graphics capabilities
@@ -57,6 +57,9 @@ services:
       - 'traefik.http.services.jellyfin.loadBalancer.server.port=8096'
       - 'traefik.http.services.jellyfin.loadBalancer.passHostHeader=true'
       - "traefik.docker.network=jellyfin"
+
+volumes:
+  cache:
 
 networks:
   jellyfin:
