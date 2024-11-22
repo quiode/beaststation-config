@@ -34,7 +34,6 @@ services:
       - registry
       - jellyfin
       - qbittorrent
-      - atuin
 
 networks:
   nextcloud:
@@ -72,6 +71,3 @@ networks:
   
   qbittorrent:
     name: qbittorrent
-
-  atuin:
-    name: atuin
