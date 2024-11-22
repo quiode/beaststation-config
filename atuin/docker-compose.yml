@@ -1,0 +1,42 @@
+services:
+  atuin:
+    restart: always
+    image: ghcr.io/atuinsh/atuin
+    command: server start
+    networks:
+      - atuin-internal
+      - atuin-external
+    volumes:
+      - /mnt/raid5/atuin/config:/config
+    environment:
+      ATUIN_HOST: '0.0.0.0'
+      ATUIN_OPEN_REGISTRATION: 'true'
+      ATUIN_DB_URI: postgres://${ATUIN_DB_USERNAME}:${ATUIN_DB_PASSWORD}@db/atuin
+      RUST_LOG: info,atuin_server=debug
+      TZ: Europe/Zurich
+    labels:
+      - "traefik.http.routers.website.rule=Host(`atuin.dominik-schwaiger.ch`)"
+      - "traefik.http.routers.website.tls=true"
+      - "traefik.http.routers.website.tls.certresolver=letsencrypt"
+      - "traefik.enable=true"
+      - "traefik.docker.network=atuin"
+
+  db:
+    image: postgres
+    restart: always
+    networks:
+      - atuin-internal
+    volumes:
+      - /mnt/raid5/atuin/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${ATUIN_DB_USERNAME}
+      POSTGRES_PASSWORD: ${ATUIN_DB_PASSWORD}
+      POSTGRES_DB: atuin
+      TZ: Europe/Zurich
+
+networks:
+  atuin-internal:
+
+  atuin-external:
+    name: atuin
+    external: true
