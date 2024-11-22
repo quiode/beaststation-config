@@ -5,24 +5,42 @@ services:
     hostname: registry.dominik-schwaiger.ch
     restart: always
     networks:
-      - registry
+      - registry-internal
     volumes:
       - /mnt/raid5/registry/data:/var/lib/registry
-      - /mnt/raid5/registry/auth:/auth
     environment:
-      REGISTRY_AUTH: "htpasswd"
-      REGISTRY_AUTH_HTPASSWD_PATH: "/auth/htpasswd"
-      REGISTRY_AUTH_HTPASSWD_REALM: "ACME Docker Registry Realm"
-      TZ: "Europe/Zurich"
-    labels:
-      - "traefik.http.routers.registry.rule=Host(`registry.dominik-schwaiger.ch`)"
-      - "traefik.http.routers.registry.tls=true"
-      - "traefik.http.routers.registry.tls.certresolver=letsencrypt"
-      - "traefik.http.services.registry.loadbalancer.server.port=5000"
-      - "traefik.enable=true"
-      - "traefik.docker.network=registry"
+      TZ: 'Europe/Zurich'
+      REGISTRY_STORAGE_DELETE_ENABLED: true
+
+  ui:
+    image: joxit/docker-registry-ui
+    container_name: registry-ui
+    environment:
+      - DELETE_IMAGES=true
+      - REGISTRY_TITLE=Dominik's Docker Registry
+      - NGINX_PROXY_PASS_URL=http://registry:5000
+      - SINGLE_REGISTRY=true
+      - TZ=Europe/Zurich
+    depends_on:
+      - registry
+    networks:
+      - registry-internal
+      - registry-external
+    deploy:
+      labels:
+        - 'traefik.http.routers.registry.rule=Host(`registry.dominik-schwaiger.ch`)'
+        - 'traefik.http.routers.registry.tls=true'
+        - 'traefik.http.routers.registry.tls.certresolver=letsencrypt'
+        - 'traefik.http.services.registry.loadbalancer.server.port=80'
+        - 'traefik.http.services.registry.loadbalancer.passHostHeader=true'
+        - 'traefik.enable=true'
+        - 'traefik.docker.network=registry'
+        - 'traefik.http.middlewares.registry-auth.basicauth.usersfile=/mnt/raid5/registry/auth/htpasswd'
+        - 'traefik.http.routers.registry.middlewares=registry-auth@docker'
 
 networks:
-  registry:
+  registry-internal:
+
+  registry-external:
     name: registry
     external: true
