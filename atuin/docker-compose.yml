@@ -11,7 +11,7 @@ services:
     environment:
       ATUIN_HOST: '0.0.0.0'
       ATUIN_OPEN_REGISTRATION: 'true'
-      ATUIN_DB_URI: postgres://${ATUIN_DB_USERNAME}:${ATUIN_DB_PASSWORD}@db/atuin
+      ATUIN_DB_URI: postgres://atuin:${ATUIN_DB_PASSWORD}@db/atuin
       RUST_LOG: info,atuin_server=debug
       TZ: Europe/Zurich
     labels:
@@ -29,7 +29,7 @@ services:
     volumes:
       - /mnt/raid5/atuin/db:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: ${ATUIN_DB_USERNAME}
+      POSTGRES_USER: atuin
       POSTGRES_PASSWORD: ${ATUIN_DB_PASSWORD}
       POSTGRES_DB: atuin
       TZ: Europe/Zurich

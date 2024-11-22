@@ -34,6 +34,8 @@ These should be written inside `/etc/environment`.
   - password to enter admin panel of <https://dominik-schwaiger.ch>
 - `GITLAB_SMTP_PASSWORD`
   - email password for gitlab
+- `ATUIN_DB_PASSWORD`
+  - password for the atuin db
 
 ## Bind Volumes
 
@@ -61,6 +63,8 @@ These should be written inside `/etc/environment`.
 - `/mnt/raid5/jellyfin/config`
 - `/mnt/raid5/jellyfin/cache`
 - `/mnt/raid5/jellyfin/media`
+- `/mnt/raid5/atuin/config`
+- `/mnt/raid5/atuin/db`
 - `/var/run/docker.sock`
 - `/home/domina/beaststation-docker-compose`
 - `/home/domina/beaststation-docker-compose/traefik`
