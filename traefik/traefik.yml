@@ -21,13 +21,17 @@ entryPoints:
           scheme: "https"
     transport:
       respondingTimeouts:
-        readTimeout: "5m"
+        readTimeout: "15m"
+        writeTimeout: "15m"
+        idleTimeout: "15m"
 
   websecure:
     address: ":443"
     transport:
       respondingTimeouts:
-        readTimeout: "5m"
+        readTimeout: "15m"
+        writeTimeout: "15m"
+        idleTimeout: "15m"
 
 certificatesResolvers:
   letsencrypt:
