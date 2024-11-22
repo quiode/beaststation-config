@@ -15,12 +15,11 @@ services:
       RUST_LOG: info,atuin_server=debug
       TZ: Europe/Zurich
     labels:
+      - "traefik.http.routers.website.rule=Host(`atuin.dominik-schwaiger.ch`)"
+      - "traefik.http.routers.website.tls=true"
+      - "traefik.http.routers.website.tls.certresolver=letsencrypt"
       - "traefik.enable=true"
       - "traefik.docker.network=atuin"
-      - "traefik.http.routers.atuin.rule=Host(`atuin.dominik-schwaiger.ch`)"
-      - "traefik.http.routers.atuin.tls=true"
-      - "traefik.http.routers.atuin.tls.certresolver=letsencrypt"
-      - 'traefik.http.services.atuin.loadBalancer.server.port=8080'
 
   db:
     image: postgres
