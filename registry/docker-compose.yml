@@ -27,17 +27,16 @@ services:
     networks:
       - registry-internal
       - registry-external
-    deploy:
-      labels:
-        - 'traefik.http.routers.registry.rule=Host(`registry.dominik-schwaiger.ch`)'
-        - 'traefik.http.routers.registry.tls=true'
-        - 'traefik.http.routers.registry.tls.certresolver=letsencrypt'
-        - 'traefik.http.services.registry.loadbalancer.server.port=80'
-        - 'traefik.http.services.registry.loadbalancer.passHostHeader=true'
-        - 'traefik.enable=true'
-        - 'traefik.docker.network=registry'
-        - 'traefik.http.middlewares.registry-auth.basicauth.usersfile=/mnt/raid5/registry/auth/htpasswd'
-        - 'traefik.http.routers.registry.middlewares=registry-auth@docker'
+    labels:
+      - 'traefik.http.routers.registry.rule=Host(`registry.dominik-schwaiger.ch`)'
+      - 'traefik.http.routers.registry.tls=true'
+      - 'traefik.http.routers.registry.tls.certresolver=letsencrypt'
+      - 'traefik.http.services.registry.loadbalancer.server.port=80'
+      - 'traefik.http.services.registry.loadbalancer.passHostHeader=true'
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=registry'
+      - 'traefik.http.middlewares.registry-auth.basicauth.usersfile=/mnt/raid5/registry/auth/htpasswd'
+      - 'traefik.http.routers.registry.middlewares=registry-auth@docker'
 
 networks:
   registry-internal:
