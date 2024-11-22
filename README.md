@@ -34,6 +34,8 @@ These should be written inside `/etc/environment`.
   - password to enter admin panel of <https://dominik-schwaiger.ch>
 - `GITLAB_SMTP_PASSWORD`
   - email password for gitlab
+- `REGISTRY_HTTP_SECRET`
+  - http secret for docker registry
 
 ## Bind Volumes
 

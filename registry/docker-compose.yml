@@ -11,6 +11,7 @@ services:
     environment:
       TZ: 'Europe/Zurich'
       REGISTRY_STORAGE_DELETE_ENABLED: true
+      REGISTRY_HTTP_SECRET: ${REGISTRY_HTTP_SECRET}
 
   ui:
     image: joxit/docker-registry-ui
