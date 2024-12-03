@@ -74,7 +74,7 @@ These should be written inside `/etc/environment`.
 - 443 (proxy)
 - 25565 (Minecraft)
 - 1194 (OpenVPN)
-- 22 (Gitlab)
+- 22 (Gitlab) (host ssh port has to be changed)
 
 ## Hosts (`/etc/hosts`)
 
