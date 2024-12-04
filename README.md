@@ -2,8 +2,6 @@
 
 Docker compose files for my server (Beaststation).
 
-Assumption: User is named `domina` and this repository is cloned directly inside the home directory.
-
 ## Required Environment Variables
 
 These should be written inside `/etc/environment`.
