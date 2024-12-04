@@ -68,6 +68,12 @@ These should be written inside `/etc/environment`.
 - `/home/domina/beaststation-docker-compose/traefik`
 - `/home/domina/.ssh`
 
+## Symlinks
+
+Files and folder that have/should be linked from the persistent storage.
+
+- `/etc/environment`
+
 ## Ports
 
 - 80 (proxy)
