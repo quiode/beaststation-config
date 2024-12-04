@@ -63,11 +63,11 @@ These should be written inside `/etc/environment`.
 - `/mnt/raid5/jellyfin/config`
 - `/mnt/raid5/jellyfin/cache`
 - `/mnt/raid5/jellyfin/media`
-- `/var/run/docker.sock`
-- `/home/domina/beaststation-docker-compose`
-- `/home/domina/beaststation-docker-compose/traefik`
+- `/mnt/raid5/beaststation-docker-compose`
+- `/mnt/raid5/beaststation-docker-compose/traefik`
 - `/mnt/raid5/config/.ssh`
 - `/mnt/raid5/config/environment/`
+- `/var/run/docker.sock`
 
 ## Symlinks
 

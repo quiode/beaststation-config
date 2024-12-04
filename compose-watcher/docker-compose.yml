@@ -15,7 +15,7 @@ services:
       - /mnt/raid5/config/environment
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /home/domina/beaststation-docker-compose:/app/repository:rw
+      - /mnt/raid5/beaststation-docker-compose:/app/repository:rw
       - /mnt/raid5/config/.ssh:/root/.ssh:ro
       - /mnt/raid5/config/environment:/etc/environment:ro
     restart: always
