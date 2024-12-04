@@ -66,13 +66,14 @@ These should be written inside `/etc/environment`.
 - `/var/run/docker.sock`
 - `/home/domina/beaststation-docker-compose`
 - `/home/domina/beaststation-docker-compose/traefik`
-- `/home/domina/.ssh`
+- `/mnt/raid5/config/.ssh`
 
 ## Symlinks
 
 Files and folder that have/should be linked from the persistent storage.
 
 - `/etc/environment`
+- `/home/$USER/.ssh`
 
 ## Ports
 
