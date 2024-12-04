@@ -67,6 +67,7 @@ These should be written inside `/etc/environment`.
 - `/home/domina/beaststation-docker-compose`
 - `/home/domina/beaststation-docker-compose/traefik`
 - `/mnt/raid5/config/.ssh`
+- `/mnt/raid5/config/environment/`
 
 ## Symlinks
 
