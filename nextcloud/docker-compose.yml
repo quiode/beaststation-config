@@ -10,6 +10,7 @@ services:
       - nextcloud-extern
       - nextcloud-intern
     environment:
+      APACHE_BODY_LIMIT: "20G"
       PHP_MEMORY_LIMIT: "4G"
       PHP_UPLOAD_LIMIT: "20G"
       MYSQL_DATABASE: "nextcloud"
