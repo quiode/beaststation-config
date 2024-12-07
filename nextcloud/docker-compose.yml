@@ -1,5 +1,33 @@
+x-env: &env
+  environment:
+    APACHE_BODY_LIMIT: "21474836480" # 20G
+    PHP_MEMORY_LIMIT: "4G"
+    PHP_UPLOAD_LIMIT: "20G"
+    MYSQL_DATABASE: "nextcloud"
+    MYSQL_USER: "nextcloud"
+    MYSQL_PASSWORD: "${DB_PW}"
+    MYSQL_HOST: "nextcloud-database"
+    NEXTCLOUD_ADMIN_USER: "admin"
+    NEXTCLOUD_ADMIN_PASSWORD: "${NEXTCLOUD_ADMIN_PASSWORD}"
+    REDIS_HOST: "nextcloud-cache"
+    APACHE_DISABLE_REWRITE_IP: "1"
+    TRUSTED_PROXIES: "192.168.90.0/24"
+    OVERWRITEHOST: "nextcloud.dominik-schwaiger.ch"
+    OVERWRITEPROTOCOL: "https"
+    OVERWRITEWEBROOT: "/"
+    NEXTCLOUD_TRUSTED_DOMAINS: "nextcloud.dominik-schwaiger.ch"
+    SMTP_HOST: "dominik-schwaiger.vsos.ethz.ch"
+    SMTP_SECURE: "ssl"
+    SMTP_NAME: "nextcloud@dominik-schwaiger.ch"
+    SMTP_PORT: "465"
+    SMTP_PASSWORD: "${NEXTCLOUD_SMTP_PASSWORD}"
+    MAIL_FROM_ADDRESS: "nextcloud"
+    MAIL_DOMAIN: "dominik-schwaiger.ch"
+    TZ: "Europe/Zurich"
+
 services:
   nextcloud:
+    <<: *env
     image: "nextcloud:production-apache"
     restart: always
     container_name: nextcloud
@@ -9,31 +37,6 @@ services:
     networks:
       - nextcloud-extern
       - nextcloud-intern
-    environment:
-      APACHE_BODY_LIMIT: "21474836480" # 20G
-      PHP_MEMORY_LIMIT: "4G"
-      PHP_UPLOAD_LIMIT: "20G"
-      MYSQL_DATABASE: "nextcloud"
-      MYSQL_USER: "nextcloud"
-      MYSQL_PASSWORD: "${DB_PW}"
-      MYSQL_HOST: "nextcloud-database"
-      NEXTCLOUD_ADMIN_USER: "admin"
-      NEXTCLOUD_ADMIN_PASSWORD: "${NEXTCLOUD_ADMIN_PASSWORD}"
-      REDIS_HOST: "nextcloud-cache"
-      APACHE_DISABLE_REWRITE_IP: "1"
-      TRUSTED_PROXIES: "192.168.90.0/24"
-      OVERWRITEHOST: "nextcloud.dominik-schwaiger.ch"
-      OVERWRITEPROTOCOL: "https"
-      OVERWRITEWEBROOT: "/"
-      NEXTCLOUD_TRUSTED_DOMAINS: "nextcloud.dominik-schwaiger.ch"
-      SMTP_HOST: "dominik-schwaiger.vsos.ethz.ch"
-      SMTP_SECURE: "ssl"
-      SMTP_NAME: "nextcloud@dominik-schwaiger.ch"
-      SMTP_PORT: "465"
-      SMTP_PASSWORD: "${NEXTCLOUD_SMTP_PASSWORD}"
-      MAIL_FROM_ADDRESS: "nextcloud"
-      MAIL_DOMAIN: "dominik-schwaiger.ch"
-      TZ: "Europe/Zurich"
     volumes:
       - nextcloud:/var/www/html
       - /mnt/raid5/nextcloud/data:/var/www/html/data
@@ -59,11 +62,10 @@ services:
 
   # cron job to allow nextcloud to use cron (instead of custom image https://github.com/nextcloud/docker/blob/master/.examples/docker-compose/insecure/mariadb/apache/docker-compose.yml)
   nextcloud-cron:
+    <<: *env
     image: "nextcloud:production-apache"
     restart: always
     container_name: nextcloud-cron
-    environment:
-      TZ: "Europe/Zurich"
     volumes:
       - nextcloud:/var/www/html
       - /mnt/raid5/nextcloud/data:/var/www/html/data
