@@ -16,6 +16,7 @@ services:
   ui:
     image: joxit/docker-registry-ui
     container_name: registry-ui
+    restart: always
     environment:
       - DELETE_IMAGES=true
       - REGISTRY_TITLE=Dominik's Docker Registry

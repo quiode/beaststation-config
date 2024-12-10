@@ -5,7 +5,7 @@ services:
     env_file:
       - settings.env
     environment:
-      TZ: "Europe/Zurich"
+      TZ: 'Europe/Zurich'
     depends_on:
       - bitwarden-db
     restart: always
@@ -16,23 +16,23 @@ services:
       - bitwarden-internal
       - bitwarden-external
     labels:
-      - "traefik.http.routers.bitwarden.rule=Host(`bitwarden.dominik-schwaiger.ch`)"
-      - "traefik.http.routers.bitwarden.tls=true"
-      - "traefik.http.routers.bitwarden.tls.certresolver=letsencrypt"
-      - "traefik.http.services.bitwarden.loadbalancer.server.port=8080"
-      - "traefik.enable=true"
-      - "traefik.docker.network=bitwarden"
+      - 'traefik.http.routers.bitwarden.rule=Host(`bitwarden.dominik-schwaiger.ch`)'
+      - 'traefik.http.routers.bitwarden.tls=true'
+      - 'traefik.http.routers.bitwarden.tls.certresolver=letsencrypt'
+      - 'traefik.http.services.bitwarden.loadbalancer.server.port=8080'
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=bitwarden'
 
   bitwarden-db:
     image: mariadb:lts
     container_name: bitwarden-db
     environment:
-      MARIADB_USER: "bitwarden"
-      MARIADB_PASSWORD: "super_strong_password" # TODO: use the db password
-      MARIADB_DATABASE: "bitwarden_vault"
-      MARIADB_RANDOM_ROOT_PASSWORD: "true"
+      MARIADB_USER: 'bitwarden'
+      MARIADB_PASSWORD: 'super_strong_password' # TODO: use the db password
+      MARIADB_DATABASE: 'bitwarden_vault'
+      MARIADB_RANDOM_ROOT_PASSWORD: 'true'
       MARIADB_AUTO_UPGRADE: 1
-      TZ: "Europe/Zurich"
+      TZ: 'Europe/Zurich'
     restart: always
     volumes:
       - /mnt/raid5/bitwarden/database:/var/lib/mysql
@@ -41,8 +41,8 @@ services:
 
 networks:
   bitwarden-internal:
-    name: "bitwarden-internal"
-  
+    name: 'bitwarden-internal'
+
   bitwarden-external:
-    name: "bitwarden"
+    name: 'bitwarden'
     external: true

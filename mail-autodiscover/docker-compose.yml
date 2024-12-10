@@ -2,6 +2,7 @@ services:
   autodiscover:
     image: monogramm/autodiscover-email-settings
     container_name: autodiscover    
+    restart: always
     networks:
       - autodiscover
     environment:
