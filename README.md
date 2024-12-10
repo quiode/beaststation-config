@@ -73,7 +73,7 @@ Files and folder that have/should be linked from the persistent storage.
 - 443 (proxy)
 - 25565 (Minecraft)
 - 1194 (OpenVPN)
-- 22 (Gitlab) (host ssh port has to be changed)
+- 22 (Gitlab) (host ssh port has to be changed -> currently set to 2222)
 
 ## Hosts (`/etc/hosts`)
 
