@@ -8,7 +8,7 @@ services:
       - gitlab
       - gitlab-internal
     env_file:
-      - /mnt/raid5/config/environment
+      - /etc/environment
     environment:
       TZ: "Europe/Zurich"
       GITLAB_OMNIBUS_CONFIG: |

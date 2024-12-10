@@ -12,7 +12,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /mnt/raid5/traefik/auth:/auth:ro
       - /mnt/raid5/traefik/acme/acme.json:/acme.json
-      - /mnt/raid5/beaststation-docker-compose/traefik/traefik.yml:/etc/traefik/traefik.yml:ro
+      - ./traefik.yml:/etc/traefik/traefik.yml:ro
       - /mnt/raid5/registry/auth/htpasswd:/mnt/raid5/registry/auth/htpasswd:ro
     labels:
       - "traefik.http.middlewares.dashboard-auth.basicauth.usersfile=/auth/users"
@@ -26,7 +26,6 @@ services:
       - nextcloud
       - dominik-schwaiger
       - onlyoffice
-      - compose-watcher
       - portainer
       - bitwarden
       - stationboard
@@ -45,9 +44,6 @@ networks:
 
   onlyoffice:
     name: onlyoffice
-
-  compose-watcher:
-    name: compose-watcher
 
   portainer:
     name: portainer
