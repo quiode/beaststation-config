@@ -39,51 +39,69 @@
     };
   };
 
+  # use the latest ZFS-compatible Kernel
+  let
+  zfsCompatibleKernelPackages = lib.filterAttrs
+    (
+      name: kernelPackages:
+        (builtins.match "linux_[0-9]+_[0-9]+" name) != null
+        && (builtins.tryEval kernelPackages).success
+        && (!kernelPackages.${config.boot.zfs.package.kernelModuleAttribute}.meta.broken)
+    )
+    pkgs.linuxKernel.packages;
+  latestKernelPackage = lib.last (
+    lib.sort (a: b: (lib.versionOlder a.kernel.version b.kernel.version)) (
+      builtins.attrValues zfsCompatibleKernelPackages
+    )
+  );
+  in
+  {
+  # Note this might jump back and forth as kernels are added or removed.
+  boot.kernelPackages = latestKernelPackage;
+}
+
   # Enable the Flakes feature and the accompanying new nix command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # enable docker
-  virtualisation.docker.enable = true;
+# enable docker
+virtualisation.docker.enable = true;
 
-  # Set hostname
-  networking.hostName = "beaststation";
+# Set hostname
+networking.hostName = "beaststation";
 
-  # Configure system-wide user settings
-  users.users = {
-    domina = {
-      isNormalUser = true;
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILWkILtyyPWk4UYWJaZoI5UqGKo/qlaJG5h7zfS69+ie mail@dominik-schwaiger.ch"
-      ];
-      extraGroups = [ "wheel" "docker" ];
-    };
-  };
+# Configure system-wide user settings
+users.users = {
+domina = {
+isNormalUser = true;
+openssh.authorizedKeys.keys = [
+"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILWkILtyyPWk4UYWJaZoI5UqGKo/qlaJG5h7zfS69+ie mail@dominik-schwaiger.ch"
+];
+extraGroups = [ "wheel" "docker" ];
+};
+};
 
-  # This setups a SSH server.
-  services.openssh = {
-    enable = true;
-    settings = {
-      # Opinionated: forbid root login through SSH.
-      PermitRootLogin = "no";
-      # Opinionated: use keys only.
-      # Remove if you want to SSH using passwords
-      PasswordAuthentication = false;
-    };
+# This setups a SSH server.
+services.openssh = {
+enable = true;
+settings = {
+# Opinionated: forbid root login through SSH.
+PermitRootLogin = "no";
+# Opinionated: use keys only.
+# Remove if you want to SSH using passwords
+PasswordAuthentication = false;
+};
 
-    # use non-default 222 port for ssh
-    services.openssh.ports = [ 2222 ];
+# use non-default 222 port for ssh
+services.openssh.ports = [ 2222 ];
+};
 
-    # automatically open the ports in the firewall
-    services.openssh.openFirewall = true;
-  };
+networking.firewall = {
+enable = true;
 
-  networking.firewall = {
-    enable = true;
+allowedTCPPorts = [ 22 80 443 2222 ];
+allowedUDPPorts = [ 22 80 443 2222 ];
+};
 
-    allowedTCPPorts = [ 22 80 443 2222 ];
-    allowedUDPPorts = [ 22 80 443 2222 ];
-  };
-
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "24.11";
+# https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+system.stateVersion = "24.11";
 }
