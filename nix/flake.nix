@@ -19,7 +19,6 @@
     inherit (self) outputs;
   in {
     # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       beaststation = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
@@ -35,8 +34,6 @@
             home-manager.useUserPackages = true;
 
             home-manager.users.domina = import ./home-manager/domina.nix;
-
-            # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
           }
         ]
       };
