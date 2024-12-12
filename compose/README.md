@@ -1,4 +1,6 @@
-# beaststation-docker-compose
+# docker compose configuration
+
+TODO: update
 
 Docker compose files for my server (Beaststation).
 

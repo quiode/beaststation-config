@@ -1,9 +1,6 @@
 {
-  "yaml.schemas": {
-    "file:///home/quio/.vscode/extensions/atlassian.atlascode-3.0.10/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml",
-    "https://json.schemastore.org/traefik-v2.json": [
-      "file:///home/quio/Projects/beaststation-docker-compose/traefik/traefik-provider.yml",
-      "file:///home/quio/Projects/beaststation-docker-compose/traefik/traefik.yml"
-    ]
-  }
+  "cSpell.words": [
+    "beaststation",
+    "domina"
+  ]
 }

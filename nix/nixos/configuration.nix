@@ -1,0 +1,86 @@
+# This is your system's configuration file.
+# Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
+{ inputs
+, lib
+, config
+, pkgs
+, ...
+}: {
+  # You can import other NixOS modules here
+  imports = [
+    # If you want to use modules from other flakes (such as nixos-hardware):
+    # inputs.hardware.nixosModules.common-cpu-amd
+    # inputs.hardware.nixosModules.common-ssd
+
+    # You can also split up your configuration and import pieces of it here:
+    # ./users.nix
+
+    # Import your generated (nixos-generate-config) hardware configuration
+    ./hardware-configuration.nix
+  ];
+
+  nixpkgs = {
+    # You can add overlays here
+    overlays = [
+      # If you want to use overlays exported from other flakes:
+      # neovim-nightly-overlay.overlays.default
+
+      # Or define it inline, for example:
+      # (final: prev: {
+      #   hi = final.hello.overrideAttrs (oldAttrs: {
+      #     patches = [ ./change-hello-to-hi.patch ];
+      #   });
+      # })
+    ];
+    # Configure your nixpkgs instance
+    config = {
+      # Disable if you don't want unfree packages
+      allowUnfree = true;
+    };
+  };
+
+  # Enable the Flakes feature and the accompanying new nix command-line tool
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # Set hostname
+  networking.hostName = "beaststation";
+
+  # Configure system-wide user settings
+  users.users = {
+    domina = {
+      isNormalUser = true;
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILWkILtyyPWk4UYWJaZoI5UqGKo/qlaJG5h7zfS69+ie mail@dominik-schwaiger.ch"
+      ];
+      extraGroups = [ "wheel" "docker" ];
+    };
+  };
+
+  # This setups a SSH server.
+  services.openssh = {
+    enable = true;
+    settings = {
+      # Opinionated: forbid root login through SSH.
+      PermitRootLogin = "no";
+      # Opinionated: use keys only.
+      # Remove if you want to SSH using passwords
+      PasswordAuthentication = false;
+    };
+
+    # use non-default 222 port for ssh
+    services.openssh.ports = [ 2222 ];
+
+    # automatically open the ports in the firewall
+    services.openssh.openFirewall = true;
+  };
+
+  networking.firewall = {
+    enable = true;
+
+    allowedTCPPorts = [ 22 80 443 2222 ];
+    allowedUDPPorts = [ 22 80 443 2222 ];
+  };
+
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  system.stateVersion = "24.11";
+}
