@@ -1,11 +1,10 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
-{
-  inputs,
-  lib,
-  config,
-  pkgs,
-  ...
+{ inputs
+, lib
+, config
+, pkgs
+, ...
 }: {
   # You can import other home-manager modules here
   imports = [
@@ -43,9 +42,14 @@
     homeDirectory = "/home/domina";
   };
 
-  # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ steam ];
+  # set alias for simple update
+  environment.shellAliases = {
+    update = "nix flake update --commit-lock-file /etc/nixos/";
+    upgrade = "sudo nixos-rebuild switch --flake /etc/nixos/";
+  };
+
+  # replace default editor with neovim
+  environment.variables.EDITOR = "nvim";
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
