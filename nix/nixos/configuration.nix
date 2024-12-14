@@ -127,8 +127,29 @@ in
       ports = [ 2222 ];
     };
 
-    # zfs auto scrub
-    zfs.autoScrub.enable = true;
+    zfs = {
+      # zfs auto scrub
+      autoScrub.enable = true;
+
+      # enable zed -> email notifications for zfs
+      zed = {
+        settings = {
+          ZED_DEBUG_LOG = "/tmp/zed.debug.log";
+          ZED_EMAIL_ADDR = [ "root" ];
+          ZED_EMAIL_PROG = "${pkgs.msmtp}/bin/msmtp";
+          ZED_EMAIL_OPTS = "@ADDRESS@";
+
+          ZED_NOTIFY_INTERVAL_SECS = 3600;
+          ZED_NOTIFY_VERBOSE = true;
+
+          ZED_USE_ENCLOSURE_LEDS = true;
+          ZED_SCRUB_AFTER_RESILVER = true;
+        };
+
+        # this option does not work; will return error
+        zed.enableMail = false;
+      };
+    };
   };
 
   # setup firewall
