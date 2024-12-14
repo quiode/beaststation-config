@@ -154,6 +154,11 @@ in
     git = {
       enable = true;
       config = {
+        user = {
+          email = "beaststation@dominik-schwaiger.ch";
+          name = "beaststation";
+        };
+
         save = {
           directory = [ "config" ];
         };
