@@ -44,6 +44,9 @@
     };
   };
 
+  # allow flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # use the latest ZFS-compatible Kernel
   zfsCompatibleKernelPackages = lib.filterAttrs
     (
