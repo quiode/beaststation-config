@@ -131,6 +131,11 @@ in
 
     git = {
       enable = true;
+      config = {
+        save = {
+          directory = [ "config" ];
+        };
+      };
     };
 
     bash = {
