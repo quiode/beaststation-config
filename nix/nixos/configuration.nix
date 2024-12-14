@@ -42,9 +42,6 @@ in
     };
   };
 
-  # install global packages
-  environment.systemPackages = [ agenix.packages.${system}.default ];
-
   # Use the systemd-boot EFI boot loader.
   boot = {
     loader = {

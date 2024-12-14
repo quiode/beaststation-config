@@ -47,6 +47,9 @@
 
           # insert agenix
           agenix.nixosModules.default
+          {
+            environment.systemPackages = [ agenix.packages.${system}.default ];
+          }
         ];
       };
     };
