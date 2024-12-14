@@ -162,6 +162,8 @@ in
     msmtp = {
       enable = true;
       accounts.default = {
+        auth = true;
+        tls = true;
         host = "dominik-schwaiger.vsos.ethz.ch";
         from = "beaststation@dominik-schwaiger.ch";
         user = "beaststation@dominik-schwaiger.ch";
