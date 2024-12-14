@@ -20,6 +20,7 @@ let
       builtins.attrValues zfsCompatibleKernelPackages
     )
   );
+  # load all secrets
   env = {
     BEASTSTATION_MAIL_PASSWORD = [ (builtins.readFile ./secrets/BEASTSTATION_MAIL_PASSWORD) ];
   };
@@ -37,6 +38,9 @@ in
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
   ];
+
+  # set environment variables
+  environment.variables = env;
 
   # Use the systemd-boot EFI boot loader.
   boot = {
