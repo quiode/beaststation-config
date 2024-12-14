@@ -40,7 +40,7 @@ in
     beaststation_mail_password.file = ../secrets/beaststation_mail_password.age;
   };
 
-  environment.systemPackages = [ inputs.agenix.packages."${system}".default ];
+  environment.systemPackages = with pkgs; [ inputs.agenix.packages."${system}".default ];
 
   # Use the systemd-boot EFI boot loader.
   boot = {
