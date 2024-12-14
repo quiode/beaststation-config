@@ -37,7 +37,7 @@ in
 
   # specify agenix secrets. will be mounted at /run/agenix/secret
   age.secrets = {
-    beaststation_mail_password.file = ./secrets/beaststation_mail_password.age;
+    beaststation_mail_password.file = ../secrets/beaststation_mail_password.age;
   };
 
   environment.systemPackages = with pkgs; [ inputs.agenix.packages."${system}".default ];
