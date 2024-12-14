@@ -196,3 +196,6 @@ nixos-generate-config --root /mnt
 ```
 
 4. install nixos `nixos-install --root /mnt`
+
+## Setup after installation
+

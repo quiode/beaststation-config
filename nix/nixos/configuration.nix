@@ -19,19 +19,25 @@
     ./hardware-configuration.nix
   ];
 
-  nixpkgs = {
-    # You can add overlays here
-    overlays = [
-      # If you want to use overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
+  # Use the systemd-boot EFI boot loader.
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+    grub = {
+      enable = true;
+      efiSupport = true;
+      device = "nodev";
+      configurationLimit = 5;
+      mirroredBoots = [
+        {
+          devices = [ "/dev/disk/by-id/ata-VBOX_HARDDISK_VBcd418fbb-dbdaf4e2-part1" ];
+          path = "/boot-fallback";
+        }
+      ];
+    };
+  };
+  networking.hostId = "6b0b03b3";
 
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
-    ];
+  nixpkgs = {
     # Configure your nixpkgs instance
     config = {
       # Disable if you don't want unfree packages
@@ -40,7 +46,6 @@
   };
 
   # use the latest ZFS-compatible Kernel
-  let
   zfsCompatibleKernelPackages = lib.filterAttrs
     (
       name: kernelPackages:
@@ -54,54 +59,51 @@
       builtins.attrValues zfsCompatibleKernelPackages
     )
   );
-  in
-  {
   # Note this might jump back and forth as kernels are added or removed.
   boot.kernelPackages = latestKernelPackage;
-}
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-# enable docker
-virtualisation.docker.enable = true;
+  # enable docker
+  virtualisation.docker.enable = true;
 
-# Set hostname
-networking.hostName = "beaststation";
+  # Set hostname
+  networking.hostName = "beaststation";
 
-# Configure system-wide user settings
-users.users = {
-domina = {
-isNormalUser = true;
-openssh.authorizedKeys.keys = [
-"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILWkILtyyPWk4UYWJaZoI5UqGKo/qlaJG5h7zfS69+ie mail@dominik-schwaiger.ch"
-];
-extraGroups = [ "wheel" "docker" ];
-};
-};
+  # Configure system-wide user settings
+  users.users = {
+    domina = {
+      isNormalUser = true;
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILWkILtyyPWk4UYWJaZoI5UqGKo/qlaJG5h7zfS69+ie mail@dominik-schwaiger.ch"
+      ];
+      extraGroups = [ "wheel" "docker" ];
+    };
+  };
 
-# This setups a SSH server.
-services.openssh = {
-enable = true;
-settings = {
-# Opinionated: forbid root login through SSH.
-PermitRootLogin = "no";
-# Opinionated: use keys only.
-# Remove if you want to SSH using passwords
-PasswordAuthentication = false;
-};
+  # This setups a SSH server.
+  services.openssh = {
+    enable = true;
+    settings = {
+      # Opinionated: forbid root login through SSH.
+      PermitRootLogin = "no";
+      # Opinionated: use keys only.
+      # Remove if you want to SSH using passwords
+      PasswordAuthentication = false;
+    };
 
-# use non-default 222 port for ssh
-services.openssh.ports = [ 2222 ];
-};
+    # use non-default 222 port for ssh
+    services.openssh.ports = [ 2222 ];
+  };
 
-networking.firewall = {
-enable = true;
+  networking.firewall = {
+    enable = true;
 
-allowedTCPPorts = [ 22 80 443 2222 ];
-allowedUDPPorts = [ 22 80 443 2222 ];
-};
+    allowedTCPPorts = [ 22 80 443 2222 ];
+    allowedUDPPorts = [ 22 80 443 2222 ];
+  };
 
-# https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-system.stateVersion = "24.11";
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  system.stateVersion = "24.11";
 }
