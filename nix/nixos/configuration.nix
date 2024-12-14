@@ -132,6 +132,14 @@ in
     git = {
       enable = true;
     };
+
+    bash = {
+      # set alias for simple update
+      shellAliases = {
+        update = "sudo nix flake update --commit-lock-file --flake /config/nix";
+        upgrade = "sudo nixos-rebuild switch --flake /config/nix";
+      };
+    };
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
