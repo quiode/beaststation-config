@@ -147,7 +147,7 @@ in
         };
 
         # this option does not work; will return error
-        zed.enableMail = false;
+        enableMail = false;
       };
     };
   };
