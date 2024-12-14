@@ -40,7 +40,19 @@ in
     beaststation_mail_password.file = ../../secrets/beaststation_mail_password.age;
   };
 
-  environment.systemPackages = with pkgs; [ inputs.agenix.packages."${system}".default ];
+  environment = {
+    # packages
+    systemPackages = with pkgs; [ inputs.agenix.packages."${system}".default ];
+
+    # custom /etc stuff
+    etc = {
+      aliases = {
+        text = ''
+          root: beaststation@dominik-schwaiger.ch
+        '';
+      };
+    };
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot = {
@@ -161,23 +173,33 @@ in
     # enable mail sending through mail server
     msmtp = {
       enable = true;
-      accounts.default = {
-        auth = true;
-        tls = true;
-        host = "dominik-schwaiger.vsos.ethz.ch";
-        from = "beaststation@dominik-schwaiger.ch";
-        user = "beaststation@dominik-schwaiger.ch";
-        passwordeval = "cat ${config.age.secrets.beaststation_mail_password.path}";
+      setSendmail = true;
+      defaults = {
+        aliases = "/etc/aliases";
+        port = 465;
+        tls_trust_file = "/etc/ssl/certs/ca-certificates.crt";
+        tls = "on";
+        auth = "login";
+        tls_starttls = "off";
+      };
+      accounts = {
+        default = {
+          host = "dominik-schwaiger.vsos.ethz.ch";
+          from = "beaststation@dominik-schwaiger.ch";
+          user = "beaststation@dominik-schwaiger.ch";
+          passwordeval = "cat ${config.age.secrets.beaststation_mail_password.path}";
+        };
       };
     };
-
-    # enable ssh agent
-    ssh.startAgent = true;
   };
 
-  # optimize storage automatically
-  nix.optimise.automatic = true;
+  # enable ssh agent
+  ssh.startAgent = true;
+};
 
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "24.11";
+# optimize storage automatically
+nix.optimise.automatic = true;
+
+# https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+system.stateVersion = "24.11";
 }
