@@ -32,8 +32,8 @@
     bash = {
       # set alias for simple update
       shellAliases = {
-        update = "sudo nix flake update --commit-lock-file /config";
-        upgrade = "sudo nixos-rebuild switch --flake /config";
+        update = "sudo nix flake update --commit-lock-file --flake /config/nix";
+        upgrade = "sudo nixos-rebuild switch --flake /config/nix";
       };
     };
 
