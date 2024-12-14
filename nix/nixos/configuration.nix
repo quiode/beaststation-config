@@ -109,7 +109,7 @@ in
   # set locale, time, etc.
   time.timeZone = "Europe/Zurich";
   i18n.defaultLocale = "de_CH.UTF-8";
-  console.keyMap = "de_CH.latin1";
+  console.keyMap = "de_CH-latin1";
 
   # programs
   programs = {
