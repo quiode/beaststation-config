@@ -95,7 +95,7 @@ in
     };
 
     # use non-default 222 port for ssh
-    services.openssh.ports = [ 2222 ];
+    ports = [ 2222 ];
   };
 
   # setup firewall
