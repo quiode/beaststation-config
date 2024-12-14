@@ -136,7 +136,7 @@ in
     bash = {
       # set alias for simple update
       shellAliases = {
-        pull = "cd /config && sudo git pull";
+        pull = "cd /config ; sudo git pull ; cd -";
         update = "sudo nix flake update --commit-lock-file --flake /config/nix";
         upgrade = "sudo nixos-rebuild switch --flake /config/nix#beaststation";
       };
