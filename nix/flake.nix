@@ -35,7 +35,7 @@
 
             home-manager.users.domina = import ./home-manager/domina.nix;
           }
-        ]
+        ];
       };
     };
   };
