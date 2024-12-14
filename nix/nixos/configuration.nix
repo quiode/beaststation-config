@@ -7,21 +7,19 @@
 , ...
 }:
 let
-  zfsCompatibleKernelPackages = lib.filterAttrs
-    (
-      name: kernelPackages:
-        (builtins.match "linux_[0-9]+_[0-9]+" name) != null
-        && (builtins.tryEval kernelPackages).success
-        && (!kernelPackages.${config.boot.zfs.package.kernelModuleAttribute}.meta.broken)
-    )
-    pkgs.linuxKernel.packages;
+  zfsCompatibleKernelPackages = lib.filterAttrs (
+    name: kernelPackages:
+    (builtins.match "linux_[0-9]+_[0-9]+" name) != null
+    && (builtins.tryEval kernelPackages).success
+    && (!kernelPackages.${config.boot.zfs.package.kernelModuleAttribute}.meta.broken)
+  ) pkgs.linuxKernel.packages;
   latestKernelPackage = lib.last (
     lib.sort (a: b: (lib.versionOlder a.kernel.version b.kernel.version)) (
       builtins.attrValues zfsCompatibleKernelPackages
     )
   );
 in
-{
+ {
   # You can import other NixOS modules here
   imports = [
     # If you want to use modules from other flakes (such as nixos-hardware):
@@ -62,7 +60,7 @@ in
 
   # use the latest ZFS-compatible Kernel
   # Note this might jump back and forth as kernels are added or removed.
-  boot = latestKernelPackage;
+  boot.kernelPackages = latestKernelPackage;
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
