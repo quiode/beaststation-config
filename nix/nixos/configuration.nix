@@ -82,9 +82,6 @@ in
     autoPrune.enable = true;
   };
 
-  # enable nvidia toolkit
-  hardware.nvidia-container-toolkit.enable = true;
-
   # Set hostname
   networking = {
     hostName = "beaststation";
