@@ -22,7 +22,7 @@ let
   );
   # load all secrets
   env = {
-    BEASTSTATION_MAIL_PASSWORD = [ (builtins.readFile ../secrets/BEASTSTATION_MAIL_PASSWORD) ];
+    BEASTSTATION_MAIL_PASSWORD = [ (builtins.readFile ./secrets/BEASTSTATION_MAIL_PASSWORD) ];
   };
 in
 {
