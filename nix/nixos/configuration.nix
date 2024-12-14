@@ -7,19 +7,21 @@
 , ...
 }:
 let
-  zfsCompatibleKernelPackages = lib.filterAttrs (
-    name: kernelPackages:
-    (builtins.match "linux_[0-9]+_[0-9]+" name) != null
-    && (builtins.tryEval kernelPackages).success
-    && (!kernelPackages.${config.boot.zfs.package.kernelModuleAttribute}.meta.broken)
-  ) pkgs.linuxKernel.packages;
+  zfsCompatibleKernelPackages = lib.filterAttrs
+    (
+      name: kernelPackages:
+        (builtins.match "linux_[0-9]+_[0-9]+" name) != null
+        && (builtins.tryEval kernelPackages).success
+        && (!kernelPackages.${config.boot.zfs.package.kernelModuleAttribute}.meta.broken)
+    )
+    pkgs.linuxKernel.packages;
   latestKernelPackage = lib.last (
     lib.sort (a: b: (lib.versionOlder a.kernel.version b.kernel.version)) (
       builtins.attrValues zfsCompatibleKernelPackages
     )
   );
 in
- {
+{
   # You can import other NixOS modules here
   imports = [
     # If you want to use modules from other flakes (such as nixos-hardware):
@@ -34,20 +36,26 @@ in
   ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-    grub = {
-      enable = true;
-      efiSupport = true;
-      device = "nodev";
-      configurationLimit = 5;
-      mirroredBoots = [
-        {
-          devices = [ "/dev/disk/by-id/ata-VBOX_HARDDISK_VBcd418fbb-dbdaf4e2-part1" ];
-          path = "/boot-fallback";
-        }
-      ];
+  boot = {
+    loader = {
+      efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        efiSupport = true;
+        device = "nodev";
+        configurationLimit = 5;
+        mirroredBoots = [
+          {
+            devices = [ "/dev/disk/by-id/ata-VBOX_HARDDISK_VBcd418fbb-dbdaf4e2-part1" ];
+            path = "/boot-fallback";
+          }
+        ];
+      };
     };
+
+    # use the latest ZFS-compatible Kernel
+    # Note this might jump back and forth as kernels are added or removed.
+    kernelPackages = latestKernelPackage;
   };
 
   nixpkgs = {
@@ -58,10 +66,6 @@ in
     };
   };
 
-  # use the latest ZFS-compatible Kernel
-  # Note this might jump back and forth as kernels are added or removed.
-  boot.kernelPackages = latestKernelPackage;
-
   # Enable the Flakes feature and the accompanying new nix command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -69,8 +73,10 @@ in
   virtualisation.docker.enable = true;
 
   # Set hostname
-  networking.hostName = "beaststation";
-  networking.hostId = "6b0b03b3";
+  networking = {
+    hostName = "beaststation";
+    hostId = "6b0b03b3";
+  };
 
   # Configure system-wide user settings
   users.users = {
@@ -83,19 +89,24 @@ in
     };
   };
 
-  # This setups a SSH server.
-  services.openssh = {
-    enable = true;
-    settings = {
-      # Opinionated: forbid root login through SSH.
-      PermitRootLogin = "no";
-      # Opinionated: use keys only.
-      # Remove if you want to SSH using passwords
-      PasswordAuthentication = false;
+  services = {
+    # This setups a SSH server.
+    openssh = {
+      enable = true;
+      settings = {
+        # Opinionated: forbid root login through SSH.
+        PermitRootLogin = "no";
+        # Opinionated: use keys only.
+        # Remove if you want to SSH using passwords
+        PasswordAuthentication = false;
+      };
+
+      # use non-default 222 port for ssh
+      ports = [ 2222 ];
     };
 
-    # use non-default 222 port for ssh
-    ports = [ 2222 ];
+    # zfs auto scrub
+    zfs.autoScrub.enable = true;
   };
 
   # setup firewall
