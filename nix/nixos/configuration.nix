@@ -169,10 +169,9 @@ in
       # set alias for simple update
       shellAliases = {
         git-auth = "eval \"\$(ssh-agent -s)\" && ssh-add /etc/ssh/ssh_host_ed25519_key";
-        pull = "sudo su ; git-auth ; cd /config git pull ; exit";
         update = "sudo nix flake update --commit-lock-file --flake /config/nix";
         upgrade = "sudo nixos-rebuild switch --flake /config/nix#beaststation";
-        new = "pull && update && upgrade";
+        new = "update && upgrade";
       };
     };
 
