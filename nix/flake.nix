@@ -19,6 +19,7 @@
     { self
     , nixpkgs
     , home-manager
+    , agenix
     , ...
     } @ inputs:
     let
@@ -29,7 +30,7 @@
       nixosConfigurations.beaststation = nixpkgs.lib.nixosSystem {
         # set system
         system = "x86_64-linux";
-        specialArgs = { inherit inputs outputs agenix; };
+        specialArgs = { inherit inputs outputs; };
         # > Our main nixos configuration file <
         modules = [
           ./nixos/configuration.nix
