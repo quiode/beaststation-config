@@ -20,6 +20,9 @@ let
       builtins.attrValues zfsCompatibleKernelPackages
     )
   );
+  env = {
+    BEASTSTATION_MAIL_PASSWORD = [ (builtins.readFile ./secrets/BEASTSTATION_MAIL_PASSWORD) ];
+  };
 in
 {
   # You can import other NixOS modules here
@@ -149,13 +152,13 @@ in
     };
 
     # enable mail sending through mail server
-    msmtp = let mailPassword = builtins.getEnv "BEASTSTATION_MAIL_PASSWORD"; in {
+    msmtp = {
       enable = true;
       accounts.default = {
         host = "dominik-schwaiger.vsos.ethz.ch";
         from = "beaststation@dominik-schwaiger.ch";
         user = "beaststation@dominik-schwaiger.ch";
-        password = mailPassword;
+        password = env.BEASTSTATION_MAIL_PASSWORD;
       };
     };
   };
