@@ -202,4 +202,10 @@ nixos-generate-config --root /mnt
 1. enable git in `configuration.nix`: `programs.git.enable = true;`
 1. Clone the Repository: `git clone https://github.com/quiode/beaststation-docker-compose.git /config` to a sutable location `/config`
 1. remove the existing nixos config and sync it to the git repository: `rm -rf /etc/nixos` and then `ln -s /config/nix /etc/nixos`
-1. use the config `nixos-rebuild switch`
+1. use the config: `nixos-rebuild switch`
+
+## Additional Configuration
+
+### Environment Variables
+
+- `BEASTSTATION_MAIL_PASSWORD`: for zfs mail notifications

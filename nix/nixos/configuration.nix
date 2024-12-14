@@ -147,6 +147,17 @@ in
         new = "pull && update && upgrade";
       };
     };
+
+    # enable mail sending through mail server
+    msmtp = let mailPassword = builtins.getEnv "BEASTSTATION_MAIL_PASSWORD"; in {
+      enable = true;
+      accounts.default = {
+        host = "dominik-schwaiger.vsos.ethz.ch";
+        from = "beaststation@dominik-schwaiger.ch";
+        user = "beaststation@dominik-schwaiger.ch";
+        password = mailPassword;
+      };
+    };
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
