@@ -9,5 +9,5 @@ let
   all = users ++ systems;
 in
 {
-  "secret2.age".publicKeys = all;
+  "beaststation_mail_password.age".publicKeys = all;
 }
