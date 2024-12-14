@@ -35,7 +35,6 @@
       ];
     };
   };
-  networking.hostId = "6b0b03b3";
 
   nixpkgs = {
     # Configure your nixpkgs instance
@@ -70,6 +69,7 @@
 
   # Set hostname
   networking.hostName = "beaststation";
+  networking.hostId = "6b0b03b3";
 
   # Configure system-wide user settings
   users.users = {
@@ -97,11 +97,29 @@
     services.openssh.ports = [ 2222 ];
   };
 
+  # setup firewall
   networking.firewall = {
     enable = true;
 
     allowedTCPPorts = [ 22 80 443 2222 ];
     allowedUDPPorts = [ 22 80 443 2222 ];
+  };
+
+  # set locale, time, etc.
+  time.timezone = "Europe/Zurich";
+  i18n.defaultLocale = "de_CH.UTF-8";
+  console.keyMap = "de_CH.latin1"
+
+  # programs
+  programs = {
+    vim = {
+      enable = true;
+      defaultEditor = true;
+    };
+
+    git = {
+      enable = true;
+    };
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

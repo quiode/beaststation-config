@@ -199,3 +199,5 @@ nixos-generate-config --root /mnt
 
 ## Setup after installation
 
+1. enable git in `configuration.nix`: `programs.git.enable = true;`
+1. Clone the Repository: `git clone git@github.com:quiode/beaststation-docker-compose.git` to a sutable location `/config`
