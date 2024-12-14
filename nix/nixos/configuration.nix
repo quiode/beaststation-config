@@ -174,6 +174,9 @@ in
         passwordeval = "cat ${config.age.secrets.beaststation_mail_password.path}";
       };
     };
+
+    # enable ssh agent
+    ssh.startAgent = true;
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
