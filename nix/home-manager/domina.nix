@@ -42,18 +42,17 @@
     homeDirectory = "/home/domina";
   };
 
-  # set alias for simple update
-  programs.bash.shellAliases = {
-    update = "nix flake update --commit-lock-file /etc/nixos/";
-    upgrade = "sudo nixos-rebuild switch --flake /etc/nixos/";
+  programs = {
+    bash = {
+      # set alias for simple update
+      shellAliases = {
+        update = "nix flake update --commit-lock-file /etc/nixos/";
+        upgrade = "sudo nixos-rebuild switch --flake /etc/nixos/";
+      };
+    };
+
+    home-manager.enable = true;
   };
-
-  # replace default editor with neovim
-  environment.variables.EDITOR = "nvim";
-
-  # Enable home-manager and git
-  programs.home-manager.enable = true;
-  programs.git.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
