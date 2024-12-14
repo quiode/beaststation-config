@@ -48,7 +48,7 @@ in
     etc = {
       aliases = {
         text = ''
-          root: beaststation@dominik-schwaiger.ch
+          root: mail@dominik-schwaiger.ch
         '';
       };
     };
