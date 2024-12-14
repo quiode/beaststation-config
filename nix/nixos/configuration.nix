@@ -35,12 +35,12 @@ in
     ./hardware-configuration.nix
   ];
 
-  config = {
-    # specify agenix secrets. will be mounted at /run/agenix/secret
-    age.secrets = {
-      beaststation_mail_password.file = ../secrets/beaststation_mail_password.age;
-    };
+  # specify agenix secrets. will be mounted at /run/agenix/secret
+  age.secrets = {
+    beaststation_mail_password.file = ../secrets/beaststation_mail_password.age;
   };
+
+  environment.systemPackages = [ inputs.agenix.packages."${system}".default ];
 
   # Use the systemd-boot EFI boot loader.
   boot = {
