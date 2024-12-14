@@ -8,6 +8,11 @@
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # install agenix, for secret management
+    agenix.url = "github:ryantm/agenix";
+    # optional, not necessary for the module
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -38,6 +43,9 @@
 
             home-manager.users.domina = import ./home-manager/domina.nix;
           }
+
+          # insert agenix
+          agenix.nixosModules.default
         ];
       };
     };

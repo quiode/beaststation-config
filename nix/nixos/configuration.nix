@@ -20,10 +20,6 @@ let
       builtins.attrValues zfsCompatibleKernelPackages
     )
   );
-  # load all secrets
-  env = {
-    BEASTSTATION_MAIL_PASSWORD = [ (builtins.readFile ./secrets/BEASTSTATION_MAIL_PASSWORD) ];
-  };
 in
 {
   # You can import other NixOS modules here
@@ -39,8 +35,15 @@ in
     ./hardware-configuration.nix
   ];
 
-  # set environment variables
-  environment.variables = env;
+  config = {
+    # specify agenix secrets. will be mounted at /run/agenix/secret
+    age.secrets = {
+      beaststation_mail_password.file = ../secrets/beaststation_mail_password.age;
+    };
+  };
+
+  # install global packages
+  environment.systemPackages = [ agenix.packages.${system}.default ];
 
   # Use the systemd-boot EFI boot loader.
   boot = {
@@ -77,7 +80,13 @@ in
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # enable docker
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    autoPrune.enable = true;
+  };
+
+  # enable nvidia toolkit
+  hardware.nvidia-container-toolkit.enable = true;
 
   # Set hostname
   networking = {
@@ -162,7 +171,7 @@ in
         host = "dominik-schwaiger.vsos.ethz.ch";
         from = "beaststation@dominik-schwaiger.ch";
         user = "beaststation@dominik-schwaiger.ch";
-        password = env.BEASTSTATION_MAIL_PASSWORD;
+        passwordeval = "cat ${config.age.secrets.beaststation_mail_password.path}";
       };
     };
   };
