@@ -43,7 +43,7 @@
   };
 
   # set alias for simple update
-  environment.shellAliases = {
+  programs.bash.shellAliases = {
     update = "nix flake update --commit-lock-file /etc/nixos/";
     upgrade = "sudo nixos-rebuild switch --flake /etc/nixos/";
   };
