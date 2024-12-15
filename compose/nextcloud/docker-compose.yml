@@ -18,13 +18,13 @@ x-env: &env
     SMTP_SECURE: "ssl"
     SMTP_NAME: "nextcloud@dominik-schwaiger.ch"
     SMTP_PORT: "465"
-    SMTP_PASSWORD: "${NEXTCLOUD_SMTP_PASSWORD}"
     MAIL_FROM_ADDRESS: "nextcloud"
     MAIL_DOMAIN: "dominik-schwaiger.ch"
     TZ: "Europe/Zurich"
   env_file:
     - /run/agenix/db_pw
     - /run/agenix/nextcloud_admin_password
+    - /run/agenix/nextcloud_smtp_password
 
 services:
   nextcloud:
@@ -89,8 +89,9 @@ services:
       - onlyoffice
       - nextcloud-intern
     environment:
-      JWT_SECRET: "${JWT_SECRET}"
       TZ: "Europe/Zurich"
+    env_file:
+      - /run/agenix/jwt_secret
     labels:
       - "traefik.http.routers.office.rule=Host(`office.dominik-schwaiger.ch`)"
       - "traefik.http.routers.office.tls=true"
