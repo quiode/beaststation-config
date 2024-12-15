@@ -72,6 +72,10 @@ in
       };
     };
 
+    zfs = {
+      extraPools = [ "hdd" ];
+    };
+
     # use the latest ZFS-compatible Kernel
     # Note this might jump back and forth as kernels are added or removed.
     kernelPackages = latestKernelPackage;
