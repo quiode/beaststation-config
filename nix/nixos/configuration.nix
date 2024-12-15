@@ -226,8 +226,8 @@ in
       sshKey = "/etc/ssh/ssh_host_ed25519_key";
 
       # do as root
-      user = root;
-      group = root;
+      user = "root";
+      group = "root";
 
       commands = {
         "hdd/critical" = {
