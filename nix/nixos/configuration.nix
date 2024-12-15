@@ -287,6 +287,10 @@ in
         upgrade = "sudo nixos-rebuild switch --flake /config/nix#beaststation";
         new = "update && upgrade";
       };
+
+      interactiveShellInit = "
+        fastfetch
+      ";
     };
 
     # enable mail sending through mail server
