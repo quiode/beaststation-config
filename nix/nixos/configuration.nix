@@ -190,25 +190,25 @@ in
         "hdd/critical" = {
           use_template = [ "critical" ];
           recursive = "zfs";
-          process_children_only = "true";
+          process_children_only = true;
         };
 
         "hdd/non-critical" = {
           use_template = [ "non-critical" ];
           recursive = "zfs";
-          process_children_only = "true";
+          process_children_only = true;
         };
 
         "ssd/critical" = {
           use_template = [ "critical" ];
           recursive = "zfs";
-          process_children_only = "true";
+          process_children_only = true;
         };
 
         "ssd/non-critical" = {
           use_template = [ "non-critical" ];
           recursive = "zfs";
-          process_children_only = "true";
+          process_children_only = true;
         };
 
         "rpool/home" = {
