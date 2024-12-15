@@ -10,7 +10,7 @@ services:
     volumes:
       - /mnt/raid5/dominik-schwaiger.ch/images:/dominik-schwaiger.ch/images
     env_file:
-      - /etc/environment
+      - /run/agenix/schwaiger_admin_password
     labels:
       - "traefik.http.routers.website.rule=Host(`dominik-schwaiger.ch`)"
       - "traefik.http.routers.website.tls=true"

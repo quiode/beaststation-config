@@ -5,6 +5,7 @@ services:
     env_file:
       - /run/agenix/nextcloud_smtp_password
       - /run/agenix/bw_installation_id
+      - /run/agenix/bw_installation_key
       - settings.env
     environment:
       TZ: 'Europe/Zurich'
