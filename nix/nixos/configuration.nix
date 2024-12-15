@@ -155,6 +155,68 @@ in
         enableMail = false;
       };
     };
+
+    # automatic snapshots of zfs datasets
+    sanoid = {
+      enable = true;
+
+      templates = {
+        critical = {
+          # frequency
+          hourly = 36;
+          daily = 30;
+          monthly = 6;
+          yearly = 0;
+
+          # additional settings
+          autoprune = true;
+          autosnap = true;
+        };
+
+        non-critical = {
+          # frequency
+          hourly = 10;
+          daily = 7;
+          monthly = 1;
+          yearly = 0;
+
+          # additional settings
+          autoprune = true;
+          autosnap = true;
+        };
+      };
+
+      datasets = {
+        "hdd/critical" = {
+          use_template = [ "critical" ];
+          recursive = "zfs";
+          process_children_only = "true";
+        };
+
+        "hdd/non-critical" = {
+          use_template = [ "non-critical" ];
+          recursive = "zfs";
+          process_children_only = "true";
+        };
+
+        "ssd/critical" = {
+          use_template = [ "critical" ];
+          recursive = "zfs";
+          process_children_only = "true";
+        };
+
+        "ssd/non-critical" = {
+          use_template = [ "non-critical" ];
+          recursive = "zfs";
+          process_children_only = "true";
+        };
+
+        "rpool/home" = {
+          use_template = [ "critical" ];
+          recursive = "zfs";
+        };
+      };
+    };
   };
 
   # setup firewall
