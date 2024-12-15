@@ -7,7 +7,6 @@ x-env: &env
     MYSQL_USER: "nextcloud"
     MYSQL_HOST: "nextcloud-database"
     NEXTCLOUD_ADMIN_USER: "admin"
-    NEXTCLOUD_ADMIN_PASSWORD: "${NEXTCLOUD_ADMIN_PASSWORD}"
     REDIS_HOST: "nextcloud-cache"
     APACHE_DISABLE_REWRITE_IP: "1"
     TRUSTED_PROXIES: "192.168.90.0/24"
@@ -25,6 +24,7 @@ x-env: &env
     TZ: "Europe/Zurich"
   env_file:
     - /run/agenix/db_pw
+    - /run/agenix/nextcloud_admin_password
 
 services:
   nextcloud:
