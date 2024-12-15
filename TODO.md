@@ -4,5 +4,5 @@
 - [  ] migrate docker to agenix secrets
 - [  ] generally migrate everything docker-based
 - [  ] rename repo to `beaststation-config`
-- [  ] setup fake hdd pool
-- [  ] setup sanoid and syncoid
+- [ x ] setup fake hdd pool
+- [ x ] setup sanoid and syncoid
