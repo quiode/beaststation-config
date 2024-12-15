@@ -326,6 +326,11 @@ in
       };
     };
 
+    nh = {
+      enable = true;
+      flake = "/config/nix";
+    };
+
     # enable ssh agent
     ssh.startAgent = true;
   };
