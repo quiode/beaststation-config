@@ -217,6 +217,32 @@ in
         };
       };
     };
+
+    # automatic backup of zfs snapshots
+    syncoid = {
+      enable = true;
+
+      # use system host key
+      sshKey = "/etc/ssh/ssh_host_ed25519_key";
+
+      # do as root
+      user = root;
+      group = root;
+
+      commands = {
+        "hdd/critical" = {
+          source = "hdd/critical";
+          target = "hdd/backup/hdd/critical"; # TODO
+          recursive = true;
+        };
+
+        "ssd/critical" = {
+          source = "ssd/critical";
+          target = "hdd/backup/ssd/critical"; # TODO
+          recursive = true;
+        };
+      };
+    };
   };
 
   # setup firewall
