@@ -5,7 +5,6 @@ x-env: &env
     PHP_UPLOAD_LIMIT: "20G"
     MYSQL_DATABASE: "nextcloud"
     MYSQL_USER: "nextcloud"
-    MYSQL_PASSWORD: "${DB_PW}"
     MYSQL_HOST: "nextcloud-database"
     NEXTCLOUD_ADMIN_USER: "admin"
     NEXTCLOUD_ADMIN_PASSWORD: "${NEXTCLOUD_ADMIN_PASSWORD}"
@@ -24,6 +23,8 @@ x-env: &env
     MAIL_FROM_ADDRESS: "nextcloud"
     MAIL_DOMAIN: "dominik-schwaiger.ch"
     TZ: "Europe/Zurich"
+  env_file:
+    - /run/agenix/db_pw
 
 services:
   nextcloud:
@@ -105,16 +106,16 @@ services:
     container_name: nextcloud-database
     restart: always
     environment:
-      MARIADB_ROOT_PASSWORD: "${DB_PW}"
       MARIADB_DATABASE: "nextcloud"
       MARIADB_USER: "nextcloud"
-      MARIADB_PASSWORD: "${DB_PW}"
       MARIADB_AUTO_UPGRADE: 1
       TZ: "Europe/Zurich"
     networks:
       - nextcloud-intern
     volumes:
       - /mnt/raid5/nextcloud/database:/var/lib/mysql
+    env_file:
+      - /run/agenix/db_pw
 
   nextcloud-cache:
     image: "redis:alpine"
