@@ -108,6 +108,7 @@ in
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILWkILtyyPWk4UYWJaZoI5UqGKo/qlaJG5h7zfS69+ie mail@dominik-schwaiger.ch"
       ];
       extraGroups = [ "wheel" "docker" ];
+      initialPassword = "1234";
     };
   };
 
