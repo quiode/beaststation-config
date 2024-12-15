@@ -20,8 +20,6 @@ These should be written inside `/etc/environment`.
   - password for <mail@nextcloud.dominik-schwaiger.ch>
 - `JWT_SECRET`
   - secret for jwt's (onlyoffice)
-- `WEBHOOK_SECRET`
-  - github webhook secreto for compose-watcher
 - `BW_INSTALLATION_ID`
   - get from <https://bitwarden.com/host/>
 - `BW_INSTALLATION_KEY`
