@@ -11,15 +11,15 @@ in
 {
   "beaststation_mail_password.age".publicKeys = all;
   "docker_pw.age".publicKeys = all;
-  "telegram_watchtower_token".publicKeys = all;
-  "db_pw".publicKeys = all;
-  "nextcloud_admin_password".publicKeys = all;
-  "nextcloud_smtp_password".publicKeys = all;
-  "jwt_secret".publicKeys = all;
-  "webhook_secret".publicKeys = all;
-  "bw_installation_id".publicKeys = all;
-  "bw_installation_key".publicKeys = all;
-  "schwaiger_admin_password".publicKeys = all;
-  "gitlab_smtp_password".publicKeys = all;
-  "registry_http_secret".publicKeys = all;
+  "telegram_watchtower_token.age".publicKeys = all;
+  "db_pw.age".publicKeys = all;
+  "nextcloud_admin_password.age".publicKeys = all;
+  "nextcloud_smtp_password.age".publicKeys = all;
+  "jwt_secret.age".publicKeys = all;
+  "webhook_secret.age".publicKeys = all;
+  "bw_installation_id.age".publicKeys = all;
+  "bw_installation_key.age".publicKeys = all;
+  "schwaiger_admin_password.age".publicKeys = all;
+  "gitlab_smtp_password.age".publicKeys = all;
+  "registry_http_secret.age".publicKeys = all;
 }
