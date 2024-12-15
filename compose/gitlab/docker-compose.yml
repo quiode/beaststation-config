@@ -8,7 +8,7 @@ services:
       - gitlab
       - gitlab-internal
     env_file:
-      - /etc/environment
+      - /run/agenix/gitlab_smtp_password
     environment:
       TZ: "Europe/Zurich"
       GITLAB_OMNIBUS_CONFIG: |

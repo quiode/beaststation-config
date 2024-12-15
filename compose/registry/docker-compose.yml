@@ -11,7 +11,8 @@ services:
     environment:
       TZ: 'Europe/Zurich'
       REGISTRY_STORAGE_DELETE_ENABLED: true
-      REGISTRY_HTTP_SECRET: ${REGISTRY_HTTP_SECRET}
+    env_file:
+      - /run/agenix/registry_http_secret
 
   ui:
     image: joxit/docker-registry-ui
