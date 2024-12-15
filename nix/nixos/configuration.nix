@@ -44,7 +44,6 @@ in
     nextcloud_admin_password.file = ../../secrets/nextcloud_admin_password.age;
     nextcloud_smtp_password.file = ../../secrets/nextcloud_smtp_password.age;
     jwt_secret.file = ../../secrets/jwt_secret.age;
-    webhook_secret.file = ../../secrets/webhook_secret.age;
     bw_installation_id.file = ../../secrets/bw_installation_id.age;
     bw_installation_key.file = ../../secrets/bw_installation_key.age;
     schwaiger_admin_password.file = ../../secrets/schwaiger_admin_password.age;

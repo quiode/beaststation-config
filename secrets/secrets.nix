@@ -16,7 +16,6 @@ in
   "nextcloud_admin_password.age".publicKeys = all;
   "nextcloud_smtp_password.age".publicKeys = all;
   "jwt_secret.age".publicKeys = all;
-  "webhook_secret.age".publicKeys = all;
   "bw_installation_id.age".publicKeys = all;
   "bw_installation_key.age".publicKeys = all;
   "schwaiger_admin_password.age".publicKeys = all;
