@@ -42,7 +42,7 @@ in
 
   environment = {
     # packages
-    systemPackages = with pkgs; [ inputs.agenix.packages."${system}".default ];
+    systemPackages = with pkgs; [ inputs.agenix.packages."${system}".default neofetch btop ];
 
     # custom /etc stuff
     etc = {
