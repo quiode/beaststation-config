@@ -321,7 +321,7 @@ in
           host = "dominik-schwaiger.vsos.ethz.ch";
           from = "beaststation@dominik-schwaiger.ch";
           user = "beaststation@dominik-schwaiger.ch";
-          passwordeval = "cat ${config.age.secrets.beaststation_mail_password.path}";
+          passwordeval = "${pkgs.coreutils}/bin/cat ${config.age.secrets.beaststation_mail_password.path}";
         };
       };
     };
