@@ -244,12 +244,14 @@ in
         "hdd/critical" = {
           source = "hdd/critical";
           target = "hdd/backup/hdd/critical"; # TODO
+          recvOptions = "o encryption=on o keyformat=passphrase o keylocation=prompt o compression=zstd-10"; # TODO
           recursive = true;
         };
 
         "ssd/critical" = {
           source = "ssd/critical";
           target = "hdd/backup/ssd/critical"; # TODO
+          recvOptions = "o encryption=on o keyformat=passphrase o keylocation=prompt o compression=zstd-10"; # TODO
           recursive = true;
         };
       };
