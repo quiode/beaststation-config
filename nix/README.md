@@ -206,8 +206,14 @@ nixos-generate-config --root /mnt
 1. remove the existing nixos config and sync it to the git repository: `rm -rf /etc/nixos` and then `ln -s /config/nix /etc/nixos`
 1. use the config: `nixos-rebuild switch`
 
-## Additional Configuration
+## Passwords
 
-### Environment Variables
+Passwords and other secrets are all being handled using [agenix](https://github.com/ryantm/agenix). They are stored encrypted under `../secrets` and are decrypted (using the ssh key of the host system) and mounted under `/run/agenix`.
 
-- `BEASTSTATION_MAIL_PASSWORD`: for zfs mail notifications
+For more information read the readme in the secrets folder.
+
+## Encryption
+
+The zfs datasets with actual data (so not the boot partition, rpool, etc.) are encrypted using a passphrase. This passphrase is stored server-side unser `/config/secrets/passphrase.txt`. **IT SHOULD BE NOTED DOWN SOMEWHERE ELSE!**. On boot, this file is being read and the datasets are automatically decrypted and mounted. If the decryption should be done manually, just empty/delete the passphrase file.
+
+This is primarily done so that the backups are stored encrypted (and also being transferred encrypted as raw data). Thus they can't be compromised. The overhead should be minimal (hopefully).
