@@ -308,11 +308,8 @@ in
         unlock = "sudo zfs load-key -a ; sudo zfs load-key -a -L prompt && sudo zfs mount -a";
       };
 
-      interactiveShellInit = ''
-        fastfetch
-      '';
-
       loginShellInit = ''
+        fastfetch
         unlock
       '';
     };
