@@ -111,8 +111,6 @@ in
     };
 
     zfs = {
-      passwordTimeout = 30; # wait 30secs for password input at boot, else skip
-
       extraPools = [ "hdd" ];
     };
 
