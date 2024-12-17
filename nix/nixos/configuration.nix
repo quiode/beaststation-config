@@ -237,13 +237,13 @@ in
       };
 
       datasets = {
-        "hdd/critical" = {
+        "hdd/enc/critical" = {
           use_template = [ "critical" ];
           recursive = "zfs";
           process_children_only = true;
         };
 
-        "hdd/non-critical" = {
+        "hdd/enc/non-critical" = {
           use_template = [ "non-critical" ];
           recursive = "zfs";
           process_children_only = true;
@@ -282,8 +282,8 @@ in
       commonArgs = [ "--delete-target-snapshots" "--no-sync-snap" ];
 
       commands = {
-        "hdd/critical" = {
-          source = "hdd/critical";
+        "hdd/enc/critical" = {
+          source = "hdd/enc/critical";
           target = "hdd/backup/hdd/critical"; # TODO
           sendOptions = "w";
           recursive = true;
