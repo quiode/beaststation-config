@@ -67,6 +67,9 @@ in
 
   # Use the systemd-boot EFI boot loader.
   boot = {
+    # enable zfs support explicitly
+    supportedFilesystems = [ "zfs" ];
+
     loader = {
       efi.canTouchEfiVariables = true;
       grub = {
@@ -88,6 +91,7 @@ in
       passwordTimeout = 30; # wait 30secs for password input at boot, else skip
 
       forceImportRoot = false; # recommendations says to turn it off
+      requestEncryptionCredentials = false; # manually decrypt drives
 
       extraPools = [ "hdd" ];
     };

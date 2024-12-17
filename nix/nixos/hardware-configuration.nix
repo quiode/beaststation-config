@@ -18,6 +18,14 @@
       options = [ "zfsutil" ];
     };
 
+  fileSystems."/ssd" =
+    {
+      device = "rpool/ssd";
+      fsType = "zfs";
+      options = [ "zfsutil" ];
+      neededForBoot = false; # disable loading this at boot explicitly
+    };
+
   fileSystems."/nix" =
     {
       device = "rpool/nix";
