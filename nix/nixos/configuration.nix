@@ -100,7 +100,7 @@ in
 
           # To prevent ssh clients from freaking out because a different host key is used,
           # a different port for ssh is useful (assuming the same host has also a regular sshd running)
-          port = 2222;
+          # port = 2222;
 
           # hostKeys paths must be unquoted strings, otherwise you'll run into issues with boot.initrd.secrets
           # the keys are copied to initrd from the path specified; multiple keys can be set
