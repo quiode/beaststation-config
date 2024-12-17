@@ -11,4 +11,4 @@ services:
     environment:
       TZ: "Europe/Zurich"
     volumes:
-      - /mnt/raid5/openvpn:/etc/openvpn
+      - /ssd/critical/openvpn:/etc/openvpn

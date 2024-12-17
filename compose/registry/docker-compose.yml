@@ -7,7 +7,7 @@ services:
     networks:
       - registry-internal
     volumes:
-      - /mnt/raid5/registry/data:/var/lib/registry
+      - /hdd/non-critical/registry/data:/var/lib/registry
     environment:
       TZ: 'Europe/Zurich'
       REGISTRY_STORAGE_DELETE_ENABLED: true
@@ -37,7 +37,7 @@ services:
       - 'traefik.http.services.registry.loadbalancer.passHostHeader=true'
       - 'traefik.enable=true'
       - 'traefik.docker.network=registry'
-      - 'traefik.http.middlewares.registry-auth.basicauth.usersfile=/mnt/raid5/registry/auth/htpasswd'
+      - 'traefik.http.middlewares.registry-auth.basicauth.usersfile=/ssd/critical/registry/auth/htpasswd'
       - 'traefik.http.routers.registry.middlewares=registry-auth@docker'
 
 networks:

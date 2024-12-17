@@ -7,7 +7,7 @@ services:
       - portainer
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /mnt/raid5/portainer/data:/data
+      - /ssd/critical/portainer/data:/data
     environment:
       TZ: "Europe/Zurich"
     labels:

@@ -49,9 +49,9 @@ services:
     ports:
       - "22:22"
     volumes:
-      - /mnt/raid5/gitlab/config:/etc/gitlab
-      - /mnt/raid5/gitlab/logs:/var/log/gitlab
-      - /mnt/raid5/gitlab/data:/var/opt/gitlab
+      - /ssd/critical/gitlab/config:/etc/gitlab
+      - /hdd/non-critical/gitlab/logs:/var/log/gitlab
+      - /hdd/critical/gitlab/data:/var/opt/gitlab
     shm_size: "256m"
     labels:
       - "traefik.http.routers.gitlab.rule=Host(`gitlab.dominik-schwaiger.ch`)"
@@ -71,7 +71,7 @@ services:
       TZ: "Europe/Zurich"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /mnt/raid5/gitlab/runner/config:/etc/gitlab-runner
+      - /ssd/critical/gitlab/runner/config:/etc/gitlab-runner
 
 networks:
   gitlab:

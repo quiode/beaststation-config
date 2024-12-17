@@ -8,7 +8,7 @@ services:
     networks:
       - dominik-schwaiger
     volumes:
-      - /mnt/raid5/dominik-schwaiger.ch/images:/dominik-schwaiger.ch/images
+      - /hdd/non-critical/dominik-schwaiger.ch/images:/dominik-schwaiger.ch/images
     env_file:
       - /run/agenix/schwaiger_admin_password
     labels:

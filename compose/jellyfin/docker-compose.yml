@@ -11,8 +11,8 @@ services:
       TZ: "Europe/Zurich"
     volumes:
       # Update this configuration as desired
-      - /mnt/raid5/jellyfin/config:/config
-      - /mnt/raid5/jellyfin/media:/media
+      - /ssd/critical/jellyfin/config:/config
+      - /hdd/non-critical/jellyfin/media:/media
       - cache:/cache # store the cache on a named volume so it is stored on the ssd instead of hdd
     restart: always
     # devices:

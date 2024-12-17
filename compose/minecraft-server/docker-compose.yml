@@ -5,7 +5,7 @@ services:
       - 25565:25565
     image: "itzg/minecraft-server"
     volumes:
-      - "/mnt/raid5/minecraft/server:/data"
+      - "/ssd/critical/minecraft/server:/data"
     environment:
       EULA: "true"
       VERSION: "LATEST"
@@ -31,5 +31,5 @@ services:
       TZ: "Europe/Zurich"
     restart: always
     volumes:
-      - "/mnt/raid5/minecraft/backups:/backups"
-      - "/mnt/raid5/minecraft/server:/data:ro"
+      - "/hdd/non-critical/minecraft/backups:/backups"
+      - "/ssd/critical/minecraft/server:/data:ro"

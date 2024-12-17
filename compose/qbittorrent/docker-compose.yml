@@ -9,8 +9,8 @@ services:
       - WEBUI_PORT=8080
       - TORRENTING_PORT=6881
     volumes:
-      - /mnt/raid5/qbittorrent/appdata:/config
-      - /mnt/raid5/qbittorrent/downloads:/downloads #optional
+      - /ssd/critical/qbittorrent/appdata:/config
+      - /hdd/non-critical/qbittorrent/downloads:/downloads #optional
     #ports:
       #- 6881:6881
       #- 6881:6881/udp

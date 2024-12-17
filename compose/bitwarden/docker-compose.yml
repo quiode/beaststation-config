@@ -13,8 +13,8 @@ services:
       - bitwarden-db
     restart: always
     volumes:
-      - /mnt/raid5/bitwarden/data:/etc/bitwarden
-      - /mnt/raid5/bitwarden/logs:/var/log/bitwarden
+      - /ssd/critical/bitwarden/data:/etc/bitwarden
+      - /hdd/non-critical/bitwarden/logs:/var/log/bitwarden
     networks:
       - bitwarden-internal
       - bitwarden-external
@@ -38,7 +38,7 @@ services:
       TZ: 'Europe/Zurich'
     restart: always
     volumes:
-      - /mnt/raid5/bitwarden/database:/var/lib/mysql
+      - /ssd/critical/bitwarden/database:/var/lib/mysql
     networks:
       - bitwarden-internal
 

@@ -1,71 +1,102 @@
 # docker compose configuration
 
-TODO: update
-
 Docker compose files for my server (Beaststation).
 
-## Required Environment Variables
+## Required Secrets
 
-These should be written inside `/etc/environment`.
+These should mounted to `/run/agenix`.
+They should each define a set of environment variables and then are mounted as environment files.
 
-- `DOCKER_PW`
-  - password for docker repo
-- `TELEGRAM_WATCHTOWER_TOKEN`
-  - telegram token for watchtower bot
-- `DB_PW`
-  - password for databases
-- `NEXTCLOUD_ADMIN_PASSWORD`
-  - admin password for nextcloud
-- `NEXTCLOUD_SMTP_PASSWORD`
-  - password for <mail@nextcloud.dominik-schwaiger.ch>
-- `JWT_SECRET`
-  - secret for jwt's (onlyoffice)
-- `BW_INSTALLATION_ID`
-  - get from <https://bitwarden.com/host/>
-- `BW_INSTALLATION_KEY`
-  - get from <https://bitwarden.com/host/>
-- `SCHWAIGER_ADMIN_PASSWORD`
-  - password to enter admin panel of <https://dominik-schwaiger.ch>
-- `GITLAB_SMTP_PASSWORD`
-  - email password for gitlab
-- `REGISTRY_HTTP_SECRET`
-  - http secret for docker registry
+### Format
+
+- `secret_name` in `/run/agenix/secret_name`
+  - `ENV` environemnt variable defined in the secret
+    - description
+
+  `other env vars that depend on above env vars`
+
+### Secrets
+
+- `docker_pw`
+  - `REPO_PASSWORD`
+    - password for docker repo
+- `telegram_watchtower_token`
+  - `WATCHTOWER_NOTIFICATION_URL`
+    - telegram url (token) for watchtower bot
+- `db_pw`
+  - `DB_PW`
+    - password for databases
+
+  ```bash
+  MYSQL_PASSWORD="${DB_PW}"
+  MARIADB_ROOT_PASSWORD="${DB_PW}"
+  MARIADB_PASSWORD="${DB_PW}"
+  ```
+
+- `nextcloud_admin_password`
+  - `NEXTCLOUD_ADMIN_PASSWORD`
+    - admin password for nextcloud
+- `nextcloud_smtp_password`
+  - `NEXTCLOUD_SMTP_PASSWORD`
+    - password for <mail@nextcloud.dominik-schwaiger.ch>
+
+  `globalSettings__mail__smtp__password="${SMTP_PASSWORD}"`
+- `jwt_secret`
+  - `JWT_SECRET`
+    - secret for jwt's (onlyoffice)
+- `bw_installation_id`
+  - `BW_INSTALLATION_ID`
+    - get from <https://bitwarden.com/host/>
+- `bw_installation_key`
+  - `BW_INSTALLATION_KEY`
+    - get from <https://bitwarden.com/host/>
+- `schwaiger_admin_password`
+  - `SCHWAIGER_ADMIN_PASSWORD`
+    - password to enter admin panel of <https://dominik-schwaiger.ch>
+- `gitlab_smtp_password`
+  - `GITLAB_SMTP_PASSWORD`
+    - email password for gitlab
+- `registry_http_secret`
+  - `REGISTRY_HTTP_SECRET`
+    - http secret for docker registry
 
 ## Bind Volumes
 
-- `/mnt/raid5/openvpn`
-- `/mnt/raid5/nextcloud/data`
-- `/mnt/raid5/nextcloud/apps`
-- `/mnt/raid5/nextcloud/config`
-- `/mnt/raid5/nextcloud/themes`
-- `/mnt/raid5/nextcloud/database`
-- `/mnt/raid5/minecraft/server`
-- `/mnt/raid5/minecraft/backups`
-- `/mnt/raid5/portainer/data`
-- `/mnt/raid5/bitwarden/data`
-- `/mnt/raid5/bitwarden/database`
-- `/mnt/raid5/bitwarden/logs`
-- `/mnt/raid5/dominik-schwaiger.ch/images`
-- `/mnt/raid5/gitlab/runner/config`
-- `/mnt/raid5/gitlab/logs`
-- `/mnt/raid5/gitlab/config`
-- `/mnt/raid5/gitlab/data`
-- `/mnt/raid5/registry/data`
-- `/mnt/raid5/registry/auth`
-- `/mnt/raid5/traefik/auth`
-- `/mnt/raid5/traefik/acme`
-- `/mnt/raid5/jellyfin/config`
-- `/mnt/raid5/jellyfin/cache`
-- `/mnt/raid5/jellyfin/media`
-- `/etc/environment/`
+Critical data (which should be snapshotted more often and also should be backuped) is always saved under `pool/critical` while non-critical stuff is saved under `pool/non-critical`. There are two pools, `hdd` and `ssd`. Their names should make it clear which one is where. Big data or data which doesn't have to be accessed for a long time should be on the hdd while small data or data that has to be accessed often should be saved on the ssd.
+
+### Data
+
+- `ssd/critical/openvpn`
+- `ssd/critical/nextcloud/html`
+- `hdd/critical/nextcloud/data`
+- `ssd/critical/nextcloud/apps`
+- `ssd/critical/nextcloud/config`
+- `ssd/critical/nextcloud/themes`
+- `ssd/critical/nextcloud/database`
+- `ssd/critical/minecraft/server`
+- `hdd/non-critical/minecraft/backups`
+- `ssd/critical/portainer/data`
+- `ssd/critical/bitwarden/data`
+- `ssd/critical/bitwarden/database`
+- `hdd/non-critical/bitwarden/logs`
+- `hdd/non-critical/dominik-schwaiger.ch/images`
+- `ssd/critical/gitlab/runner/config`
+- `hdd/non-critical/gitlab/logs`
+- `ssd/critical/gitlab/config`
+- `hdd/critical/gitlab/data`
+- `hdd/non-critical/registry/data`
+- `ssd/critical/registry/auth`
+- `ssd/non-critical/traefik/auth`
+- `ssd/non-critical/traefik/acme`
+- `ssd/critical/jellyfin/config`
+- `hdd/non-critical/jellyfin/media`
+- `ssd/critical/qbittorrent/appdata`
+- `hdd/non-critical/qbittorrent/downloads`
+
+### Other
+
+- `/run/agenix/`
 - `/var/run/docker.sock`
-
-## Symlinks
-
-Files and folder that have/should be linked from the persistent storage.
-
-- `/etc/environment`
-- `/home/$USER/.ssh`
 
 ## Ports
 

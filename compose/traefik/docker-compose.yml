@@ -10,10 +10,10 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /mnt/raid5/traefik/auth:/auth:ro
-      - /mnt/raid5/traefik/acme/acme.json:/acme.json
+      - /ssd/non-critical/traefik/auth:/auth:ro
+      - /ssd/non-critical/traefik/acme.json:/acme.json
       - ./traefik.yml:/etc/traefik/traefik.yml:ro
-      - /mnt/raid5/registry/auth/htpasswd:/mnt/raid5/registry/auth/htpasswd:ro
+      - /ssd/critical/registry/auth/htpasswd:/ssd/critical/registry/auth/htpasswd:ro
     labels:
       - "traefik.http.middlewares.dashboard-auth.basicauth.usersfile=/auth/users"
       - "traefik.http.routers.dashboard.middlewares=dashboard-auth@docker"
