@@ -60,7 +60,7 @@ in
         # Import all pools
         zpool import -a
         # Add the load-key command to the .profile
-        echo "zfs load-key -a; killall zfs" >> /root/.profile
+        echo "zfs load-key -a && killall zfs" >> /root/.profile
       '';
 
       ssh = {
