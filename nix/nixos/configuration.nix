@@ -51,30 +51,6 @@ in
     registry_http_secret.file = ../../secrets/registry_http_secret.age;
   };
 
-  boot.kernelParams = [ "ip=dhcp" ];
-  boot.initrd = {
-    availableKernelModules = [ "e1000" ];
-    network = {
-      enable = true;
-      postCommands = ''
-        # Import all pools
-        zpool import -a
-        # Add the load-key command to the .profile
-        echo "zfs load-key -a && killall zfs" >> /root/.profile
-      '';
-
-      ssh = {
-        enable = true;
-        port = 2222;
-        authorizedKeys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILWkILtyyPWk4UYWJaZoI5UqGKo/qlaJG5h7zfS69+ie mail@dominik-schwaiger.ch" ];
-        hostKeys = [ /etc/ssh/ssh_host_ed25519_key ];
-      };
-    };
-  };
-
-  networking.useDHCP = true;
-  boot.kernelModules = [ "e1000" ];
-
   environment = {
     # packages
     systemPackages = with pkgs; [ inputs.agenix.packages."${system}".default fastfetch onefetch btop sanoid ];
@@ -117,6 +93,31 @@ in
     # use the latest ZFS-compatible Kernel
     # Note this might jump back and forth as kernels are added or removed.
     kernelPackages = latestKernelPackage;
+
+    # enable remote unlocking by ssh, so that zfs datasets can be encrypted on boot
+    kernelModules = [ "e1000" ]; # TODO: insert correct modules, can be with with: lspci -v | grep -iA8 'network\|ethernet'
+    kernelParams = [ "ip=dhcp" ];
+
+    initrd = {
+      availableKernelModules = [ "e1000" ]; # TODO: insert correct modules, can be with with: lspci -v | grep -iA8 'network\|ethernet'
+      network = {
+        enable = true;
+        postCommands = ''
+          # Import all pools
+          zpool import -a
+          # Add the load-key command to the .profile
+          echo "zfs load-key -a && killall zfs" >> /root/.profile
+        '';
+
+        # should be the same settings as the normal ssd configuration
+        ssh = {
+          enable = true;
+          port = 2222;
+          authorizedKeys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILWkILtyyPWk4UYWJaZoI5UqGKo/qlaJG5h7zfS69+ie mail@dominik-schwaiger.ch" ];
+          hostKeys = [ /etc/ssh/ssh_host_ed25519_key ]; # important: unquoted
+        };
+      };
+    };
   };
 
   nixpkgs = {
@@ -152,6 +153,9 @@ in
     extraHosts = ''
       127.0.0.1 registry.dominik-schwaiger.ch
     '';
+
+    # explicitly enable, needed for remote unlocking
+    useDHCP = true;
   };
 
   # Configure system-wide user settings

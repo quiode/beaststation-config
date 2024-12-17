@@ -10,3 +10,4 @@
 - [ x ] setup sanoid and syncoid
 - [ x ] syncoid make files encrypted (<https://openzfs.github.io/openzfs-docs/man/master/8/zfs-recv.8.html>)
   - [ x ] test encryption speed. if encryption is now too slow then enable encryption for all datasets
+- [  ] resolve TODO's in the whole workspace
