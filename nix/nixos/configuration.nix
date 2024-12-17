@@ -310,7 +310,7 @@ in
 
       loginShellInit = ''
         fastfetch
-        unlock
+        sudo zfs load-key -a ; sudo zfs load-key -a -L prompt && sudo zfs mount -a
       '';
     };
 
