@@ -118,7 +118,7 @@ in
         };
       };
 
-      secrets."/config/secrets/passphrase.txt" = ../../secrets/passphrase.txt;
+      secrets."/config/secrets/passphrase.txt" = /config/secrets/passphrase.txt;
     };
   };
 
