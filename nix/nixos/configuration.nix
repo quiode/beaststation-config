@@ -252,7 +252,7 @@ in
       user = "root";
       group = "root";
 
-      commonArgs = [ "--delete-target-snapshots --no-sync-snap" ];
+      commonArgs = [ "--delete-target-snapshots" "--no-sync-snap" ];
 
       commands = {
         "hdd/critical" = {
