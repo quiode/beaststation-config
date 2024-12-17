@@ -117,6 +117,8 @@ in
           hostKeys = [ /etc/ssh/ssh_host_ed25519_key ]; # important: unquoted
         };
       };
+
+      secrets."/config/secrets/passphrase.txt" = ../../secrets/passphrase.txt;
     };
   };
 
