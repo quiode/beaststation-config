@@ -258,14 +258,14 @@ in
         "hdd/critical" = {
           source = "hdd/critical";
           target = "hdd/backup/hdd/critical"; # TODO
-          sendOptions = "w"
+          sendOptions = "w";
           recursive = true;
         };
 
         "ssd/critical" = {
           source = "ssd/critical";
           target = "hdd/backup/ssd/critical"; # TODO
-          sendOptions = "w"
+          sendOptions = "w";
           recursive = true;
         };
       };
