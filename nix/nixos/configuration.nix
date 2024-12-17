@@ -103,10 +103,8 @@ in
       network = {
         enable = true;
         postCommands = ''
-          # Import all pools
-          zpool import -a
-          # Add the load-key command to the .profile
-          echo "zfs load-key -a && killall zfs" >> /root/.profile
+          # Import all pools and Add the load-key command to the .profile
+          echo "zpool import -a && zfs load-key -a && killall zfs" >> /root/.profile
         '';
 
         # should be the same settings as the normal ssd configuration
