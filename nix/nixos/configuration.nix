@@ -305,7 +305,7 @@ in
         update = "sudo nix flake update --commit-lock-file --flake /config/nix";
         upgrade = "sudo nixos-rebuild switch --flake /config/nix#beaststation";
         new = "update && upgrade";
-        unlock = "sudo zfs load-key -a -L prompt && zfs mount -a"
+        unlock = "sudo zfs load-key -a -L prompt && zfs mount -a";
       };
 
       interactiveShellInit = "
