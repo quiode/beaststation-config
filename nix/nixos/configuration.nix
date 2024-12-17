@@ -118,8 +118,6 @@ in
 
     kernelModules = [ "r8169" ];
 
-    kernelParams = [ "ip=10.5.45.174::10.5.45.174:255.255.255.0:beaststation::none" ];
-
     # use the latest ZFS-compatible Kernel
     # Note this might jump back and forth as kernels are added or removed.
     kernelPackages = latestKernelPackage;
@@ -159,7 +157,7 @@ in
       127.0.0.1 registry.dominik-schwaiger.ch
     '';
 
-    #useDHCP = true;
+    useDHCP = true;
   };
 
   # Configure system-wide user settings
