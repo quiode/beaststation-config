@@ -23,7 +23,7 @@
       device = "rpool/ssd";
       fsType = "zfs";
       options = [ "zfsutil" ];
-      neededForBoot = false; # disable loading this at boot explicitly
+      depends = [ "/config" ];
     };
 
   fileSystems."/nix" =
