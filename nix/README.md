@@ -214,6 +214,6 @@ For more information read the readme in the secrets folder.
 
 ## Encryption
 
-The zfs datasets with actual data (so not the boot partition, rpool, etc.) are encrypted using a passphrase. On boot, the datasets have to be decrypted and mounted using `unlock`.
+The zfs datasets with actual data (so not the boot partition, rpool, etc.) are encrypted using a passphrase. On boot, the datasets have to be decrypted and mounted using `unlock`. The passphrase also could be placed under `/config/secrets/passphrase.txt` but one would still have to unlock the ssd at-least once. The unlock command is being run at shell login, so connecting with the server suffices.
 
 This is primarily done so that the backups are stored encrypted (and also being transferred encrypted as raw data). Thus they can't be compromised. The overhead should be minimal (hopefully).

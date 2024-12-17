@@ -308,9 +308,13 @@ in
         unlock = "sudo zfs load-key -a ; sudo zfs load-key -a -L prompt && sudo zfs mount -a";
       };
 
-      interactiveShellInit = "
+      interactiveShellInit = ''
         fastfetch
-      ";
+      '';
+
+      loginShellInit = ''
+        unlock
+      '';
     };
 
     # enable mail sending through mail server
