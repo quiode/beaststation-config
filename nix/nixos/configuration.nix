@@ -262,8 +262,8 @@ in
           recursive = true;
         };
 
-        "ssd/critical" = {
-          source = "ssd/critical";
+        "rpool/ssd/critical" = {
+          source = "rpool/ssd/critical";
           target = "hdd/backup/ssd/critical"; # TODO
           sendOptions = "w";
           recursive = true;
