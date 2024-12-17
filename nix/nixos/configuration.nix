@@ -113,6 +113,18 @@ in
   networking = {
     hostName = "beaststation";
     hostId = "6b0b03b3";
+
+    # enable firewall
+    firewall = {
+      enable = true;
+
+      allowedTCPPorts = [ 22 80 443 2222 ];
+      allowedUDPPorts = [ 22 80 443 2222 ];
+    };
+
+    extraHosts = ''
+      127.0.0.1 registry.dominik-schwaiger.ch
+    '';
   };
 
   # Configure system-wide user settings
@@ -256,14 +268,6 @@ in
         };
       };
     };
-  };
-
-  # setup firewall
-  networking.firewall = {
-    enable = true;
-
-    allowedTCPPorts = [ 22 80 443 2222 ];
-    allowedUDPPorts = [ 22 80 443 2222 ];
   };
 
   # set locale, time, etc.
