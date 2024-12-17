@@ -310,7 +310,6 @@ in
 
       loginShellInit = ''
         fastfetch
-        sudo zfs load-key -a ; sudo zfs load-key -a -L prompt && sudo zfs mount -a
       '';
     };
 
