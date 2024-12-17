@@ -18,14 +18,6 @@
       options = [ "zfsutil" ];
     };
 
-  fileSystems."/ssd" =
-    {
-      device = "rpool/ssd";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-      depends = [ "/config" ];
-    };
-
   fileSystems."/nix" =
     {
       device = "rpool/nix";
