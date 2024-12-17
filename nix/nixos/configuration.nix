@@ -118,8 +118,8 @@ in
     firewall = {
       enable = true;
 
-      allowedTCPPorts = [ 22 80 443 2222 ];
-      allowedUDPPorts = [ 22 80 443 2222 ];
+      allowedTCPPorts = [ 22 80 443 1194 2222 25565 ];
+      allowedUDPPorts = [ 22 80 443 1194 2222 25565 ];
     };
 
     extraHosts = ''
