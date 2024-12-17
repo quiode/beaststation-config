@@ -87,11 +87,10 @@ in
     };
 
     zfs = {
-      devNodes = "/dev/disk/by-id";
       passwordTimeout = 30; # wait 30secs for password input at boot, else skip
 
-      forceImportRoot = false; # recommendations says to turn it off
-      requestEncryptionCredentials = false; # manually decrypt drives
+      # forceImportRoot = false; # recommendations says to turn it off
+      # requestEncryptionCredentials = false; # manually decrypt drives
 
       extraPools = [ "hdd" ];
     };
