@@ -214,6 +214,6 @@ For more information read the readme in the secrets folder.
 
 ## Encryption
 
-The zfs datasets with actual data (so not the boot partition, rpool, etc.) are encrypted using a passphrase. This passphrase is stored server-side unser `/config/secrets/passphrase.txt`. **IT SHOULD BE NOTED DOWN SOMEWHERE ELSE!**. On boot, this file is being read and the datasets are automatically decrypted and mounted. If the decryption should be done manually, just empty/delete the passphrase file.
+The zfs datasets with actual data (so not the boot partition, rpool, etc.) are encrypted using a passphrase. This passphrase is stored server-side unser `/config/secrets/passphrase.txt`. **IT SHOULD BE NOTED DOWN SOMEWHERE ELSE!**. On boot, this file is being read and the (hdd) datasets are automatically decrypted and mounted. If the decryption should be done manually, just empty/delete the passphrase file.
 
 This is primarily done so that the backups are stored encrypted (and also being transferred encrypted as raw data). Thus they can't be compromised. The overhead should be minimal (hopefully).
