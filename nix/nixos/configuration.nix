@@ -252,18 +252,20 @@ in
       user = "root";
       group = "root";
 
+      commonArgs = "--delete-target-snapshots --no-sync-snap";
+
       commands = {
         "hdd/critical" = {
           source = "hdd/critical";
           target = "hdd/backup/hdd/critical"; # TODO
-          recvOptions = "o encryption=on o keyformat=passphrase o keylocation=prompt o compression=zstd-10"; # TODO
+          sendOptions = "w"
           recursive = true;
         };
 
         "ssd/critical" = {
           source = "ssd/critical";
           target = "hdd/backup/ssd/critical"; # TODO
-          recvOptions = "o encryption=on o keyformat=passphrase o keylocation=prompt o compression=zstd-10"; # TODO
+          sendOptions = "w"
           recursive = true;
         };
       };
