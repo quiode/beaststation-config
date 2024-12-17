@@ -51,6 +51,23 @@ in
     registry_http_secret.file = ../../secrets/registry_http_secret.age;
   };
 
+  boot.kernelParams = [ "ip=dhcp" ];
+  boot.initrd = {
+    availableKernelModules = [ "e1000" ];
+    network = {
+      enable = true;
+      ssh = {
+        enable = true;
+        port = 2222;
+        authorizedKeys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILWkILtyyPWk4UYWJaZoI5UqGKo/qlaJG5h7zfS69+ie mail@dominik-schwaiger.ch" ];
+        hostKeys = [ /etc/ssh/ssh_host_ed25519_key ];
+      };
+    };
+  };
+
+  networking.useDHCP = true;
+  boot.kernelModules = [ "e1000" ];
+
   environment = {
     # packages
     systemPackages = with pkgs; [ inputs.agenix.packages."${system}".default fastfetch onefetch btop sanoid ];
@@ -88,9 +105,6 @@ in
 
     zfs = {
       passwordTimeout = 30; # wait 30secs for password input at boot, else skip
-
-      # forceImportRoot = false; # recommendations says to turn it off
-      # requestEncryptionCredentials = false; # manually decrypt drives
 
       extraPools = [ "hdd" ];
     };
