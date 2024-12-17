@@ -222,13 +222,13 @@ in
           process_children_only = true;
         };
 
-        "ssd/critical" = {
+        "rpool/ssd/critical" = {
           use_template = [ "critical" ];
           recursive = "zfs";
           process_children_only = true;
         };
 
-        "ssd/non-critical" = {
+        "rpool/ssd/non-critical" = {
           use_template = [ "non-critical" ];
           recursive = "zfs";
           process_children_only = true;
