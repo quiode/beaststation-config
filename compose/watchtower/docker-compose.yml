@@ -1,0 +1,16 @@
+services:
+  watchtower:
+    image: "containrrr/watchtower"
+    container_name: watchtower
+    restart: always
+    command: --cleanup --schedule "0 0 3 * * *"
+    environment:
+      REPO_USER: "quiooo"
+      WATCHTOWER_NOTIFICATION_REPORT: "true"
+      WATCHTOWER_NOTIFICATIONS_HOSTNAME: "beaststation"
+      TZ: "Europe/Zurich"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    env_file:
+      - /run/agenix/docker_pw
+      - /run/agenix/telegram_watchtower_token

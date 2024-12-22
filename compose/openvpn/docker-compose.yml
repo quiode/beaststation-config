@@ -1,0 +1,14 @@
+services:
+  # https://github.com/kylemanna/docker-openvpn/blob/master/docs/docker-compose.md
+  openvpn:
+    image: "kylemanna/openvpn"
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "1194:1194/udp"
+    container_name: openvpn
+    restart: always
+    environment:
+      TZ: "Europe/Zurich"
+    volumes:
+      - /ssd/critical/openvpn:/etc/openvpn

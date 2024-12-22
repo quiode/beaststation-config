@@ -1,0 +1,70 @@
+services:
+  traefik:
+    image: traefik:3
+    container_name: traefik
+    restart: always
+    environment:
+      TZ: "Europe/Zurich"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /ssd/non-critical/traefik/auth:/auth:ro
+      - /ssd/non-critical/traefik/acme.json:/acme.json
+      - ./traefik.yml:/etc/traefik/traefik.yml:ro
+      - /ssd/critical/registry/auth/htpasswd:/ssd/critical/registry/auth/htpasswd:ro
+    labels:
+      - "traefik.http.middlewares.dashboard-auth.basicauth.usersfile=/auth/users"
+      - "traefik.http.routers.dashboard.middlewares=dashboard-auth@docker"
+      - "traefik.http.routers.dashboard.service=api@internal"
+      - "traefik.http.routers.dashboard.rule=Host(`traefik.dominik-schwaiger.ch`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
+      - "traefik.http.routers.dashboard.tls=true"
+      - "traefik.http.routers.dashboard.tls.certresolver=letsencrypt"
+      - "traefik.enable=true"
+    networks:
+      - nextcloud
+      - dominik-schwaiger
+      - onlyoffice
+      - portainer
+      - bitwarden
+      - stationboard
+      - gitlab
+      - autodiscover
+      - registry
+      - jellyfin
+      - qbittorrent
+
+networks:
+  nextcloud:
+    name: nextcloud
+
+  dominik-schwaiger:
+    name: dominik-schwaiger
+
+  onlyoffice:
+    name: onlyoffice
+
+  portainer:
+    name: portainer
+  
+  bitwarden:
+    name: bitwarden
+
+  stationboard:
+    name: stationboard
+
+  gitlab:
+    name: gitlab
+  
+  autodiscover:
+    name: autodiscover
+
+  registry:
+    name: registry
+
+  jellyfin:
+    name: jellyfin
+  
+  qbittorrent:
+    name: qbittorrent

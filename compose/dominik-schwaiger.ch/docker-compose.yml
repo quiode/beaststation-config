@@ -1,0 +1,24 @@
+services:
+  website:
+    image: quiooo/dominik-schwaiger.ch
+    container_name: dominik-schwaiger.ch
+    restart: always
+    environment:
+      TZ: "Europe/Zurich"
+    networks:
+      - dominik-schwaiger
+    volumes:
+      - /hdd/non-critical/dominik-schwaiger.ch/images:/dominik-schwaiger.ch/images
+    env_file:
+      - /run/agenix/schwaiger_admin_password
+    labels:
+      - "traefik.http.routers.website.rule=Host(`dominik-schwaiger.ch`)"
+      - "traefik.http.routers.website.tls=true"
+      - "traefik.http.routers.website.tls.certresolver=letsencrypt"
+      - "traefik.enable=true"
+      - "traefik.docker.network=dominik-schwaiger"
+
+networks:
+  dominik-schwaiger:
+    name: dominik-schwaiger
+    external: true

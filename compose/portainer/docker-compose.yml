@@ -1,0 +1,24 @@
+services:
+  portainer:
+    image: "portainer/portainer-ce:alpine"
+    restart: always
+    container_name: portainer
+    networks:
+      - portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /ssd/critical/portainer/data:/data
+    environment:
+      TZ: "Europe/Zurich"
+    labels:
+      - "traefik.http.routers.portainer.rule=Host(`portainer.dominik-schwaiger.ch`)"
+      - "traefik.http.routers.portainer.tls=true"
+      - "traefik.http.routers.portainer.tls.certresolver=letsencrypt"
+      - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+      - "traefik.enable=true"
+      - "traefik.docker.network=portainer"
+
+networks:
+  portainer:
+    name: portainer
+    external: true
