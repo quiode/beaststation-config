@@ -274,7 +274,7 @@ in
 
     # automatic backup of zfs snapshots
     syncoid = {
-      enable = true;
+      enable = false;
 
       # use system host key
       sshKey = "/etc/ssh/ssh_host_ed25519_key";
