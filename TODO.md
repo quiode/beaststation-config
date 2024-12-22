@@ -1,6 +1,6 @@
 # TODO
 
-- [  ] create top-level `README.md`
+- [ x ] create top-level `README.md`
 - [ x ] update readme for docker
 - [ x ] migrate docker paths
 - [ x ] migrate docker to agenix secrets
