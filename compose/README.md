@@ -68,30 +68,30 @@ Critical data (which should be snapshotted more often and also should be backupe
 
 - `ssd/critical/openvpn`
 - `ssd/critical/nextcloud/html`
-- `hdd/critical/nextcloud/data`
+- `hdd/enc/critical/nextcloud/data`
 - `ssd/critical/nextcloud/apps`
 - `ssd/critical/nextcloud/config`
 - `ssd/critical/nextcloud/themes`
 - `ssd/critical/nextcloud/database`
 - `ssd/critical/minecraft/server`
-- `hdd/non-critical/minecraft/backups`
+- `hdd/enc/non-critical/minecraft/backups`
 - `ssd/critical/portainer/data`
 - `ssd/critical/bitwarden/data`
 - `ssd/critical/bitwarden/database`
-- `hdd/non-critical/bitwarden/logs`
-- `hdd/non-critical/dominik-schwaiger.ch/images`
+- `hdd/enc/non-critical/bitwarden/logs`
+- `hdd/enc/non-critical/dominik-schwaiger.ch/images`
 - `ssd/critical/gitlab/runner/config`
-- `hdd/non-critical/gitlab/logs`
+- `hdd/enc/non-critical/gitlab/logs`
 - `ssd/critical/gitlab/config`
-- `hdd/critical/gitlab/data`
-- `hdd/non-critical/registry/data`
+- `hdd/enc/critical/gitlab/data`
+- `hdd/enc/non-critical/registry/data`
 - `ssd/critical/registry/auth`
 - `ssd/non-critical/traefik/auth`
 - `ssd/non-critical/traefik/acme`
 - `ssd/critical/jellyfin/config`
-- `hdd/non-critical/jellyfin/media`
+- `hdd/enc/non-critical/jellyfin/media`
 - `ssd/critical/qbittorrent/appdata`
-- `hdd/non-critical/qbittorrent/downloads`
+- `hdd/enc/non-critical/qbittorrent/downloads`
 
 ### Other
 
