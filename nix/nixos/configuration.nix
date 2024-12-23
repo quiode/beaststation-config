@@ -243,31 +243,31 @@ in
       datasets = {
         "hdd/enc/critical" = {
           use_template = [ "critical" ];
-          recursive = "zfs";
+          recursive = true;
           process_children_only = true;
         };
 
         "hdd/enc/non-critical" = {
           use_template = [ "non-critical" ];
-          recursive = "zfs";
+          recursive = true;
           process_children_only = true;
         };
 
         "rpool/ssd/critical" = {
           use_template = [ "critical" ];
-          recursive = "zfs";
+          recursive = true;
           process_children_only = true;
         };
 
         "rpool/ssd/non-critical" = {
           use_template = [ "non-critical" ];
-          recursive = "zfs";
+          recursive = true;
           process_children_only = true;
         };
 
         "rpool/home" = {
           use_template = [ "critical" ];
-          recursive = "zfs";
+          recursive = true;
         };
       };
     };
