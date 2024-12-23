@@ -43,6 +43,7 @@
             home-manager.useUserPackages = true;
 
             home-manager.users.domina = import ./home-manager/domina.nix;
+            home-manager.users.virt = import ./home-manager/virt.nix;
           }
 
           # insert agenix
