@@ -13,7 +13,7 @@ services:
       TZ: "Europe/Zurich"
       MOTD: "A Vanilla Minecraft Server powered by the power of Love"
       OVERRIDE_ICON: "true"
-      ICON: "https://raw.githubusercontent.com/quiode/beaststation-docker-compose/main/minecraft-server/crystal_kontur_lila_moon.png"
+      ICON: "https://raw.githubusercontent.com/quiode/beaststation-config/main/compose/minecraft-server/crystal_kontur_lila_moon.png"
       SERVER_NAME: "Crystal"
     tty: true
     stdin_open: true
