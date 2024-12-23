@@ -53,7 +53,7 @@ in
 
   environment = {
     # packages
-    systemPackages = with pkgs; [ inputs.agenix.packages."${system}".default fastfetch onefetch btop sanoid ];
+    systemPackages = with pkgs; [ inputs.agenix.packages."${system}".default fastfetch onefetch btop sanoid dua ];
 
     # custom /etc stuff
     etc = {
@@ -87,7 +87,7 @@ in
     };
 
     zfs = {
-      # extraPools = [ "hdd" ]; TODO: update with correct pool
+      extraPools = [ "virt" ]; # TODO: update with correct pool
     };
 
     # use the latest ZFS-compatible Kernel
