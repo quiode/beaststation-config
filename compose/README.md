@@ -87,7 +87,7 @@ Critical data (which should be snapshotted more often and also should be backupe
 - `hdd/enc/non-critical/registry/data`
 - `ssd/critical/registry/auth`
 - `ssd/non-critical/traefik/auth`
-- `ssd/non-critical/traefik/acme`
+- `ssd/non-critical/traefik/acme.json`
 - `ssd/critical/jellyfin/config`
 - `hdd/enc/non-critical/jellyfin/media`
 - `ssd/critical/qbittorrent/appdata`
