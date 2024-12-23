@@ -87,7 +87,7 @@ in
     };
 
     zfs = {
-      extraPools = [ "virt" ]; # TODO: update with correct pool
+      extraPools = [ "virt" "hdd" ];
     };
 
     # use the latest ZFS-compatible Kernel
