@@ -79,7 +79,7 @@ in
         configurationLimit = 5;
         mirroredBoots = [
           {
-            devices = [ "/dev/disk/by-id/ata-VBOX_HARDDISK_VBcd418fbb-dbdaf4e2-part1" ];
+            devices = [ "/dev/disk/by-id/nvme-CT500P3SSD8_24304A25BBDC-part1" ];
             path = "/boot-fallback";
           }
         ];
@@ -87,7 +87,7 @@ in
     };
 
     zfs = {
-      extraPools = [ "hdd" ];
+      # extraPools = [ "hdd" ]; TODO: update with correct pool
     };
 
     # use the latest ZFS-compatible Kernel
@@ -95,11 +95,11 @@ in
     kernelPackages = latestKernelPackage;
 
     # enable remote unlocking by ssh, so that zfs datasets can be encrypted on boot
-    kernelModules = [ "e1000" ]; # TODO: insert correct modules, can be with with: lspci -v | grep -iA8 'network\|ethernet'
+    kernelModules = [ "r8169" ];
     kernelParams = [ "ip=dhcp" ];
 
     initrd = {
-      availableKernelModules = [ "e1000" ]; # TODO: insert correct modules, can be with with: lspci -v | grep -iA8 'network\|ethernet'
+      availableKernelModules = [ "r8169" ];
       network = {
         enable = true;
         postCommands = ''
@@ -140,7 +140,7 @@ in
   # Set hostname
   networking = {
     hostName = "beaststation";
-    hostId = "6b0b03b3";
+    hostId = "d7f38611";
 
     # enable firewall
     firewall = {
