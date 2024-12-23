@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
@@ -14,45 +15,50 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "rpool/root";
+    {
+      device = "rpool/root";
       fsType = "zfs";
-      options = ["zfsutil"];
+      options = [ "zfsutil" ];
     };
 
   fileSystems."/nix" =
-    { device = "rpool/nix";
+    {
+      device = "rpool/nix";
       fsType = "zfs";
-      options = ["zfsutil"];
+      options = [ "zfsutil" ];
     };
 
   fileSystems."/var" =
-    { device = "rpool/var";
+    {
+      device = "rpool/var";
       fsType = "zfs";
-      options = ["zfsutil"];
+      options = [ "zfsutil" ];
     };
 
   fileSystems."/home" =
-    { device = "rpool/home";
+    {
+      device = "rpool/home";
       fsType = "zfs";
-      options = ["zfsutil"];
+      options = [ "zfsutil" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-id/nvme-CT500P3SSD8_24304A25BBD4-part1";
+    {
+      device = "/dev/disk/by-id/nvme-CT500P3SSD8_24304A25BBD4-part1";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
   fileSystems."/boot-fallback" =
-    { device = "/dev/disk/by-id/nvme-CT500P3SSD8_24304A25BBDC-part1";
+    {
+      device = "/dev/disk/by-id/nvme-CT500P3SSD8_24304A25BBDC-part1";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-id/nvme-CT500P3SSD8_24304A25BBD4-part2"; randomEncryption=true;}
-      { device = "/dev/disk/by-id/nvme-CT500P3SSD8_24304A25BBDC-part2"; randomEncryption=true;}
-    ];
+    [{ device = "/dev/disk/by-id/nvme-CT500P3SSD8_24304A25BBD4-part2"; randomEncryption = true; }
+      { device = "/dev/disk/by-id/nvme-CT500P3SSD8_24304A25BBDC-part2"; randomEncryption = true; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
