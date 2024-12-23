@@ -244,25 +244,21 @@ in
         "hdd/enc/critical" = {
           use_template = [ "critical" ];
           recursive = true;
-          process_children_only = true;
         };
 
         "hdd/enc/non-critical" = {
           use_template = [ "non-critical" ];
           recursive = true;
-          process_children_only = true;
         };
 
         "rpool/ssd/critical" = {
           use_template = [ "critical" ];
           recursive = true;
-          process_children_only = true;
         };
 
         "rpool/ssd/non-critical" = {
           use_template = [ "non-critical" ];
           recursive = true;
-          process_children_only = true;
         };
 
         "rpool/home" = {
