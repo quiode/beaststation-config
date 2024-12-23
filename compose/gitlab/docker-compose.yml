@@ -23,7 +23,7 @@ services:
         gitlab_rails['incoming_email_enabled'] = true
         gitlab_rails['incoming_email_address'] = "gitlab+%{key}@dominik-schwaiger.ch"
         gitlab_rails['incoming_email_email'] = "gitlab@dominik-schwaiger.ch"
-        gitlab_rails['incoming_email_password'] = "${GITLAB_SMTP_PASSWORD}"
+        gitlab_rails['incoming_email_password'] = ENV['GITLAB_SMTP_PASSWORD']
         gitlab_rails['incoming_email_host'] = "dominik-schwaiger.vsos.ethz.ch"
         gitlab_rails['incoming_email_port'] = 993
         gitlab_rails['incoming_email_ssl'] = true
@@ -39,7 +39,7 @@ services:
         gitlab_rails['smtp_address'] = "dominik-schwaiger.vsos.ethz.ch"
         gitlab_rails['smtp_port'] = 465    
         gitlab_rails['smtp_user_name'] = "gitlab@dominik-schwaiger.ch"
-        gitlab_rails['smtp_password'] = "${GITLAB_SMTP_PASSWORD}"
+        gitlab_rails['smtp_password'] = ENV['GITLAB_SMTP_PASSWORD']
         gitlab_rails['smtp_tls'] = true    
         gitlab_rails['smtp_enable_starttls_auto'] = false
         gitlab_rails['smtp_domain'] = "dominik-schwaiger.ch"
