@@ -59,6 +59,11 @@ They should each define a set of environment variables and then are mounted as e
 - `registry_http_secret`
   - `REGISTRY_HTTP_SECRET`
     - http secret for docker registry
+- `immich_db_pw`
+  - `DB_PASSWORD`
+    - password for immich db
+
+  `POSTGRES_PASSWORD="${DB_PASSWORD}"`
 
 ## Bind Volumes
 
@@ -92,6 +97,8 @@ Critical data (which should be snapshotted more often and also should be backupe
 - `hdd/enc/non-critical/jellyfin/media`
 - `ssd/critical/qbittorrent/appdata`
 - `hdd/enc/non-critical/qbittorrent/downloads`
+- `ssd/critical/immich/database`
+- `hdd/enc/critical/immich/data`
 
 ### Other
 
@@ -105,7 +112,3 @@ Critical data (which should be snapshotted more often and also should be backupe
 - 25565 (Minecraft)
 - 1194 (OpenVPN)
 - 22 (Gitlab) (host ssh port has to be changed -> currently set to 2222)
-
-## Hosts (`/etc/hosts`)
-
-Create an entry for `registry.dominik-schwaiger` mapping to `localhost` (probably *127.0.0.1*), sucht that the self hosted docker registry works fine with docker inside the server.

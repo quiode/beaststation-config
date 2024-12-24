@@ -34,6 +34,7 @@ services:
       - registry
       - jellyfin
       - qbittorrent
+      - immich
 
 networks:
   nextcloud:
@@ -68,3 +69,6 @@ networks:
   
   qbittorrent:
     name: qbittorrent
+
+  immich:
+    name: immich
