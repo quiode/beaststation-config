@@ -12,7 +12,7 @@ services:
     env_file:
       - /run/agenix/schwaiger_admin_password
     labels:
-      - "traefik.http.routers.website.rule=Host(`dominik-schwaiger.ch`)" # TODO: this is needed for mail to work (mail has no own certificate)
+      - "traefik.http.routers.website.rule=Host(`dominik-schwaiger.ch`)"
       - "traefik.http.routers.website.tls=true"
       - "traefik.http.routers.website.tls.certresolver=letsencrypt"
       - "traefik.enable=true"

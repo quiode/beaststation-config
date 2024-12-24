@@ -14,7 +14,7 @@ x-env: &env
     OVERWRITEPROTOCOL: 'https'
     OVERWRITEWEBROOT: '/'
     NEXTCLOUD_TRUSTED_DOMAINS: 'nextcloud.dominik-schwaiger.ch'
-    SMTP_HOST: 'dominik-schwaiger.ch'
+    SMTP_HOST: 'mail.dominik-schwaiger.ch'
     SMTP_SECURE: 'ssl'
     SMTP_NAME: 'nextcloud@dominik-schwaiger.ch'
     SMTP_PORT: '465'

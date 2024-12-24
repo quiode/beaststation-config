@@ -362,7 +362,7 @@ in
       };
       accounts = {
         default = {
-          host = "dominik-schwaiger.ch";
+          host = "mail.dominik-schwaiger.ch";
           from = "beaststation@dominik-schwaiger.ch";
           user = "beaststation@dominik-schwaiger.ch";
           passwordeval = "${pkgs.coreutils}/bin/cat ${config.age.secrets.beaststation_mail_password.path}";
