@@ -25,7 +25,7 @@
 
   home = {
     username = "virt";
-    homeDirectory = "/home/virt";
+    homeDirectory = "/virt/home";
   };
 
   programs = {
