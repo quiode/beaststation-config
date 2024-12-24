@@ -1,11 +1,12 @@
 services:
   bitwarden:
-    image: bitwarden/self-host:2024.9.2-beta #TODO: reinstall docker compose when stable version releases
+    image: bitwarden/self-host:beta
     container_name: bitwarden
     env_file:
       - /run/agenix/nextcloud_smtp_password
       - /run/agenix/bw_installation_id
       - /run/agenix/bw_installation_key
+      - /run/agenix/db_pw
       - settings.env
     environment:
       TZ: 'Europe/Zurich'
@@ -31,7 +32,6 @@ services:
     container_name: bitwarden-db
     environment:
       MARIADB_USER: 'bitwarden'
-      MARIADB_PASSWORD: 'super_strong_password' # TODO: use the db password
       MARIADB_DATABASE: 'bitwarden_vault'
       MARIADB_RANDOM_ROOT_PASSWORD: 'true'
       MARIADB_AUTO_UPGRADE: 1
