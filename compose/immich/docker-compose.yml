@@ -67,7 +67,7 @@ services:
 
   database:
     container_name: immich_postgres
-    image: docker.io/tensorchord/pgvecto-rs:pg17-v0.4.0
+    image: tensorchord/pgvecto-rs:pg17-v0.4.0
     networks:
       - immich-internal
     env_file:
