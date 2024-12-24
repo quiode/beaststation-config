@@ -25,7 +25,7 @@ services:
       - /ssd/critical/mailserver/mail-data/:/var/mail/
       - /ssd/critical/mailserver/mail-state/:/var/mail-state/
       - /ssd/critical/mailserver/config/:/tmp/docker-mailserver/
-      - /ssd/non-critical/traefik/acme.json
+      - /ssd/non-critical/traefik/acme.json:/etc/letsencrypt/acme.json:ro
       - /etc/localtime:/etc/localtime:ro
       - ./cron:/etc/cron.d/sa-learn
     restart: always
