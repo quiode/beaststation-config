@@ -24,7 +24,7 @@ services:
     volumes:
       - /ssd/critical/mailserver/mail-data/:/var/mail/
       - /ssd/critical/mailserver/mail-state/:/var/mail-state/
-      - /ssd/critical/mailserver/mail-logs/:/var/log/mail/
+      - /hdd/non-critical/mailserver/mail-logs/:/var/log/mail/
       - /ssd/critical/mailserver/config/:/tmp/docker-mailserver/
       - /ssd/non-critical/traefik/acme.json
       - /etc/localtime:/etc/localtime:ro
