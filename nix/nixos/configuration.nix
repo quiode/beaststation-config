@@ -146,8 +146,8 @@ in
     firewall = {
       enable = true;
 
-      allowedTCPPorts = [ 22 80 443 1194 2222 25565 ];
-      allowedUDPPorts = [ 22 80 443 1194 2222 25565 ];
+      allowedTCPPorts = [ 22 80 443 1194 2222 25565 25 143 465 587 993 ];
+      allowedUDPPorts = [ 22 80 443 1194 2222 25565 25 143 465 587 993 ];
     };
 
     extraHosts = ''
@@ -360,7 +360,7 @@ in
       };
       accounts = {
         default = {
-          host = "dominik-schwaiger.vsos.ethz.ch";
+          host = "dominik-schwaiger.ch";
           from = "beaststation@dominik-schwaiger.ch";
           user = "beaststation@dominik-schwaiger.ch";
           passwordeval = "${pkgs.coreutils}/bin/cat ${config.age.secrets.beaststation_mail_password.path}";
