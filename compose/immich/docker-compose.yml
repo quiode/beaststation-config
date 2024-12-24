@@ -29,7 +29,7 @@ services:
       disable: false
     networks:
       - immich-internal
-      - immich_external
+      - immich-external
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=immich"
