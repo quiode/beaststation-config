@@ -39,8 +39,6 @@ services:
     restart: always
     volumes:
       - /ssd/critical/bitwarden/database:/var/lib/mysql
-    env_file:
-      - /run/agenix/db_pw
     networks:
       - bitwarden-internal
 
