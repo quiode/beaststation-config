@@ -49,6 +49,7 @@ in
     schwaiger_admin_password.file = ../../secrets/schwaiger_admin_password.age;
     gitlab_smtp_password.file = ../../secrets/gitlab_smtp_password.age;
     registry_http_secret.file = ../../secrets/registry_http_secret.age;
+    immich_db_pw.file = ../../secrets/immich_db_pw.age;
   };
 
   environment = {
