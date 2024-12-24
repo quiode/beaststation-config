@@ -1,7 +1,7 @@
 x-env: &env
   environment:
     APACHE_BODY_LIMIT: '21474836480' # 20G
-    PHP_MEMORY_LIMIT: '4G'
+    PHP_MEMORY_LIMIT: '10G'
     PHP_UPLOAD_LIMIT: '20G'
     MYSQL_DATABASE: 'nextcloud'
     MYSQL_USER: 'nextcloud'

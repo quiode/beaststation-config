@@ -9,7 +9,8 @@ services:
     environment:
       EULA: "true"
       VERSION: "LATEST"
-      MEMORY: "12G"
+      INIT_MEMORY: "2G"
+      MAX_MEMORY: "20G"
       TZ: "Europe/Zurich"
       MOTD: "A Vanilla Minecraft Server powered by the power of Love"
       OVERRIDE_ICON: "true"
