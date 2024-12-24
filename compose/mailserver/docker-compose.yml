@@ -3,13 +3,13 @@ services:
     image: mailserver/docker-mailserver
     container_name: mailserver
     # Provide the FQDN of your mail server here (Your DNS MX record should point to this value)
-    hostname: dominik-schwaiger.ch
+    hostname: mail.dominik-schwaiger.ch
     environment:
       - POSTFIX_MESSAGE_SIZE_LIMIT=50000000 # 50mb
       - TZ=Europe/Zurich
       - SSL_TYPE=letsencrypt
       - LOG_LEVEL=debug
-      - SSL_DOMAIN=dominik-schwaiger.ch # TODO: only works if there already exists a certificate for dominik-schwaiger.ch so a problem when website is taken down!
+      - SSL_DOMAIN=mail.dominik-schwaiger.ch # TODO: only works if there already exists a certificate for dominik-schwaiger.ch so a problem when website is taken down!
       - ENABLE_FAIL2BAN=1
       - SPAMASSASSIN_SPAM_TO_INBOX=1
       - MOVE_SPAM_TO_JUNK=1
@@ -49,7 +49,7 @@ services:
       - SUPPORT_URL=https://autodiscover.dominik-schwaiger.ch
       - DOMAIN=dominik-schwaiger.ch
       # IMAP configuration (host mandatory to enable)
-      - IMAP_HOST=dominik-schwaiger.ch
+      - IMAP_HOST=mail.dominik-schwaiger.ch
       - IMAP_PORT=993
       - IMAP_SOCKET=SSL
       # POP configuration (host mandatory to enable)
@@ -57,7 +57,7 @@ services:
       #- POP_PORT=995
       #- POP_SOCKET=SSL
       # SMTP configuration (host mandatory to enable)
-      - SMTP_HOST=dominik-schwaiger.ch
+      - SMTP_HOST=mail.dominik-schwaiger.ch
       - SMTP_PORT=465
       - SMTP_SOCKET=SSL
       # MobileSync/ActiveSync configuration (url mandatory to enable)
@@ -77,7 +77,7 @@ services:
       #- MAIL_UUID=7A981A9E-D5D0-4EF8-87FE-39FD6A506FAC
       #- LDAP_UUID=6ECB6BA9-2208-4ABF-9E60-4E9F4CD7309E
     labels:
-      - 'traefik.http.routers.autodiscover.rule=Host(`autodiscover.dominik-schwaiger.ch`) || Host(`autoconfig.dominik-schwaiger.ch`)'
+      - 'traefik.http.routers.autodiscover.rule=Host(`autodiscover.dominik-schwaiger.ch`) || Host(`autoconfig.dominik-schwaiger.ch`) || Host(`mail.dominik-schwaiger.ch`)'
       - 'traefik.http.routers.autodiscover.tls=true'
       - 'traefik.http.routers.autodiscover.tls.certresolver=letsencrypt'
       - 'traefik.http.services.autodiscover.loadbalancer.server.port=8000'
