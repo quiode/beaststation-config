@@ -8,6 +8,7 @@ services:
       - POSTFIX_MESSAGE_SIZE_LIMIT=50000000 # 50mb
       - TZ=Europe/Zurich
       - SSL_TYPE=letsencrypt
+      - LOG_LEVEL=debug
       - SSL_DOMAIN=dominik-schwaiger.ch # TODO: only works if there already exists a certificate for dominik-schwaiger.ch so a problem when website is taken down!
       - ENABLE_FAIL2BAN=1
       - SPAMASSASSIN_SPAM_TO_INBOX=1
