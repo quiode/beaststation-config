@@ -7,6 +7,7 @@ services:
     environment:
       REPO_USER: "quiooo"
       WATCHTOWER_NOTIFICATION_REPORT: "true"
+      WATCHTOWER_CLEANUP: "true"
       WATCHTOWER_NOTIFICATIONS_HOSTNAME: "beaststation"
       TZ: "Europe/Zurich"
     volumes:
