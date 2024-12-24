@@ -8,7 +8,7 @@ services:
       - POSTFIX_MESSAGE_SIZE_LIMIT=50000000 # 50mb
       - TZ=Europe/Zurich
       - SSL_TYPE=letsencrypt
-      - SSL_DOMAIN=mail.dominik-schwaiger.ch # TODO: only works if there already exists a certificate for mail.dominik-schwaiger.ch so a problem when autodiscover is taken down!
+      - SSL_DOMAIN=mail.dominik-schwaiger.ch # only works if there already exists a certificate for mail.dominik-schwaiger.ch so a problem when autodiscover is taken down!
       - ENABLE_FAIL2BAN=1
       - SPAMASSASSIN_SPAM_TO_INBOX=1
       - MOVE_SPAM_TO_JUNK=1
@@ -76,7 +76,7 @@ services:
       #- MAIL_UUID=7A981A9E-D5D0-4EF8-87FE-39FD6A506FAC
       #- LDAP_UUID=6ECB6BA9-2208-4ABF-9E60-4E9F4CD7309E
     labels:
-      - 'traefik.http.routers.autodiscover.rule=Host(`autodiscover.dominik-schwaiger.ch`) || Host(`autoconfig.dominik-schwaiger.ch`) || Host(`mail.dominik-schwaiger.ch`)' # TODO: this is needed for mail to work (mail has no own certificate)
+      - 'traefik.http.routers.autodiscover.rule=Host(`autodiscover.dominik-schwaiger.ch`) || Host(`autoconfig.dominik-schwaiger.ch`) || Host(`mail.dominik-schwaiger.ch`)' # this is needed for mail to work (mail has no own certificate)
       - 'traefik.http.routers.autodiscover.tls=true'
       - 'traefik.http.routers.autodiscover.tls.certresolver=letsencrypt'
       - 'traefik.http.services.autodiscover.loadbalancer.server.port=8000'
