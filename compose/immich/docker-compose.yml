@@ -19,8 +19,8 @@ services:
       - /hdd/critical/immich/data:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
     env_file:
-      - .env
       - /run/agenix/immich_db_pw
+      - .env
     depends_on:
       - redis
       - database
@@ -48,8 +48,8 @@ services:
     volumes:
       - model-cache:/cache
     env_file:
-      - .env
       - /run/agenix/immich_db_pw
+      - .env
     restart: always
     healthcheck:
       disable: false
