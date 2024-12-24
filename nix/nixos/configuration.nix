@@ -53,7 +53,7 @@ in
 
   environment = {
     # packages
-    systemPackages = with pkgs; [ inputs.agenix.packages."${system}".default fastfetch onefetch btop sanoid dua gptfdisk htop pv ];
+    systemPackages = with pkgs; [ inputs.agenix.packages."${system}".default fastfetch onefetch btop sanoid dua gptfdisk htop pv zip ];
 
     # custom /etc stuff
     etc = {
