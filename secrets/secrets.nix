@@ -23,4 +23,5 @@ in
   "schwaiger_admin_password.age".publicKeys = all;
   "gitlab_smtp_password.age".publicKeys = all;
   "registry_http_secret.age".publicKeys = all;
+  "immich_db_pw.age".publicKeys = all;
 }
