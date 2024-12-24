@@ -1,6 +1,6 @@
 services:
   bitwarden:
-    image: bitwarden/self-host:2024.9.2-beta #TODO: reinstall docker compose when stable version releases
+    image: bitwarden/self-host:beta
     container_name: bitwarden
     env_file:
       - /run/agenix/nextcloud_smtp_password
