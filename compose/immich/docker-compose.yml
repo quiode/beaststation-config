@@ -28,7 +28,7 @@ services:
     healthcheck:
       disable: false
     networks:
-      - immich_internal
+      - immich-internal
       - immich_external
     labels:
       - "traefik.enable=true"
@@ -54,7 +54,7 @@ services:
     healthcheck:
       disable: false
     networks:
-      - immich_internal
+      - immich-internal
 
   redis:
     container_name: immich_redis
@@ -63,13 +63,13 @@ services:
       test: redis-cli ping || exit 1
     restart: always
     networks:
-      - immich_internal
+      - immich-internal
 
   database:
     container_name: immich_postgres
     image: docker.io/tensorchord/pgvecto-rs:pg17-v0.4.0
     networks:
-      - immich_internal
+      - immich-internal
     env_file:
       - /run/agenix/immich_db_pw
     environment:
