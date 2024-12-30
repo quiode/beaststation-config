@@ -72,8 +72,10 @@ in
 
     # install correct nvidia driver
     nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      modesetting.enable = true;
       open = false;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
   };
 
