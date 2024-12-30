@@ -12,9 +12,9 @@ services:
   immich-server:
     container_name: immich_server
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
-    # extends:
-    #   file: hwaccel.transcoding.yml
-    #   service: cpu # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
+    extends:
+      file: hwaccel.transcoding.yml
+      service: nvenc # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
     volumes:
       - /hdd/critical/immich/data:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
@@ -31,11 +31,11 @@ services:
       - immich-internal
       - immich-external
     labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=immich"
-      - "traefik.http.routers.immich.rule=Host(`immich.dominik-schwaiger.ch`)"
-      - "traefik.http.routers.immich.tls=true"
-      - "traefik.http.routers.immich.tls.certresolver=letsencrypt"
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=immich'
+      - 'traefik.http.routers.immich.rule=Host(`immich.dominik-schwaiger.ch`)'
+      - 'traefik.http.routers.immich.tls=true'
+      - 'traefik.http.routers.immich.tls.certresolver=letsencrypt'
 
   immich-machine-learning:
     container_name: immich_machine_learning
