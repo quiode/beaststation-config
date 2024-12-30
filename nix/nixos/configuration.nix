@@ -67,7 +67,7 @@ in
   };
 
   hardware = {
-    opengl.enable = true;
+    graphics.enable = true;
 
     # enable nvidia container toolkit
     nvidia-container-toolkit.enable = true;
