@@ -66,8 +66,13 @@ in
     };
   };
 
-  # enable nvidia container toolkit
-  hardware.nvidia-container-toolkit.enable;
+  hardware = {
+    # enable nvidia container toolkit
+    nvidia-container-toolkit.enable;
+
+    # install correct nvidia driver
+    nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot = {
