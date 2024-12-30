@@ -68,7 +68,7 @@ in
 
   hardware = {
     # enable nvidia container toolkit
-    nvidia-container-toolkit.enable;
+    nvidia-container-toolkit.enable = true;
 
     # install correct nvidia driver
     nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
