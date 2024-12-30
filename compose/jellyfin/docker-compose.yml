@@ -15,7 +15,6 @@ services:
       - /hdd/non-critical/jellyfin/media:/media
       - cache:/cache # store the cache on a named volume so it is stored on the ssd instead of hdd
     restart: always
-    runtime: nvidia
     deploy:
       resources:
         reservations:
