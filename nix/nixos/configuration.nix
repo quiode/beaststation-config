@@ -175,7 +175,7 @@ in
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILWkILtyyPWk4UYWJaZoI5UqGKo/qlaJG5h7zfS69+ie mail@dominik-schwaiger.ch"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINxfAbBPBerC/yizdTU3aWII4fsDWEwZBHmxMAhgNn7X quio@dominik-kaltbrunn-pc"
       ];
-      extraGroups = [ "wheel" "docker" ];
+      extraGroups = [ "wheel" "docker" "video" ];
     };
 
     virt = {

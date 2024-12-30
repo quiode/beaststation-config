@@ -8,17 +8,25 @@ services:
     # Network mode of 'host' exposes the ports on the host. This is needed for DLNA access. TODO: not needed for now and makes it less secure
     #network_mode: 'host'
     environment:
-      TZ: "Europe/Zurich"
+      TZ: 'Europe/Zurich'
     volumes:
       # Update this configuration as desired
       - /ssd/critical/jellyfin/config:/config
       - /hdd/non-critical/jellyfin/media:/media
       - cache:/cache # store the cache on a named volume so it is stored on the ssd instead of hdd
     restart: always
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
     # devices:
-      # VAAPI Devices TODO: current setup does not have graphics capabilities
-      # - /dev/dri/renderD128:/dev/dri/renderD128
-      # - /dev/dri/card0:/dev/dri/card0
+    # VAAPI Devices TODO: current setup does not have graphics capabilities
+    # - /dev/dri/renderD128:/dev/dri/renderD128
+    # - /dev/dri/card0:/dev/dri/card0
     networks:
       - jellyfin
     labels:
@@ -56,7 +64,7 @@ services:
       # We define the port here as a port is required
       - 'traefik.http.services.jellyfin.loadBalancer.server.port=8096'
       - 'traefik.http.services.jellyfin.loadBalancer.passHostHeader=true'
-      - "traefik.docker.network=jellyfin"
+      - 'traefik.docker.network=jellyfin'
 
 volumes:
   cache:
