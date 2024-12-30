@@ -66,6 +66,9 @@ in
     };
   };
 
+  # enable nvidia container toolkit
+  hardware.nvidia-container-toolkit.enable;
+
   # Use the systemd-boot EFI boot loader.
   boot = {
     # enable zfs support explicitly
