@@ -71,7 +71,10 @@ in
     nvidia-container-toolkit.enable = true;
 
     # install correct nvidia driver
-    nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+    nvidia = {
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      open = false;
+    };
   };
 
   # Use the systemd-boot EFI boot loader.
