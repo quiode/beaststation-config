@@ -186,6 +186,8 @@ in
   };
 
   services = {
+    xserver.videoDrivers = [ "nvidia" ];
+
     # This setups a SSH server.
     openssh = {
       enable = true;
