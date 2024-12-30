@@ -77,7 +77,7 @@ in
         enable = true;
         efiSupport = true;
         device = "nodev";
-        configurationLimit = 5;
+        configurationLimit = 10;
         mirroredBoots = [
           {
             devices = [ "/dev/disk/by-id/nvme-CT500P3SSD8_24304A25BBDC-part1" ];
