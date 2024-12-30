@@ -20,9 +20,9 @@ services:
       resources:
         reservations:
           devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
+            - driver: cdi
+              device_ids:
+                - nvidia.com/gpu=all
     # devices:
     # VAAPI Devices TODO: current setup does not have graphics capabilities
     # - /dev/dri/renderD128:/dev/dri/renderD128
