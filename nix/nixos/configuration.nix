@@ -54,7 +54,7 @@ in
 
   environment = {
     # packages
-    systemPackages = with pkgs; [ inputs.agenix.packages."${system}".default fastfetch onefetch btop sanoid dua gptfdisk htop pv zip unzip immich-cli speedtest-cli wget nvtopPackages.full ];
+    systemPackages = with pkgs; [ inputs.agenix.packages."${system}".default fastfetch onefetch btop sanoid dua gptfdisk htop pv zip unzip immich-cli speedtest-cli wget nvtopPackages.full zfs-prune-snapshots ];
 
     # custom /etc stuff
     etc = {
