@@ -98,7 +98,10 @@ Critical data (which should be snapshotted more often and also should be backupe
 - `ssd/critical/qbittorrent/appdata`
 - `hdd/enc/non-critical/qbittorrent/downloads`
 - `ssd/critical/immich/database`
-- `hdd/enc/critical/immich/data`
+- `hdd/enc/non-critical/immich/data`
+- `hdd/enc/critical/immich/data/library`
+- `hdd/enc/critical/immich/data/upload`
+- `hdd/enc/critical/immich/data/profile`
 
 ### Other
 
