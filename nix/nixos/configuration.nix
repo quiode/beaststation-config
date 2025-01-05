@@ -69,9 +69,6 @@ in
   hardware = {
     graphics.enable = true;
 
-    # enable nvidia container toolkit
-    nvidia-container-toolkit.enable = true;
-
     # install correct nvidia driver
     nvidia = {
       modesetting.enable = true;
@@ -150,6 +147,7 @@ in
   # enable docker
   virtualisation.docker = {
     enable = true;
+    enableNvidia = true;
     autoPrune.enable = true;
   };
 
