@@ -68,6 +68,7 @@ in
 
   hardware = {
     graphics.enable = true;
+    graphics.enable32Bit = true;
 
     # install correct nvidia driver
     nvidia = {
