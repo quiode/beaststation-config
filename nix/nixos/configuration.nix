@@ -68,7 +68,7 @@ in
 
   hardware = {
     graphics.enable = true;
-    graphics.enable32Bit = true;
+    graphics.enable32Bit = true; # needed for docker nvidia enable
 
     # install correct nvidia driver
     nvidia = {
@@ -148,7 +148,7 @@ in
   # enable docker
   virtualisation.docker = {
     enable = true;
-    enableNvidia = true;
+    enableNvidia = true; # TODO: deprecated, but replacement doesn't supply Nvidia environment for docker and without that automatic restart doesn't work
     autoPrune.enable = true;
   };
 
