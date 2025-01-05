@@ -168,6 +168,7 @@ in
 
     extraHosts = ''
       127.0.0.1 registry.dominik-schwaiger.ch
+      127.0.0.1 gitlab.dominik-schwaiger.ch
     '';
 
     # explicitly enable, needed for remote unlocking
