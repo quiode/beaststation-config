@@ -15,20 +15,8 @@ services:
       - /hdd/non-critical/jellyfin/media:/media
       - cache:/cache # store the cache on a named volume so it is stored on the ssd instead of hdd
     restart: always
-    deploy:
-      restart_policy:
-        condition: any
-      resources:
-        reservations:
-          devices:
-            - driver: cdi
-              device_ids:
-                - nvidia.com/gpu=all
-              capabilities: [gpu]
-    # devices:
-    # VAAPI Devices TODO: current setup does not have graphics capabilities
-    # - /dev/dri/renderD128:/dev/dri/renderD128
-    # - /dev/dri/card0:/dev/dri/card0
+    devices:
+      - "nvidia.com/gpu=all"
     networks:
       - jellyfin
     labels:
