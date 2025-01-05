@@ -148,7 +148,7 @@ in
   # enable docker
   virtualisation.docker = {
     enable = true;
-    enableNvidia = true; # TODO: deprecated, but replacement doesn't supply Nvidia environment for docker and without that automatic restart doesn't work
+    enableNvidia = true; # TODO: deprecated, but replacement doesn't supply Nvidia runtime for docker and without that automatic restart doesn't work
     autoPrune.enable = true;
   };
 
