@@ -6,7 +6,6 @@ services:
     restart: always
     networks:
       - gitlab
-      - gitlab-internal
     env_file:
       - /run/agenix/gitlab_smtp_password
     environment:
@@ -64,8 +63,6 @@ services:
   runner:
     image: gitlab/gitlab-runner
     container_name: gitlab-runner
-    networks:
-      - gitlab-internal
     restart: always
     environment:
       TZ: "Europe/Zurich"
@@ -77,6 +74,3 @@ networks:
   gitlab:
     name: gitlab
     external: true
-
-  gitlab-internal:
-    name: gitlab-internal
