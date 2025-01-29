@@ -63,12 +63,31 @@ in
           root: mail@dominik-schwaiger.ch
         '';
       };
+      "udev/rules.d/85-wolf-virtual-inputs.rules" = {
+        text = ''
+          # Allows Wolf to acces /dev/uinput
+          KERNEL=="uinput", SUBSYSTEM=="misc", MODE="0660", GROUP="input", OPTIONS+="static_node=uinput"
+
+          # Allows Wolf to access /dev/uhid
+          KERNEL=="uhid", TAG+="uaccess"
+
+          # Move virtual keyboard and mouse into a different seat
+          SUBSYSTEMS=="input", ATTRS{id/vendor}=="ab00", MODE="0660", GROUP="input", ENV{ID_SEAT}="seat9"
+
+          # Joypads
+          SUBSYSTEMS=="input", ATTRS{name}=="Wolf X-Box One (virtual) pad", MODE="0660", GROUP="input"
+          SUBSYSTEMS=="input", ATTRS{name}=="Wolf PS5 (virtual) pad", MODE="0660", GROUP="input"
+          SUBSYSTEMS=="input", ATTRS{name}=="Wolf gamepad (virtual) motion sensors", MODE="0660", GROUP="input"
+          SUBSYSTEMS=="input", ATTRS{name}=="Wolf Nintendo (virtual) pad", MODE="0660", GROUP="input"
+        '';
+      };
     };
   };
 
   hardware = {
     graphics.enable = true;
     graphics.enable32Bit = true; # needed for docker nvidia enable
+    uinput.enable = true; # enable virtual devices (needed for wolf)
 
     # install correct nvidia driver
     nvidia = {
@@ -161,8 +180,28 @@ in
     firewall = {
       enable = true;
 
-      allowedTCPPorts = [ 22 80 443 1194 2222 25565 25 143 465 587 993 ];
-      allowedUDPPorts = [ 22 80 443 1194 2222 25565 25 143 465 587 993 ];
+      allowedTCPPorts = [ 22 80 443 1194 2222 25565 25 143 465 587 993 47984 47989 47999 48010 ];
+      allowedUDPPorts = [ 22 80 443 1194 2222 25565 25 143 465 587 993 47984 47989 47999 48010 ];
+      allowedUDPPortRanges = [
+        {
+          from = 48100;
+          to = 48110;
+        }
+        {
+          from = 48200;
+          to = 48210;
+        }
+      ];
+      allowedTCPPortRanges = [
+        {
+          from = 48100;
+          to = 48110;
+        }
+        {
+          from = 48200;
+          to = 48210;
+        }
+      ];
     };
 
     # explicitly enable, needed for remote unlocking
@@ -178,7 +217,7 @@ in
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINxfAbBPBerC/yizdTU3aWII4fsDWEwZBHmxMAhgNn7X quio@dominik-kaltbrunn-pc"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIINYO9+aRrPHh8WDkpcY0xSxJeFZg3nyjuhXkLOlBKIm"
       ];
-      extraGroups = [ "wheel" "docker" "video" ];
+      extraGroups = [ "wheel" "docker" "video" "input" ];
     };
 
     virt = {
