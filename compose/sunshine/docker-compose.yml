@@ -11,6 +11,8 @@ services:
       - PGID=1001
     ipc: host
     runtime: nvidia
+    devices:
+      - '/dev/dri:/dev/dri'
     ports:
       - '47984-47990:47984-47990/tcp'
       - '48010:48010'
