@@ -28,15 +28,15 @@ services:
     #        - capabilities: [gpu]
     ports:
       # HTTPS
-      - 47984:47984
+      - 47984:47984/tcp
       # HTTP
-      - 47989:47989
+      - 47989:47989/tcp
       # Control
-      - 47999:47999
+      - 47999:47999/udp
       # RTSP
-      - 48010:48010
+      - 48010:48010/tcp
       # Video (up to 10 users, you can open more ports if needed)
-      - 48100-48110:48100-48110
+      - 48100-48110:48100-48110/udp
       # Audio (up to 10 users, you can open more ports if needed)
-      - 48200-48210:48200-48210
+      - 48200-48210:48200-48210/udp
     restart: always

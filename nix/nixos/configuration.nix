@@ -162,19 +162,9 @@ in
     firewall = {
       enable = true;
 
-      allowedTCPPorts = [ 22 80 443 1194 2222 25565 25 143 465 587 993 47984 47989 47999 48010 ];
-      allowedUDPPorts = [ 22 80 443 1194 2222 25565 25 143 465 587 993 47984 47989 47999 48010 ];
+      allowedTCPPorts = [ 22 80 443 1194 2222 25565 25 143 465 587 993 47984 47989 48010 ];
+      allowedUDPPorts = [ 22 80 443 1194 2222 25565 25 143 465 587 993 47999 ];
       allowedUDPPortRanges = [
-        {
-          from = 48100;
-          to = 48110;
-        }
-        {
-          from = 48200;
-          to = 48210;
-        }
-      ];
-      allowedTCPPortRanges = [
         {
           from = 48100;
           to = 48110;
