@@ -161,18 +161,8 @@ in
     firewall = {
       enable = true;
 
-      allowedTCPPorts = [ 22 80 443 1194 2222 25565 25 143 465 587 993 48010 ];
-      allowedUDPPorts = [ 22 80 443 1194 2222 25565 25 143 465 587 993 48010 ];
-      allowedUDPPortRanges = [{
-        from = 47998;
-        to = 48000;
-      }];
-      allowedTCPPortRanges = [
-        {
-          from = 47984;
-          to = 47990;
-        }
-      ];
+      allowedTCPPorts = [ 22 80 443 1194 2222 25565 25 143 465 587 993 ];
+      allowedUDPPorts = [ 22 80 443 1194 2222 25565 25 143 465 587 993 ];
     };
 
     # explicitly enable, needed for remote unlocking

@@ -105,7 +105,6 @@ Critical data (which should be snapshotted more often and also should be backupe
 - `/hdd/non-critical/ollama`
 - `/hdd/critical/open-webui`
 - `/ssd/non-critical/open-webui/cache`
-- `/ssd/critical/sunshine`
 
 ### Other
 
@@ -119,6 +118,3 @@ Critical data (which should be snapshotted more often and also should be backupe
 - 25565 (Minecraft)
 - 1194 (OpenVPN)
 - 22 (Gitlab) (host ssh port has to be changed -> currently set to 2222)
-- 47984-47990/tcp (sunshine)
-- 48010 (sunshine)
-- 47998-48000 (sunshine)
