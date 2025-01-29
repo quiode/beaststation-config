@@ -25,6 +25,8 @@ services:
       - "traefik.http.routers.sunshine.tls.certresolver=letsencrypt"
       - 'traefik.http.services.sunshine.loadbalancer.server.port=47990'
 
+
+
 networks:
   sunshine:
     name: sunshine
