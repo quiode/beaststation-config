@@ -19,6 +19,9 @@ services:
     environment:
       - WEBUI_URL=https://chat.dominik-schwaiger.ch
       - CUSTOM_NAME=Chat
+      - USE_CUDA_DOCKER=true
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - ENABLE_OPENAI_API=false
     runtime: nvidia
     volumes:
       - /hdd/critical/open-webui:/app/backend/data
