@@ -48,7 +48,7 @@ services:
     - "traefik.http.routers.wolf.rule=Host(`wolf.dominik-schwaiger.ch`)"
     - "traefik.http.routers.wolf.tls=true"
     - "traefik.http.routers.wolf.tls.certresolver=letsencrypt"
-    - 'traefik.http.services.nextcloud.loadbalancer.server.port=47989'
+    - 'traefik.http.services.wolf.loadbalancer.server.port=47989'
   
 networks:
   wolf:
