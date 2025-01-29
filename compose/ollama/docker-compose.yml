@@ -25,6 +25,7 @@ services:
     runtime: nvidia
     volumes:
       - /hdd/critical/open-webui:/app/backend/data
+      - /ssd/non-critical/open-webui/cache:/app/backend/data/cache
     depends_on:
       - ollama
     restart: always
