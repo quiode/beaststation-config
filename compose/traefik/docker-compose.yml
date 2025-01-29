@@ -36,6 +36,7 @@ services:
       - qbittorrent
       - immich
       - ollama
+      - sunshine
 
 networks:
   nextcloud:
@@ -76,3 +77,6 @@ networks:
 
   ollama:
     name: ollama
+
+  sunshine:
+    name: sunshine
