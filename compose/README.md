@@ -102,6 +102,8 @@ Critical data (which should be snapshotted more often and also should be backupe
 - `hdd/enc/critical/immich/data/library`
 - `hdd/enc/critical/immich/data/upload`
 - `hdd/enc/critical/immich/data/profile`
+- `hdd/enc/non-critical/ollama`
+- `/hdd/enc/critical/open-webui`
 
 ### Other
 

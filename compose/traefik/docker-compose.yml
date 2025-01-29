@@ -35,6 +35,7 @@ services:
       - jellyfin
       - qbittorrent
       - immich
+      - ollama
 
 networks:
   nextcloud:
@@ -72,3 +73,6 @@ networks:
 
   immich:
     name: immich
+
+  ollama:
+    name: ollama

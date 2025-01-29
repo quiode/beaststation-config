@@ -1,0 +1,41 @@
+services:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    volumes:
+      - /hdd/non-critical/ollama:/root/.ollama
+    restart: always
+    tty: true
+    runtime: nvidia
+    networks:
+      - ollama-internal
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:cuda
+    container_name: open-webui
+    networks:
+      - ollama-internal
+      - ollama-external
+    environment:
+      - WEBUI_URL=https://chat.dominik-schwaiger.ch
+      - CUSTOM_NAME=Chat
+    runtime: nvidia
+    volumes:
+      - /hdd/critical/open-webui:/app/backend/data
+    depends_on:
+      - ollama
+    restart: always
+    labels:
+    - "traefik.enable=true"
+    - "traefik.docker.network=ollama"
+    - "traefik.http.routers.ollama.rule=Host(`chat.dominik-schwaiger.ch`)"
+    - "traefik.http.routers.ollama.tls=true"
+    - "traefik.http.routers.ollama.tls.certresolver=letsencrypt"
+
+networks:
+  ollama-internal:
+    name: ollama-internal
+
+  ollama-external:
+    name: ollama
+    external: true
