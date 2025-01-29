@@ -7,6 +7,8 @@ services:
       - /ssd/critical/sunshine:/config
     environment:
       - TZ=Europe/Zurich
+      - PUID=1001
+      - PGID=1001
     ipc: host
     runtime: nvidia
     ports:
