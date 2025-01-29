@@ -1,5 +1,6 @@
 services:
   wolf:
+    container_name: wolf
     image: ghcr.io/games-on-whales/wolf:stable
     environment:
       - XDG_RUNTIME_DIR=/tmp/sockets
