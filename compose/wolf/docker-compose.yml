@@ -8,7 +8,7 @@ services:
       - NVIDIA_DRIVER_CAPABILITIES=all
       - NVIDIA_VISIBLE_DEVICES=all
       - TZ=Europe/Zurich
-      - WOLF_PULSE_CONTAINER_TIMEOUT_MS=100000 # 1000 seconds timeout
+      - WOLF_PULSE_CONTAINER_TIMEOUT_MS=100000 # 100 seconds timeout
     volumes:
       - /hdd/non-critical/wolf:/etc/wolf
       - /tmp/sockets:/tmp/sockets
