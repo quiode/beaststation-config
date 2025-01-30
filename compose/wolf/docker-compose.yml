@@ -30,9 +30,9 @@ services:
       - wolf
     ports:
       # HTTPS
-      # - 47984:47984/tcp
+      - 47984:47984/tcp
       # HTTP
-      # - 47989:47989/tcp
+      - 47989:47989/tcp
       # Control
       - 47999:47999/udp
       # RTSP
