@@ -118,4 +118,4 @@ Critical data (which should be snapshotted more often and also should be backupe
 - 25565 (Minecraft)
 - 1194 (OpenVPN)
 - 22 (Gitlab) (host ssh port has to be changed -> currently set to 2222)
-- 47999, 48010, 48100-48110, 48200-48210 (wolf)
+- 47984, 47989, 47999, 48010, 48100-48110, 48200-48210 (wolf)

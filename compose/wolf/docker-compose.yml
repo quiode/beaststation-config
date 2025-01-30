@@ -26,8 +26,6 @@ services:
     #    reservations:
     #      devices:
     #        - capabilities: [gpu]
-    networks:
-      - wolf
     ports:
       # HTTPS
       - 47984:47984/tcp
@@ -42,15 +40,3 @@ services:
       # Audio (up to 10 users, you can open more ports if needed)
       - 48200-48210:48200-48210/udp
     restart: always
-    labels:
-    - "traefik.enable=true"
-    - "traefik.docker.network=wolf"
-    - "traefik.http.routers.wolf.rule=Host(`wolf.dominik-schwaiger.ch`)"
-    - "traefik.http.routers.wolf.tls=true"
-    - "traefik.http.routers.wolf.tls.certresolver=letsencrypt"
-    - 'traefik.http.services.wolf.loadbalancer.server.port=47989'
-  
-networks:
-  wolf:
-    name: wolf
-    external: true
