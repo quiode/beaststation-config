@@ -49,7 +49,6 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
-
   swapDevices = [{ device = "/dev/disk/by-id/nvme-CT500P3SSD8_24304A25BBD4-part2"; randomEncryption = true; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
