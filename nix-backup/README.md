@@ -101,18 +101,17 @@ nixos-generate-config --root /mnt
 1. update bootloader config and network host (get is using `head -c4 /dev/urandom | od -A none -t x4`) in `configuration.nix`
 
 ```nix
-{
-  networking.hostId = "ba2dfbdd";
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-    grub = {
-      enable = true;
-      efiSupport = true;
-      device = "nodev";
-      configurationLimit = 5;
-    };
+  boot = {
+    # enable zfs support explicitly
+    supportedFilesystems = [ "zfs" ];
+
+    # enable systemd boot
+    loader.systemd-boot.enable = true;
   };
-}
+  networking = {
+    hostName = "beaststation-backup";
+    hostId = "0fe3b192";
+  };
 ```
 
 3. update the hardware configuration `hardware-configuration.nix`
