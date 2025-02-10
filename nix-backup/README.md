@@ -111,6 +111,55 @@ nixos-generate-config --root /mnt
   networking = {
     hostName = "beaststation-backup";
     hostId = "0fe3b192";
+    firewall = {
+      enable = true;
+
+      allowedTCPPorts = [ 2222 ];
+      allowedUDPPorts = [ 2222 ];
+    };
+  };
+  users.users = {
+    backup = {
+      isNormalUser = true;
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILWkILtyyPWk4UYWJaZoI5UqGKo/qlaJG5h7zfS69+ie mail@dominik-schwaiger.ch"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINxfAbBPBerC/yizdTU3aWII4fsDWEwZBHmxMAhgNn7X quio@dominik-kaltbrunn-pc"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIINYO9+aRrPHh8WDkpcY0xSxJeFZg3nyjuhXkLOlBKIm"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL/s6lYNuiiu10xgH91eUfyHMBumXa3wby0dP+PaVsaF root@beaststation"
+      ];
+      extraGroups = [ "wheel" ];
+    };
+  };
+  services = {
+    # This setups a SSH server.
+    openssh = {
+      enable = true;
+      # use non-default 222 port for ssh
+      ports = [ 2222 ];
+    };
+  };
+  time.timeZone = "Europe/Zurich";
+  i18n.defaultLocale = "en_GB.UTF-8";
+  console.keyMap = "de_CH-latin1";
+  programs = {
+    vim = {
+      enable = true;
+      defaultEditor = true;
+    };
+
+    git = {
+      enable = true;
+      config = {
+        user = {
+          email = "beaststation-backup@dominik-schwaiger.ch";
+          name = "beaststation-backup";
+        };
+
+        save = {
+          directory = [ "config" ];
+        };
+      };
+    };
   };
 ```
 
