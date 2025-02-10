@@ -57,13 +57,8 @@ in
     # enable zfs support explicitly
     supportedFilesystems = [ "zfs" ];
 
-    loader = {
-      grub = {
-        enable = true;
-        device = "nodev";
-        configurationLimit = 5;
-      };
-    };
+    # enable systemd boot
+    loader.systemd-boot.enable = true;
 
     # use the latest ZFS-compatible Kernel
     # Note this might jump back and forth as kernels are added or removed.
