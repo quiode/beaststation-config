@@ -356,6 +356,7 @@ in
         upgrade = "sudo nixos-rebuild switch --flake /config/nix#beaststation";
         new = "update && upgrade";
         unlock = "sudo zfs load-key -a ; sudo zfs load-key -a -L prompt && sudo zfs mount -a";
+        occ = "sudo docker exec --user www-data nextcloud php occ";
       };
 
       loginShellInit = ''
