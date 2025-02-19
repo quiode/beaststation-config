@@ -27,13 +27,6 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
-  fileSystems."/boot" =
-    {
-      device = "/boot";
-      fsType = "none";
-      options = [ "bind" ];
-    };
-
   swapDevices =
     [{ device = "/dev/disk/by-uuid/763d25cc-aab7-4303-85fe-44abc5aad45d"; }];
 
