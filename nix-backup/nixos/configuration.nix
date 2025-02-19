@@ -61,7 +61,6 @@ in
 
     loader.grub.enable = true; # Use the boot drive for GRUB
     loader.grub.devices = [ "nodev" ];
-    efi.canTouchEfiVariables = true; # enable efi variables
 
     # use the latest ZFS-compatible Kernel
     # Note this might jump back and forth as kernels are added or removed.
