@@ -98,121 +98,12 @@ nixos-generate-config --root /mnt
 #### Configure NixOs
 
 1. go into the nixos directory: `cd /mnt/etc/nixos`
-1. update bootloader config and network host (get is using `head -c4 /dev/urandom | od -A none -t x4`) in `configuration.nix`
-
-```nix
-  boot = {
-    # enable zfs support explicitly
-    supportedFilesystems = [ "zfs" ];
-
-    # enable systemd boot
-    loader.systemd-boot.enable = true;
-  };
-  networking = {
-    hostName = "beaststation-backup";
-    hostId = "0fe3b192";
-    firewall = {
-      enable = true;
-
-      allowedTCPPorts = [ 2222 ];
-      allowedUDPPorts = [ 2222 ];
-    };
-  };
-  users.users = {
-    backup = {
-      isNormalUser = true;
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILWkILtyyPWk4UYWJaZoI5UqGKo/qlaJG5h7zfS69+ie mail@dominik-schwaiger.ch"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINxfAbBPBerC/yizdTU3aWII4fsDWEwZBHmxMAhgNn7X quio@dominik-kaltbrunn-pc"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIINYO9+aRrPHh8WDkpcY0xSxJeFZg3nyjuhXkLOlBKIm"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL/s6lYNuiiu10xgH91eUfyHMBumXa3wby0dP+PaVsaF root@beaststation"
-      ];
-      extraGroups = [ "wheel" ];
-    };
-  };
-  services = {
-    # This setups a SSH server.
-    openssh = {
-      enable = true;
-      # use non-default 222 port for ssh
-      ports = [ 2222 ];
-    };
-  };
-  time.timeZone = "Europe/Zurich";
-  i18n.defaultLocale = "en_GB.UTF-8";
-  console.keyMap = "de_CH-latin1";
-  programs = {
-    vim = {
-      enable = true;
-      defaultEditor = true;
-    };
-
-    git = {
-      enable = true;
-      config = {
-        user = {
-          email = "beaststation-backup@dominik-schwaiger.ch";
-          name = "beaststation-backup";
-        };
-
-        save = {
-          directory = [ "config" ];
-        };
-      };
-    };
-  };
-```
-
-3. update the hardware configuration `hardware-configuration.nix`
+1. clone the repo (<https://github.com/quiode/beaststation-config.git>) and replace the files
+1. update the hardware configuration `hardware-configuration.nix`
 
 *(Now check the hardware-configuration.nix in /mnt/etc/nixos/hardware-configuration.nix and add whats missing e.g. options = [ "zfsutil" ] for all filesystems except boot and randomEncryption = true; for the swap partition. Also change the generated swap device to the partition we created e.g. /dev/disk/by-id/nvme-SKHynix_HFS512GDE9X081N_FNB6N634510106K5O-part2 in this case and /dev/disk/by-id/nvme-SKHynix_HFS512GDE9X081N_FNB6N634510106K5O-part1 for boot.)* - <https://wiki.nixos.org/wiki/ZFS>
 
-```nix
-{
-  # ...
-
-  fileSystems."/" =
-    { device = "rpool/root";
-      fsType = "zfs";
-      options = ["zfsutil"];
-    };
-
-  fileSystems."/nix" =
-    { device = "rpool/nix";
-      fsType = "zfs";
-      options = ["zfsutil"];
-    };
-
-  fileSystems."/var" =
-    { device = "rpool/var";
-      fsType = "zfs";
-      options = ["zfsutil"];
-    };
-
-  fileSystems."/home" =
-    { device = "rpool/home";
-      fsType = "zfs";
-      options = ["zfsutil"];
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-id/ata-VBOX_HARDDISK_VBdb4578c1-95c7dacd-part1";
-      fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
-    };
-
-  swapDevices =
-    [ { 
-         device = "/dev/disk/by-id/ata-VBOX_HARDDISK_VBdb4578c1-95c7dacd-part2"; 
-         randomEncryption = true;
-      }
-    ];
-
-  # ...
-}
-```
-
-4. install nixos `nixos-install --root /mnt`
+4. install nixos `nixos-install --flake .#beaststation-backup --root /mnt --impure`
 
 ## Setup after installation
 
