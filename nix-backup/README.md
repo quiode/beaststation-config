@@ -48,6 +48,7 @@ zpool create \
     -O normalization=formD \
     -O relatime=on \
     -O xattr=sa \
+    -O compression=zstd-6 \
     backup \
     $DISK1-part4 $DISK2
 ```
