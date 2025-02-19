@@ -57,8 +57,10 @@ in
     # enable zfs support explicitly
     supportedFilesystems = [ "zfs" ];
 
-    # enable systemd boot
-    loader.systemd-boot.enable = true;
+    growPartition = true; # enables easy growing inside the vm
+
+    loader.grub.enable = true; # Use the boot drive for GRUB
+    loader.grub.devices = [ "nodev" ];
 
     # use the latest ZFS-compatible Kernel
     # Note this might jump back and forth as kernels are added or removed.
@@ -105,6 +107,8 @@ in
   };
 
   services = {
+    qemuGuest.enable = true; # Enable QEMU Guest for Proxmox
+
     # This setups a SSH server.
     openssh = {
       enable = true;
