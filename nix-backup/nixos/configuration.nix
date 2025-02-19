@@ -65,6 +65,11 @@ in
     # use the latest ZFS-compatible Kernel
     # Note this might jump back and forth as kernels are added or removed.
     kernelPackages = latestKernelPackage;
+
+    # add pools
+    zfs = {
+      extraPools = [ "backup" ];
+    };
   };
 
   nixpkgs = {
@@ -87,8 +92,8 @@ in
     firewall = {
       enable = true;
 
-      allowedTCPPorts = [ 2222 ];
-      allowedUDPPorts = [ 2222 ];
+      allowedTCPPorts = [ 22 ];
+      allowedUDPPorts = [ 22 ];
     };
   };
 
@@ -119,9 +124,6 @@ in
         # Remove if you want to SSH using passwords
         PasswordAuthentication = false;
       };
-
-      # use non-default 222 port for ssh
-      ports = [ 2222 ];
     };
 
     zfs = {

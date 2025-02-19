@@ -28,8 +28,9 @@ Now connect with the system using the host ssh: `ssh root@ip`.
 ```bash
 sgdisk -o $DISK1 # clear the disk
 sgdisk -n1:1M:+1G -t1:EF00 $DISK1 # efi/boot
-sgdisk -n2:0:+4G -t2:8200 $DISK1 # set to a custom size of needed, swap
-sgdisk -n3:0:0 -t3:8300 $DISK1 # root/rest
+sgdisk -n2:0:+8G -t2:8200 $DISK1 # set to a custom size of needed, swap
+sgdisk -n3:0:+50G -t3:8300 $DISK1 # root
+sgdisk -n4:0:0 -t4:8300 $DISK1 # zfs
 
 sgdisk -o $DISK2 # clear the second disk
 ```
@@ -43,40 +44,21 @@ zpool create \
     -o ashift=12 \
     -o autotrim=on \
     -O acltype=posixacl \
-    -O canmount=off \
     -O dnodesize=auto \
     -O normalization=formD \
     -O relatime=on \
     -O xattr=sa \
-    -O mountpoint=none \
-    rpool \
-    $DISK1-part3 $DISK2
+    backup \
+    $DISK1-part4 $DISK2
 ```
 
-5. create datasets and mount them
-
-```bash
-zfs create rpool/root
-zfs create rpool/nix
-zfs create rpool/var
-zfs create rpool/home
-
-mkdir -p /mnt
-mount -t zfs rpool/root /mnt -o zfsutil
-mkdir /mnt/nix /mnt/var /mnt/home
-
-mount -t zfs rpool/nix /mnt/nix -o zfsutil
-mount -t zfs rpool/var /mnt/var -o zfsutil
-mount -t zfs rpool/home /mnt/home -o zfsutil
-```
-
-6. format boot
+5. format boot
 
 ```bash
 mkfs.fat -F 32 -n boot $DISK1-part1
 ```
 
-7. format swap
+6. format swap
 
 ```bash
 mkswap -L swap $DISK1-part2

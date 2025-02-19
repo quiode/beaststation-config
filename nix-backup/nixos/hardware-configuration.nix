@@ -21,27 +21,6 @@ fileSystems."/" =
     options = [ "zfsutil" ];
   };
 
-fileSystems."/nix" =
-  {
-    device = "rpool/nix";
-    fsType = "zfs";
-    options = [ "zfsutil" ];
-  };
-
-fileSystems."/var" =
-  {
-    device = "rpool/var";
-    fsType = "zfs";
-    options = [ "zfsutil" ];
-  };
-
-fileSystems."/home" =
-  {
-    device = "rpool/home";
-    fsType = "zfs";
-    options = [ "zfsutil" ];
-  };
-
 fileSystems."/boot" =
   {
     device = "/dev/disk/by-id//dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0-part1";
