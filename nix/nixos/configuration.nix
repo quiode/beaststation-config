@@ -298,6 +298,7 @@ in
       # use system host key
       sshKey = /etc/ssh/ssh_host_ed25519_key;
 
+      # needed to be able to access ssh key :c
       user = "root";
       group = "root";
 
