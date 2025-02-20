@@ -309,7 +309,7 @@ in
           source = "hdd/enc/critical";
           target = "domina@yniederer.ch:backup/hdd";
           sendOptions = "w";
-          extraArgs = [ "--sshport 2222" ];
+          extraArgs = [ "--sshport" "2222" ];
           recursive = true;
         };
 
@@ -317,7 +317,7 @@ in
           source = "rpool/ssd/critical";
           target = "domina@yniederer.ch:backup/ssd";
           sendOptions = "w";
-          extraArgs = [ "--sshport 2222" ];
+          extraArgs = [ "--sshport" "2222" ];
           recursive = true;
         };
       };
