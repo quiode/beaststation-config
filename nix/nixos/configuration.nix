@@ -387,7 +387,12 @@ in
     };
 
     # enable ssh agent
-    ssh.startAgent = true;
+    ssh = {
+      startAgent = true;
+      knownHosts = {
+        "[yniederer.ch]:2222".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOxx2JxRobdvqPUIDgl0xFHoF0UVjNGNGmQzqg0xr210";
+      };
+    };
   };
 
   # optimize storage automatically
