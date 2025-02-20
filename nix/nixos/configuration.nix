@@ -307,7 +307,7 @@ in
       commands = {
         "hdd/enc/critical" = {
           source = "hdd/enc/critical";
-          target = "domina@yniederer.ch:backup";
+          target = "domina@yniederer.ch:backup/hdd";
           sendOptions = "w";
           extraArgs = [ "--sshport 2222" ];
           recursive = true;
@@ -315,7 +315,7 @@ in
 
         "rpool/ssd/critical" = {
           source = "rpool/ssd/critical";
-          target = "domina@yniederer.ch:backup";
+          target = "domina@yniederer.ch:backup/ssd";
           sendOptions = "w";
           extraArgs = [ "--sshport 2222" ];
           recursive = true;
