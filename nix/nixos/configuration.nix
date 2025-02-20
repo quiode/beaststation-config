@@ -293,7 +293,7 @@ in
 
     # automatic backup of zfs snapshots
     syncoid = {
-      enable = false;
+      enable = true;
 
       # use system host key
       sshKey = "/etc/ssh/ssh_host_ed25519_key";
@@ -307,15 +307,17 @@ in
       commands = {
         "hdd/enc/critical" = {
           source = "hdd/enc/critical";
-          target = "hdd/backup/hdd/critical"; # TODO
+          target = "domina@yniederer.ch:backup";
           sendOptions = "w";
+          extraArgs = [ "--sshport 2222" ];
           recursive = true;
         };
 
         "rpool/ssd/critical" = {
           source = "rpool/ssd/critical";
-          target = "hdd/backup/ssd/critical"; # TODO
+          target = "domina@yniederer.ch:backup";
           sendOptions = "w";
+          extraArgs = [ "--sshport 2222" ];
           recursive = true;
         };
       };
