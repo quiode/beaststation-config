@@ -298,6 +298,9 @@ in
       # use system host key
       sshKey = /etc/ssh/ssh_host_ed25519_key;
 
+      user = "root";
+      group = "root";
+
       commonArgs = [ "--delete-target-snapshots" "--no-sync-snap" ];
 
       commands = {
