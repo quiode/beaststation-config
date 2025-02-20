@@ -296,11 +296,7 @@ in
       enable = true;
 
       # use system host key
-      sshKey = "/etc/ssh/ssh_host_ed25519_key";
-
-      # do as root
-      user = "root";
-      group = "root";
+      sshKey = /etc/ssh/ssh_host_ed25519_key;
 
       commonArgs = [ "--delete-target-snapshots" "--no-sync-snap" ];
 
