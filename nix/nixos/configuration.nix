@@ -288,6 +288,21 @@ in
           use_template = [ "critical" ];
           recursive = true;
         };
+
+        "rpool/nix" = {
+          use_template = [ "critical" ];
+          recursive = true;
+        };
+
+        "rpool/root" = {
+          use_template = [ "critical" ];
+          recursive = true;
+        };
+
+        "rpool/var" = {
+          use_template = [ "critical" ];
+          recursive = true;
+        };
       };
     };
 
