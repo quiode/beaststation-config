@@ -30,12 +30,12 @@ services:
       - bitwarden
       - stationboard
       - gitlab
-      - autodiscover
       - registry
       - jellyfin
       - qbittorrent
       - immich
       - ollama
+      - stalwart
 
 networks:
   nextcloud:
@@ -59,9 +59,6 @@ networks:
   gitlab:
     name: gitlab
   
-  autodiscover:
-    name: autodiscover
-
   registry:
     name: registry
 
@@ -76,3 +73,6 @@ networks:
 
   ollama:
     name: ollama
+  
+  stalwart:
+    name: stalwart

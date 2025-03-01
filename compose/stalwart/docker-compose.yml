@@ -1,0 +1,30 @@
+services:
+  stalwart:
+    image: stalwartlabs/mail-server
+    container_name: stalwart-mail
+    restart: always
+    volumes:
+      - /ssd/critical/stalwart:/opt/stalwart-mail
+    networks:
+      - stalwart
+    environment:
+      - TZ=Europe/Zurich
+    ports:
+      - '25:25'
+      - '587:587'
+      - '465:465'
+      - '143:143'
+      - '993:993'
+      # - "4190:4190" Sieve Scripts
+    labels:
+      - 'traefik.http.routers.stalwart.rule=Host(`autodiscover.dominik-schwaiger.ch`) || Host(`autoconfig.dominik-schwaiger.ch`) || Host(`mail.dominik-schwaiger.ch`)'
+      - 'traefik.http.routers.stalwart.tls=true'
+      - 'traefik.http.routers.stalwart.tls.certresolver=letsencrypt'
+      - 'traefik.http.services.stalwart.loadbalancer.server.port=8000'
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=stalwart'
+
+networks:
+  stalwart:
+    name: stalwart
+    external: true
