@@ -20,7 +20,7 @@ services:
       - 'traefik.http.routers.stalwart.rule=Host(`autodiscover.dominik-schwaiger.ch`) || Host(`autoconfig.dominik-schwaiger.ch`) || Host(`mail.dominik-schwaiger.ch`)'
       - 'traefik.http.routers.stalwart.tls=true'
       - 'traefik.http.routers.stalwart.tls.certresolver=letsencrypt'
-      - 'traefik.http.services.stalwart.loadbalancer.server.port=8000'
+      - 'traefik.http.services.stalwart.loadbalancer.server.port=8080'
       - 'traefik.enable=true'
       - 'traefik.docker.network=stalwart'
 
