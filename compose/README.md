@@ -105,8 +105,7 @@ Critical data (which should be snapshotted more often and also should be backupe
 - `/hdd/non-critical/ollama`
 - `/hdd/critical/open-webui`
 - `/ssd/non-critical/open-webui/cache`
-- `/ssd/critical/mailserver/mail-data`
-- `/ssd/critical/mailserver/config`
+- `/ssd/critical/stalwart`
 
 ### Other
 
