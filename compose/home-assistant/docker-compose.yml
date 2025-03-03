@@ -1,0 +1,20 @@
+services:
+  home-assistant:
+    container_name: home-assistant
+    hostname: home.dominik-schwaiger.ch
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      - /ssd/critical/home-assistant/config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    restart: always
+    ports:
+      - 8123:8123
+    privileged: true
+    network_mode: host
+    labels:
+      traefik.enable: true
+      traefik.http.routers.home-assistant.rule: Host(`home.dominik-schwaiger.ch`)
+      traefik.http.routers.home-assistant.tls: true
+      traefik.http.routers.home-assistant.tls.certresolver: letsencrypt
+      traefik.http.services.home-assistant.loadbalancer.server.port: 8123

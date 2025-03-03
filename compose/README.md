@@ -107,6 +107,7 @@ Critical data (which should be snapshotted more often and also should be backupe
 - `/ssd/non-critical/open-webui/cache`
 - `/ssd/critical/mailserver/mail-data`
 - `/ssd/critical/mailserver/config`
+- `/ssd/critical/home-assistant/config`
 
 ### Other
 
