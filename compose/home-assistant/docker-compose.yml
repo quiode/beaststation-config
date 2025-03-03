@@ -8,8 +8,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
     restart: always
-    expose:
-      - 8123
     ports:
       - 8123:8123
     privileged: true
