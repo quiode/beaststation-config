@@ -15,7 +15,7 @@ services:
       - 'traefik.http.routers.home-assistant.rule=Host(`home.dominik-schwaiger.ch`)'
       - 'traefik.http.routers.home-assistant.tls=true'
       - 'traefik.http.routers.home-assistant.tls.certresolver=letsencrypt'
-      - 'traefik.http.services.home-assistant.loadbalancer.server.port=8123'
+      - 'traefik.http.services.home-assistant.loadbalancer.server.url="http://localhost:8123"'
 
 networks:
   home-assistant:
