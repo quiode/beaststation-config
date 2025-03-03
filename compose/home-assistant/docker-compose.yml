@@ -8,7 +8,7 @@ services:
       - /run/dbus:/run/dbus:ro
     restart: always
     privileged: true
-    network_mode: host
+    #network_mode: host
     labels:
       traefik.enable: true
       traefik.docker.network: home-assistant
@@ -16,7 +16,6 @@ services:
       traefik.http.routers.home-assistant.tls: true
       traefik.http.routers.home-assistant.tls.certresolver: letsencrypt
       traefik.http.services.home-assistant.loadbalancer.server.port: 8123
-      traefik.http.services.home-assistant.loadbalancer.server.url: http://localhost:8123
 
 networks:
   home-assistant:
