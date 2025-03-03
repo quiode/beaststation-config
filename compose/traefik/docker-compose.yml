@@ -35,7 +35,6 @@ services:
       - qbittorrent
       - immich
       - ollama
-      - home-assistant
     extra_hosts:
       - host.docker.internal:172.17.0.1
 
@@ -78,6 +77,3 @@ networks:
 
   ollama:
     name: ollama
-
-  home-assistant:
-    name: home-assistant

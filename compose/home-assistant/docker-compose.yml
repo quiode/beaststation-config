@@ -13,18 +13,10 @@ services:
     ports:
       - 8123:8123
     privileged: true
-    networks:
-      - home-assistant
     network_mode: host
     labels:
       traefik.enable: true
-      traefik.docker.network: home-assistant
       traefik.http.routers.home-assistant.rule: Host(`home.dominik-schwaiger.ch`)
       traefik.http.routers.home-assistant.tls: true
       traefik.http.routers.home-assistant.tls.certresolver: letsencrypt
       traefik.http.services.home-assistant.loadbalancer.server.port: 8123
-
-networks:
-  home-assistant:
-    name: home-assistant
-    external: true
