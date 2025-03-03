@@ -9,7 +9,6 @@ services:
     env_file:
       - /run/agenix/gitlab_smtp_password
     environment:
-      TZ: "Europe/Zurich"
       GITLAB_OMNIBUS_CONFIG: |
         # Add any other gitlab.rb configuration here, each on its own line
         external_url 'https://gitlab.dominik-schwaiger.ch'
@@ -46,29 +45,29 @@ services:
         gitlab_rails['gitlab_email_from'] = "gitlab@dominik-schwaiger.ch"
         gitlab_rails['gitlab_email_reply_to'] = "noreply@dominik-schwaiger.ch"
     ports:
-      - "22:22"
+      - '22:22'
     volumes:
       - /ssd/critical/gitlab/config:/etc/gitlab
       - /hdd/non-critical/gitlab/logs:/var/log/gitlab
       - /hdd/critical/gitlab/data:/var/opt/gitlab
-    shm_size: "256m"
+      - /etc/localtime:/etc/localtime:ro
+    shm_size: '256m'
     labels:
-      - "traefik.http.routers.gitlab.rule=Host(`gitlab.dominik-schwaiger.ch`)"
-      - "traefik.http.routers.gitlab.tls=true"
-      - "traefik.http.routers.gitlab.tls.certresolver=letsencrypt"
-      - "traefik.http.services.gitlab.loadbalancer.server.port=80"
-      - "traefik.enable=true"
-      - "traefik.docker.network=gitlab"
+      - 'traefik.http.routers.gitlab.rule=Host(`gitlab.dominik-schwaiger.ch`)'
+      - 'traefik.http.routers.gitlab.tls=true'
+      - 'traefik.http.routers.gitlab.tls.certresolver=letsencrypt'
+      - 'traefik.http.services.gitlab.loadbalancer.server.port=80'
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=gitlab'
 
   runner:
     image: gitlab/gitlab-runner
     container_name: gitlab-runner
     restart: always
-    environment:
-      TZ: "Europe/Zurich"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /ssd/critical/gitlab/runner/config:/etc/gitlab-runner
+      - /etc/localtime:/etc/localtime:ro
 
 networks:
   gitlab:

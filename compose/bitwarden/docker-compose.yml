@@ -7,14 +7,13 @@ services:
       - /run/agenix/bw_installation_id
       - /run/agenix/bw_installation_key
       - settings.env
-    environment:
-      TZ: 'Europe/Zurich'
     depends_on:
       - bitwarden-db
     restart: always
     volumes:
       - /ssd/critical/bitwarden/data:/etc/bitwarden
       - /hdd/non-critical/bitwarden/logs:/var/log/bitwarden
+      - /etc/localtime:/etc/localtime:ro
     networks:
       - bitwarden-internal
       - bitwarden-external
@@ -35,10 +34,10 @@ services:
       MARIADB_DATABASE: 'bitwarden_vault'
       MARIADB_RANDOM_ROOT_PASSWORD: 'true'
       MARIADB_AUTO_UPGRADE: 1
-      TZ: 'Europe/Zurich'
     restart: always
     volumes:
       - /ssd/critical/bitwarden/database:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
     networks:
       - bitwarden-internal
 

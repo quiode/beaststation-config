@@ -3,25 +3,24 @@ services:
     image: traefik:3
     container_name: traefik
     restart: always
-    environment:
-      TZ: "Europe/Zurich"
     ports:
-      - "80:80"
-      - "443:443"
+      - 80:80
+      - 443:443
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /ssd/non-critical/traefik/auth:/auth:ro
       - /ssd/non-critical/traefik/acme.json:/acme.json
       - ./traefik.yml:/etc/traefik/traefik.yml:ro
       - /ssd/critical/registry/auth/htpasswd:/ssd/critical/registry/auth/htpasswd:ro
+      - /etc/localtime:/etc/localtime:ro
     labels:
-      - "traefik.http.middlewares.dashboard-auth.basicauth.usersfile=/auth/users"
-      - "traefik.http.routers.dashboard.middlewares=dashboard-auth@docker"
-      - "traefik.http.routers.dashboard.service=api@internal"
-      - "traefik.http.routers.dashboard.rule=Host(`traefik.dominik-schwaiger.ch`)"
-      - "traefik.http.routers.dashboard.tls=true"
-      - "traefik.http.routers.dashboard.tls.certresolver=letsencrypt"
-      - "traefik.enable=true"
+      - 'traefik.http.middlewares.dashboard-auth.basicauth.usersfile=/auth/users'
+      - 'traefik.http.routers.dashboard.middlewares=dashboard-auth@docker'
+      - 'traefik.http.routers.dashboard.service=api@internal'
+      - 'traefik.http.routers.dashboard.rule=Host(`traefik.dominik-schwaiger.ch`)'
+      - 'traefik.http.routers.dashboard.tls=true'
+      - 'traefik.http.routers.dashboard.tls.certresolver=letsencrypt'
+      - 'traefik.enable=true'
     networks:
       - nextcloud
       - dominik-schwaiger
@@ -49,7 +48,7 @@ networks:
 
   portainer:
     name: portainer
-  
+
   bitwarden:
     name: bitwarden
 
@@ -58,7 +57,7 @@ networks:
 
   gitlab:
     name: gitlab
-  
+
   autodiscover:
     name: autodiscover
 
@@ -67,7 +66,7 @@ networks:
 
   jellyfin:
     name: jellyfin
-  
+
   qbittorrent:
     name: qbittorrent
 

@@ -46,6 +46,7 @@ services:
     runtime: nvidia
     volumes:
       - model-cache:/cache
+      - /etc/localtime:/etc/localtime:ro
     env_file:
       - /run/agenix/immich_db_pw
       - .env
@@ -61,6 +62,8 @@ services:
     healthcheck:
       test: redis-cli ping || exit 1
     restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
     networks:
       - immich-internal
 
@@ -76,6 +79,7 @@ services:
       POSTGRES_DB: ${DB_DATABASE_NAME}
       POSTGRES_INITDB_ARGS: '--data-checksums'
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - /ssd/critical/immich/database:/var/lib/postgresql/data
     healthcheck:
       test: >-

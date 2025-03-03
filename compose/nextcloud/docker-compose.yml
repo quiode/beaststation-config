@@ -20,7 +20,6 @@ x-env: &env
     SMTP_PORT: '465'
     MAIL_FROM_ADDRESS: 'nextcloud'
     MAIL_DOMAIN: 'dominik-schwaiger.ch'
-    TZ: 'Europe/Zurich'
   env_file:
     - /run/agenix/db_pw
     - /run/agenix/nextcloud_admin_password
@@ -44,6 +43,7 @@ services:
       - /ssd/critical/nextcloud/apps:/var/www/html/custom_apps
       - /ssd/critical/nextcloud/config:/var/www/html/config
       - /ssd/critical/nextcloud/themes:/var/www/html/themes
+      - /etc/localtime:/etc/localtime:ro
     labels:
       - 'traefik.http.routers.nextcloud.rule=Host(`nextcloud.dominik-schwaiger.ch`)'
       - 'traefik.http.routers.nextcloud.tls=true'
@@ -64,6 +64,7 @@ services:
       - /ssd/critical/nextcloud/apps:/var/www/html/custom_apps
       - /ssd/critical/nextcloud/config:/var/www/html/config
       - /ssd/critical/nextcloud/themes:/var/www/html/themes
+      - /etc/localtime:/etc/localtime:ro
     entrypoint: /cron.sh
     networks:
       - nextcloud-intern
@@ -79,8 +80,8 @@ services:
     networks:
       - onlyoffice
       - nextcloud-intern
-    environment:
-      TZ: 'Europe/Zurich'
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
     env_file:
       - /run/agenix/jwt_secret
     labels:
@@ -101,11 +102,11 @@ services:
       MARIADB_DATABASE: 'nextcloud'
       MARIADB_USER: 'nextcloud'
       MARIADB_AUTO_UPGRADE: 1
-      TZ: 'Europe/Zurich'
     networks:
       - nextcloud-intern
     volumes:
       - /ssd/critical/nextcloud/database:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
     env_file:
       - /run/agenix/db_pw
 
@@ -115,8 +116,8 @@ services:
     restart: always
     networks:
       - nextcloud-intern
-    environment:
-      TZ: 'Europe/Zurich'
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
 
 networks:
   nextcloud-extern:

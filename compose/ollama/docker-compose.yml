@@ -4,11 +4,10 @@ services:
     container_name: ollama
     volumes:
       - /hdd/non-critical/ollama:/root/.ollama
+      - /etc/localtime:/etc/localtime:ro
     restart: always
     tty: true
     runtime: nvidia
-    environment:
-      - TZ=Europe/Zurich
     networks:
       - ollama-internal
 
@@ -24,20 +23,20 @@ services:
       - USE_CUDA_DOCKER=true
       - OLLAMA_BASE_URL=http://ollama:11434
       - ENABLE_OPENAI_API=false
-      - TZ=Europe/Zurich
     runtime: nvidia
     volumes:
       - /hdd/critical/open-webui:/app/backend/data
       - /ssd/non-critical/open-webui/cache:/app/backend/data/cache
+      - /etc/localtime:/etc/localtime:ro
     depends_on:
       - ollama
     restart: always
     labels:
-    - "traefik.enable=true"
-    - "traefik.docker.network=ollama"
-    - "traefik.http.routers.ollama.rule=Host(`chat.dominik-schwaiger.ch`)"
-    - "traefik.http.routers.ollama.tls=true"
-    - "traefik.http.routers.ollama.tls.certresolver=letsencrypt"
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=ollama'
+      - 'traefik.http.routers.ollama.rule=Host(`chat.dominik-schwaiger.ch`)'
+      - 'traefik.http.routers.ollama.tls=true'
+      - 'traefik.http.routers.ollama.tls.certresolver=letsencrypt'
 
 networks:
   ollama-internal:

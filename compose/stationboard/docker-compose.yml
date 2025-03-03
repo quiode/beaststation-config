@@ -3,16 +3,16 @@ services:
     image: quiooo/stationboard
     container_name: stationboard
     restart: always
-    environment:
-      TZ: "Europe/Zurich"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
     networks:
       - stationboard
     labels:
-      - "traefik.http.routers.stationboard.rule=Host(`stationboard.dominik-schwaiger.ch`)"
-      - "traefik.http.routers.stationboard.tls=true"
-      - "traefik.http.routers.stationboard.tls.certresolver=letsencrypt"
-      - "traefik.enable=true"
-      - "traefik.docker.network=stationboard"
+      - 'traefik.http.routers.stationboard.rule=Host(`stationboard.dominik-schwaiger.ch`)'
+      - 'traefik.http.routers.stationboard.tls=true'
+      - 'traefik.http.routers.stationboard.tls.certresolver=letsencrypt'
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=stationboard'
 
 networks:
   stationboard:

@@ -6,7 +6,6 @@ services:
     hostname: mail.dominik-schwaiger.ch
     environment:
       - POSTFIX_MESSAGE_SIZE_LIMIT=50000000 # 50mb
-      - TZ=Europe/Zurich
       - SSL_TYPE=letsencrypt
       - SSL_DOMAIN=mail.dominik-schwaiger.ch # only works if there already exists a certificate for mail.dominik-schwaiger.ch so a problem when autodiscover is taken down!
       - ENABLE_FAIL2BAN=1
@@ -46,7 +45,6 @@ services:
     networks:
       - autodiscover
     environment:
-      - TZ=Europe/Zurich
       - COMPANY_NAME=Dominik Schwaiger
       - SUPPORT_URL=https://autodiscover.dominik-schwaiger.ch
       - DOMAIN=dominik-schwaiger.ch
@@ -85,6 +83,8 @@ services:
       - 'traefik.http.services.autodiscover.loadbalancer.server.port=8000'
       - 'traefik.enable=true'
       - 'traefik.docker.network=autodiscover'
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
 
 networks:
   autodiscover:

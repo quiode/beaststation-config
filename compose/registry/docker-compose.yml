@@ -8,8 +8,8 @@ services:
       - registry-internal
     volumes:
       - /hdd/non-critical/registry/data:/var/lib/registry
+      - /etc/localtime:/etc/localtime:ro
     environment:
-      TZ: 'Europe/Zurich'
       REGISTRY_STORAGE_DELETE_ENABLED: true
     env_file:
       - /run/agenix/registry_http_secret
@@ -23,7 +23,8 @@ services:
       - REGISTRY_TITLE=Dominik's Docker Registry
       - NGINX_PROXY_PASS_URL=http://registry:5000
       - SINGLE_REGISTRY=true
-      - TZ=Europe/Zurich
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
     depends_on:
       - registry
     networks:
