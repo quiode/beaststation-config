@@ -14,6 +14,7 @@ services:
       - home-assistant
     labels:
       traefik.enable: true
+      traefik.docker.network: home-assistant
       traefik.http.routers.home-assistant.rule: Host(`home.dominik-schwaiger.ch`)
       traefik.http.routers.home-assistant.tls: true
       traefik.http.routers.home-assistant.tls.certresolver: letsencrypt
