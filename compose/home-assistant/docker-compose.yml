@@ -6,14 +6,16 @@ services:
     volumes:
       - /ssd/critical/home-assistant/config:/config
       - /etc/localtime:/etc/localtime:ro
-    #  - /run/dbus:/run/dbus:ro
+      - /run/dbus:/run/dbus:ro
     restart: always
-    #ports:
-    #  - 8123:8123
-    #privileged: true
+    expose:
+      - 8123
+    ports:
+      - 8123:8123
+    privileged: true
     networks:
       - home-assistant
-    #network_mode: host
+    network_mode: host
     labels:
       traefik.enable: true
       traefik.docker.network: home-assistant
