@@ -6,9 +6,9 @@ services:
     volumes:
       - /ssd/critical/home-assistant/config:/config
       - /etc/localtime:/etc/localtime:ro
-      - /run/dbus:/run/dbus:ro
+    #  - /run/dbus:/run/dbus:ro
     restart: always
-    privileged: true
+    #privileged: true
     #network_mode: host
     networks:
       - home-assistant
