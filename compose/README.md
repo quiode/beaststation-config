@@ -109,6 +109,9 @@ Critical data (which should be snapshotted more often and also should be backupe
 - `/ssd/critical/mailserver/mail-data`
 - `/ssd/critical/mailserver/config`
 - `/ssd/critical/home-assistant/config`
+- `/hdd/critical/matrix/data/media`
+- `/ssd/critical/matrix/data`
+- `/ssd/critical/matrix/db`
 
 ### Other
 
