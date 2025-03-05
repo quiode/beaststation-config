@@ -10,16 +10,19 @@ services:
     networks:
       - matrix-internal
       - matrix-external
+    depends_on:
+      - db
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /hdd/critical/matrix/data/media:/data/media
       - /ssd/critical/matrix/data:/data
     labels:
-      - 'traefik.enable=true'
-      - 'traefik.docker.network=matrix'
-      - 'traefik.http.routers.matrix.rule=Host(`matrix.dominik-schwaiger.ch`)'
-      - 'traefik.http.routers.matrix.tls=true'
-      - 'traefik.http.routers.matrix.tls.certresolver=letsencrypt'
+      traefik.enable: true
+      traefik.docker.network: matrix
+      traefik.http.routers.matrix.rule: Host(`matrix.dominik-schwaiger.ch`)
+      traefik.http.routers.matrix.tls: true
+      traefik.http.routers.matrix.tls.certresolver: letsencrypt
+      traefik.http.services.matrix.loadbalancer.server.port: 8008
 
   db:
     image: postgres:17-alpine #TODO keep up-to-date
@@ -32,7 +35,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
     environment:
       POSTGRES_USER: matrix
-      POSTGRES_INITDB_ARGS: '--encoding=UTF8 --locale=C'
+      POSTGRES_INITDB_ARGS: '--encoding=UTF-8 --lc-collate=C --lc-ctype=C'
     env_file:
       - /run/agenix/db_pw # for POSTGRES_PASSWORD
 
