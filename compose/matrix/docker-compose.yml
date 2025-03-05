@@ -22,7 +22,7 @@ services:
       - 'traefik.http.routers.matrix.tls.certresolver=letsencrypt'
 
   db:
-    image: postgresql:17-alpine #TODO keep up-to-date
+    image: postgres:17-alpine #TODO keep up-to-date
     container_name: matrix-db
     restart: always
     networks:
