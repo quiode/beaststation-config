@@ -31,6 +31,7 @@ They should each define a set of environment variables and then are mounted as e
   MYSQL_PASSWORD="${DB_PW}"
   MARIADB_ROOT_PASSWORD="${DB_PW}"
   MARIADB_PASSWORD="${DB_PW}"
+  POSTGRES_PASSWORD="${DB_PW}"
   ```
 
 - `nextcloud_admin_password`
