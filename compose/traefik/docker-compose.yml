@@ -36,6 +36,7 @@ services:
       - immich
       - ollama
       - home-assistant
+      - matrix
 
 networks:
   nextcloud:
@@ -79,3 +80,6 @@ networks:
 
   home-assistant:
     name: home-assistant
+  
+  matrix:
+    name: matrix
