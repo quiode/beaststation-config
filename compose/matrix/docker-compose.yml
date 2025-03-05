@@ -23,6 +23,7 @@ services:
 
   db:
     image: postgresql:17-alpine #TODO keep up-to-date
+    container_name: matrix-db
     restart: always
     networks:
       - matrix-external
