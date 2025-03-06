@@ -323,7 +323,7 @@ in
       enable = true;
 
       # use domina ssh key
-      sshKey = /home/domina/.ssh/id_ed25519;
+      sshKey = "/home/domina/.ssh/id_ed25519";
 
       user = "domina";
       group = "domina";
