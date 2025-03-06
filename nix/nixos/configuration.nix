@@ -379,6 +379,7 @@ in
     bash = {
       # set alias for simple update
       shellAliases = {
+        update = "sudo nix flake update --commit-lock-file --flake /config/nix";
         upgrade = "nh os switch /config/nix";
         unlock = "sudo zfs load-key -a ; sudo zfs load-key -a -L prompt && sudo zfs mount -a";
         occ = "sudo docker exec --user www-data nextcloud php occ";
