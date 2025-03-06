@@ -369,7 +369,7 @@ in
       # set alias for simple update
       shellAliases = {
         git-auth = "eval \"\$(ssh-agent -s)\" && ssh-add /etc/ssh/ssh_host_ed25519_key";
-        upgrade = "sudo nh os switch /config/nix";
+        upgrade = "nh os switch /config/nix";
         unlock = "sudo zfs load-key -a ; sudo zfs load-key -a -L prompt && sudo zfs mount -a";
         occ = "sudo docker exec --user www-data nextcloud php occ";
       };
