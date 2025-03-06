@@ -126,7 +126,10 @@ in
           enable = true;
           port = 2222;
           authorizedKeys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILWkILtyyPWk4UYWJaZoI5UqGKo/qlaJG5h7zfS69+ie mail@dominik-schwaiger.ch" "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINxfAbBPBerC/yizdTU3aWII4fsDWEwZBHmxMAhgNn7X quio@dominik-kaltbrunn-pc" ];
-          hostKeys = [ /etc/ssh/ssh_host_ed25519_key ]; # important: unquoted
+          hostKeys = [
+            /etc/secrets/initrd/ssh_host_rsa_key
+            /etc/secrets/initrd/ssh_host_ed25519_key
+          ]; # important: unquoted
         };
       };
 
@@ -369,7 +372,6 @@ in
     bash = {
       # set alias for simple update
       shellAliases = {
-        git-auth = "eval \"\$(ssh-agent -s)\" && ssh-add /etc/ssh/ssh_host_ed25519_key";
         upgrade = "nh os switch /config/nix";
         unlock = "sudo zfs load-key -a ; sudo zfs load-key -a -L prompt && sudo zfs mount -a";
         occ = "sudo docker exec --user www-data nextcloud php occ";
