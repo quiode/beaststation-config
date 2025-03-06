@@ -322,11 +322,8 @@ in
     syncoid = {
       enable = true;
 
-      # use domina ssh key
-      #sshKey = "/home/domina/.ssh/id_ed25519";
-
-      user = "domina";
-      group = "domina";
+      # use custom ssh key
+      sshKey = /etc/secrets/syncoid/id_ed25519;
 
       commonArgs = [ "--delete-target-snapshots" "--no-sync-snap" ];
 
