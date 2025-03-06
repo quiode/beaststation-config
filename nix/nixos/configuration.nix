@@ -322,6 +322,9 @@ in
     syncoid = {
       enable = true;
 
+      user = syncoid;
+      group = syncoid;
+
       # use custom ssh key
       sshKey = /etc/secrets/syncoid/id_ed25519;
 
