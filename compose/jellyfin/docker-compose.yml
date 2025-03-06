@@ -5,7 +5,7 @@ services:
     group_add: # by id as these may not exist within the container. Needed to provide permissions to the VAAPI Devices
       - '107' #render
       - '44' #video
-    # Network mode of 'host' exposes the ports on the host. This is needed for DLNA access. TODO: not needed for now and makes it less secure
+    # Network mode of 'host' exposes the ports on the host. This is needed for DLNA access.
     #network_mode: 'host'
     volumes:
       # Update this configuration as desired
