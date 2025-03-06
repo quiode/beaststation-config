@@ -154,7 +154,7 @@ in
     enableNvidia = true; # TODO: deprecated, but replacement doesn't supply Nvidia runtime for docker and without that automatic restart doesn't work
     autoPrune = {
       enable = true;
-      flags = "--all";
+      flags = [ "--all" ];
     };
   };
 
