@@ -369,9 +369,7 @@ in
       # set alias for simple update
       shellAliases = {
         git-auth = "eval \"\$(ssh-agent -s)\" && ssh-add /etc/ssh/ssh_host_ed25519_key";
-        update = "sudo nix flake update --commit-lock-file --flake /config/nix";
-        upgrade = "sudo nixos-rebuild switch --flake /config/nix#beaststation";
-        new = "update && upgrade";
+        upgrade = "sudo nh os switch /config/nix";
         unlock = "sudo zfs load-key -a ; sudo zfs load-key -a -L prompt && sudo zfs mount -a";
         occ = "sudo docker exec --user www-data nextcloud php occ";
       };
@@ -411,6 +409,13 @@ in
       knownHosts = {
         "[yniederer.ch]:2222".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOxx2JxRobdvqPUIDgl0xFHoF0UVjNGNGmQzqg0xr210";
       };
+    };
+
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+      flake = "/config/nix";
     };
   };
 
