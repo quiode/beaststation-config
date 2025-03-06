@@ -121,7 +121,7 @@ in
           echo "zpool import -a && zfs load-key -a && killall zfs" >> /root/.profile
         '';
 
-        # should be the same settings as the normal ssd configuration
+        # should be the same settings as the normal ssh configuration
         ssh = {
           enable = true;
           port = 2222;
