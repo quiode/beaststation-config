@@ -10,6 +10,7 @@ They should each define a set of environment variables and then are mounted as e
 ### Format
 
 - `secret_name` in `/run/agenix/secret_name`
+
   - `ENV` environemnt variable defined in the secret
     - description
 
@@ -24,6 +25,7 @@ They should each define a set of environment variables and then are mounted as e
   - `WATCHTOWER_NOTIFICATION_URL`
     - telegram url (token) for watchtower bot
 - `db_pw`
+
   - `DB_PW`
     - password for databases
 
@@ -38,10 +40,12 @@ They should each define a set of environment variables and then are mounted as e
   - `NEXTCLOUD_ADMIN_PASSWORD`
     - admin password for nextcloud
 - `nextcloud_smtp_password`
+
   - `NEXTCLOUD_SMTP_PASSWORD`
     - password for <mail@nextcloud.dominik-schwaiger.ch>
 
   `globalSettings__mail__smtp__password="${SMTP_PASSWORD}"`
+
 - `jwt_secret`
   - `JWT_SECRET`
     - secret for jwt's (onlyoffice)
@@ -61,6 +65,7 @@ They should each define a set of environment variables and then are mounted as e
   - `REGISTRY_HTTP_SECRET`
     - http secret for docker registry
 - `immich_db_pw`
+
   - `DB_PASSWORD`
     - password for immich db
 
@@ -109,6 +114,7 @@ Critical data (which should be snapshotted more often and also should be backupe
 - `/ssd/critical/mailserver/mail-data`
 - `/ssd/critical/mailserver/config`
 - `/ssd/critical/home-assistant/config`
+- `/hdd/critical/home-assistant/backups`
 - `/hdd/critical/matrix/data/media`
 - `/ssd/critical/matrix/data`
 - `/ssd/critical/matrix/db`

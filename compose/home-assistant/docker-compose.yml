@@ -5,6 +5,7 @@ services:
     image: ghcr.io/home-assistant/home-assistant:stable
     volumes:
       - /ssd/critical/home-assistant/config:/config
+      - /hdd/critical/home-assistant/backups:/config/backups
       - /etc/localtime:/etc/localtime:ro
     #  - /run/dbus:/run/dbus:ro
     restart: always
