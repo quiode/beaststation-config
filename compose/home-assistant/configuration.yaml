@@ -1,4 +1,3 @@
-
 # Loads default set of integrations. Do not remove.
 default_config:
 
@@ -11,32 +10,31 @@ script: !include scripts.yaml
 scene: !include scenes.yaml
 
 notify:
-  - name: "email"
+  - name: 'email'
     platform: smtp
-    sender: "home-assistant@dominik-schwaiger.ch"
-    recipient: "mail@dominik-schwaiger.ch"
-    server: "mail.dominik-schwaiger.ch"
-    username: "home-assistant@dominik-schwaiger.ch"
-    password: "YXBIQvr0JAr8^Zg9uCge"
+    sender: 'home-assistant@dominik-schwaiger.ch'
+    recipient: 'mail@dominik-schwaiger.ch'
+    server: 'mail.dominik-schwaiger.ch'
+    username: 'home-assistant@dominik-schwaiger.ch'
+    password: 'YXBIQvr0JAr8^Zg9uCge'
   - platform: telegram
-    name: "Beaststation Notifications"
+    name: 'Beaststation Notifications'
     chat_id: -1001816372793
   - platform: telegram
-    name: "Dominik Bot Chat"
+    name: 'Dominik Bot Chat'
     chat_id: 806378608
-
 
 http:
   use_x_forwarded_for: true
   trusted_proxies:
-    - "0.0.0.0/0"
+    - '0.0.0.0/0'
 
 recorder:
   purge_keep_days: 150
 
 telegram_bot:
   - platform: broadcast
-    api_key: "8096911529:AAFSiYg5GM34uGn3Zb_qUoi9HUXDXWbBUi4"
+    api_key: '8096911529:AAFSiYg5GM34uGn3Zb_qUoi9HUXDXWbBUi4'
     allowed_chat_ids:
       - -1001816372793 # beaststation notifications chat
       - 806378608 # bot chat dominik
