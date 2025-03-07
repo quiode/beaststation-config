@@ -16,7 +16,7 @@ notify:
     recipient: 'mail@dominik-schwaiger.ch'
     server: 'mail.dominik-schwaiger.ch'
     username: 'home-assistant@dominik-schwaiger.ch'
-    password: 'YXBIQvr0JAr8^Zg9uCge'
+    password: !secret email_password
   - platform: telegram
     name: 'Beaststation Notifications'
     chat_id: -1001816372793
@@ -34,7 +34,7 @@ recorder:
 
 telegram_bot:
   - platform: broadcast
-    api_key: '8096911529:AAFSiYg5GM34uGn3Zb_qUoi9HUXDXWbBUi4'
+    api_key: !secret telegram_token
     allowed_chat_ids:
       - -1001816372793 # beaststation notifications chat
       - 806378608 # bot chat dominik
