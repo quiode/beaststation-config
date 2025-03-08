@@ -8,19 +8,19 @@ services:
       - 443:443
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /ssd/non-critical/traefik/auth:/auth:ro
+      - /ssd/critical/traefik/auth:/auth:ro
       - /ssd/non-critical/traefik/acme.json:/acme.json
       - ./traefik.yml:/etc/traefik/traefik.yml:ro
       - /ssd/critical/registry/auth/htpasswd:/ssd/critical/registry/auth/htpasswd:ro
       - /etc/localtime:/etc/localtime:ro
     labels:
-      - 'traefik.http.middlewares.dashboard-auth.basicauth.usersfile=/auth/users'
-      - 'traefik.http.routers.dashboard.middlewares=dashboard-auth@docker'
-      - 'traefik.http.routers.dashboard.service=api@internal'
-      - 'traefik.http.routers.dashboard.rule=Host(`traefik.dominik-schwaiger.ch`)'
-      - 'traefik.http.routers.dashboard.tls=true'
-      - 'traefik.http.routers.dashboard.tls.certresolver=letsencrypt'
-      - 'traefik.enable=true'
+      traefik.http.middlewares.simple-auth.basicauth.usersfile: /auth/users
+      traefik.http.routers.dashboard.middlewares: simple-auth@docker
+      traefik.http.routers.dashboard.service: api@internal
+      traefik.http.routers.dashboard.rule: Host(`traefik.dominik-schwaiger.ch`)
+      traefik.http.routers.dashboard.tls: true
+      traefik.http.routers.dashboard.tls.certresolver: letsencrypt
+      traefik.enable: true
     networks:
       - nextcloud
       - dominik-schwaiger
