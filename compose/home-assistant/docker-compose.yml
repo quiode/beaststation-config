@@ -32,7 +32,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /ssd/critical/home-assistant/esphome:/config
     restart: always
-    #network_mode: host
+    environment:
+      ESPHOME_DASHBOARD_USE_PING: true
     networks:
       - esphome
     labels:
