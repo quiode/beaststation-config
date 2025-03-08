@@ -37,6 +37,7 @@ services:
       - ollama
       - home-assistant
       - matrix
+      - esphome
 
 networks:
   nextcloud:
@@ -83,3 +84,6 @@ networks:
   
   matrix:
     name: matrix
+
+  esphome:
+    name: esphome
