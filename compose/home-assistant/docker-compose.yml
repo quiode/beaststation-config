@@ -42,7 +42,7 @@ services:
       traefik.http.routers.esphome.tls: true
       traefik.http.routers.esphome.tls.certresolver: letsencrypt
       traefik.http.services.esphome.loadbalancer.server.port: 6052 
-      traefik.http.routers.dashboard.middlewares: simple-auth@docker
+      traefik.http.routers.esphome.middlewares: simple-auth@docker
 
 networks:
   home-assistant:
