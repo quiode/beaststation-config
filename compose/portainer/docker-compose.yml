@@ -1,6 +1,6 @@
 services:
   portainer:
-    image: 'portainer/portainer-ce:alpine
+    image: portainer/portainer-ce:alpine
     restart: always
     container_name: portainer
     networks:
