@@ -51,6 +51,10 @@ These should be saved to `/ssd/critical/service/secrets.env` for each service an
   - `DB_PASSWORD`
     - password for immich db
       `POSTGRES_PASSWORD="${DB_PASSWORD}"`
+- **Authentik**
+  - `AUTHENTIK_EMAIL__PASSWORD`
+  - `POSTGRES_PASSWORD`
+  - `AUTHENTIK_POSTGRESQL__PASSWORD`
 
 ## Bind Volumes
 

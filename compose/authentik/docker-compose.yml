@@ -13,7 +13,7 @@ services:
     volumes:
       - /ssd/critical/authentik/database:/var/lib/postgresql/data # TODO
     env_file:
-      - /run/agenix/db_pw
+      - /ssd/critical/authentik/secrets.env # TODO
     environment:
       POSTGRES_USER: authentik
       POSTGRES_DB: authentik
@@ -44,36 +44,7 @@ services:
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_POSTGRESQL__NAME: authentik
     env_file:
-      - /run/agenix/db_pw
-    volumes:
-      - /ssd/critical/authentik/media:/media # TODO
-      - /ssd/critical/authentik/custom-templates:/templates # TODO
-    depends_on:
-      postgresql:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    labels:
-      traefik.enable: true
-      traefik.docker.network: authentik
-      traefik.http.routers.authentik.rule: Host(`auth.dominik-schwaiger.ch`)
-      traefik.http.routers.authentik.tls: true
-      traefik.http.routers.authentik.tls.certresolver: letsencrypt
-      traefik.http.services.authentik.loadbalancer.server.port: 9000
-
-  worker:
-    image: ghcr.io/goauthentik/server
-    restart: always
-    command: worker
-    networks:
-      - authentik-internal
-    environment:
-      AUTHENTIK_REDIS__HOST: redis
-      AUTHENTIK_POSTGRESQL__HOST: postgresql
-      AUTHENTIK_POSTGRESQL__USER: authentik
-      AUTHENTIK_POSTGRESQL__NAME: authentik
-    env_file:
-      - /run/agenix/db_pw
+      - /ssd/critical/authentik/secrets.env # TODO
     # `user: root` and the docker socket volume are optional.
     # See more for the docker socket integration here:
     # https://goauthentik.io/docs/outposts/integrations/docker
