@@ -37,6 +37,7 @@ services:
       - home-assistant
       - matrix
       - esphome
+      - authentik
 
 networks:
   nextcloud:
@@ -83,3 +84,6 @@ networks:
 
   esphome:
     name: esphome
+
+  authentik:
+    name: authentik
