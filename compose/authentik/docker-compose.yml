@@ -43,7 +43,8 @@ services:
       AUTHENTIK_POSTGRESQL__HOST: postgresql
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_POSTGRESQL__NAME: authentik
-      AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS} # TODO
+    env_file:
+      - /run/agenix/db_pw
     volumes:
       - /ssd/critical/authentik/media:/media # TODO
       - /ssd/critical/authentik/custom-templates:/templates # TODO
@@ -71,7 +72,8 @@ services:
       AUTHENTIK_POSTGRESQL__HOST: postgresql
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_POSTGRESQL__NAME: authentik
-      AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS} # TODO
+    env_file:
+      - /run/agenix/db_pw
     # `user: root` and the docker socket volume are optional.
     # See more for the docker socket integration here:
     # https://goauthentik.io/docs/outposts/integrations/docker
