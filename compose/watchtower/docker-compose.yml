@@ -13,5 +13,4 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/localtime:/etc/localtime:ro
     env_file:
-      - /run/agenix/docker_pw
-      - /run/agenix/telegram_watchtower_token
+      - /ssd/critical/watchtower/secrets.env

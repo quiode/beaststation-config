@@ -12,16 +12,4 @@ let
 in
 {
   "beaststation_mail_password.age".publicKeys = all;
-  "docker_pw.age".publicKeys = all;
-  "telegram_watchtower_token.age".publicKeys = all;
-  "db_pw.age".publicKeys = all;
-  "nextcloud_admin_password.age".publicKeys = all;
-  "nextcloud_smtp_password.age".publicKeys = all;
-  "jwt_secret.age".publicKeys = all;
-  "bw_installation_id.age".publicKeys = all;
-  "bw_installation_key.age".publicKeys = all;
-  "schwaiger_admin_password.age".publicKeys = all;
-  "gitlab_smtp_password.age".publicKeys = all;
-  "registry_http_secret.age".publicKeys = all;
-  "immich_db_pw.age".publicKeys = all;
 }

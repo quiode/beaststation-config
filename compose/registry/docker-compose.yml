@@ -12,7 +12,7 @@ services:
     environment:
       REGISTRY_STORAGE_DELETE_ENABLED: true
     env_file:
-      - /run/agenix/registry_http_secret
+      - /ssd/critical/registry/secrets.env
 
   ui:
     image: joxit/docker-registry-ui
@@ -31,15 +31,15 @@ services:
       - registry-internal
       - registry-external
     labels:
-      - 'traefik.http.routers.registry.rule=Host(`registry.dominik-schwaiger.ch`)'
-      - 'traefik.http.routers.registry.tls=true'
-      - 'traefik.http.routers.registry.tls.certresolver=letsencrypt'
-      - 'traefik.http.services.registry.loadbalancer.server.port=80'
-      - 'traefik.http.services.registry.loadbalancer.passHostHeader=true'
-      - 'traefik.enable=true'
-      - 'traefik.docker.network=registry'
-      - 'traefik.http.middlewares.registry-auth.basicauth.usersfile=/ssd/critical/registry/auth/htpasswd'
-      - 'traefik.http.routers.registry.middlewares=registry-auth@docker'
+      traefik.http.routers.registry.rule: Host(`registry.dominik-schwaiger.ch`)
+      traefik.http.routers.registry.tls: true
+      traefik.http.routers.registry.tls.certresolver: letsencrypt
+      traefik.http.services.registry.loadbalancer.server.port: 80
+      traefik.http.services.registry.loadbalancer.passHostHeader: true
+      traefik.enable: true
+      traefik.docker.network: registry
+      traefik.http.middlewares.registry-auth.basicauth.usersfile: /ssd/critical/registry/auth/htpasswd
+      traefik.http.routers.registry.middlewares: registry-auth@docker
 
 networks:
   registry-internal:

@@ -32,11 +32,11 @@ services:
       - ollama
     restart: always
     labels:
-      - 'traefik.enable=true'
-      - 'traefik.docker.network=ollama'
-      - 'traefik.http.routers.ollama.rule=Host(`chat.dominik-schwaiger.ch`)'
-      - 'traefik.http.routers.ollama.tls=true'
-      - 'traefik.http.routers.ollama.tls.certresolver=letsencrypt'
+      traefik.enable: true
+      traefik.docker.network: ollama
+      traefik.http.routers.ollama.rule: Host(`chat.dominik-schwaiger.ch`)
+      traefik.http.routers.ollama.tls: true
+      traefik.http.routers.ollama.tls.certresolver: letsencrypt
 
 networks:
   ollama-internal:

@@ -3,9 +3,7 @@ services:
     image: bitwarden/self-host:beta
     container_name: bitwarden
     env_file:
-      - /run/agenix/nextcloud_smtp_password
-      - /run/agenix/bw_installation_id
-      - /run/agenix/bw_installation_key
+      - /ssd/critical/bitwarden/secrets.env
       - settings.env
     depends_on:
       - bitwarden-db
@@ -18,12 +16,12 @@ services:
       - bitwarden-internal
       - bitwarden-external
     labels:
-      - 'traefik.http.routers.bitwarden.rule=Host(`bitwarden.dominik-schwaiger.ch`)'
-      - 'traefik.http.routers.bitwarden.tls=true'
-      - 'traefik.http.routers.bitwarden.tls.certresolver=letsencrypt'
-      - 'traefik.http.services.bitwarden.loadbalancer.server.port=8080'
-      - 'traefik.enable=true'
-      - 'traefik.docker.network=bitwarden'
+      traefik.http.routers.bitwarden.rule: Host(`bitwarden.dominik-schwaiger.ch`)
+      traefik.http.routers.bitwarden.tls: true
+      traefik.http.routers.bitwarden.tls.certresolver: letsencrypt
+      traefik.http.services.bitwarden.loadbalancer.server.port: 8080
+      traefik.enable: true
+      traefik.docker.network: bitwarden
 
   bitwarden-db:
     image: mariadb:lts

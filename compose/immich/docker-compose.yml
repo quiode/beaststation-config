@@ -20,7 +20,7 @@ services:
       - /hdd/critical/immich/data/profile:/usr/src/app/upload/profile
       - /etc/localtime:/etc/localtime:ro
     env_file:
-      - /run/agenix/immich_db_pw
+      - /ssd/critical/immich/secrets.env
       - .env
     depends_on:
       - redis
@@ -32,11 +32,11 @@ services:
       - immich-internal
       - immich-external
     labels:
-      - 'traefik.enable=true'
-      - 'traefik.docker.network=immich'
-      - 'traefik.http.routers.immich.rule=Host(`immich.dominik-schwaiger.ch`)'
-      - 'traefik.http.routers.immich.tls=true'
-      - 'traefik.http.routers.immich.tls.certresolver=letsencrypt'
+      traefik.enable: true
+      traefik.docker.network: immich
+      traefik.http.routers.immich.rule: Host(`immich.dominik-schwaiger.ch`)
+      traefik.http.routers.immich.tls: true
+      traefik.http.routers.immich.tls.certresolver: letsencrypt
 
   immich-machine-learning:
     container_name: immich_machine_learning
@@ -48,7 +48,7 @@ services:
       - model-cache:/cache
       - /etc/localtime:/etc/localtime:ro
     env_file:
-      - /run/agenix/immich_db_pw
+      - /ssd/critical/immich/secrets.env
       - .env
     restart: always
     healthcheck:
@@ -73,7 +73,7 @@ services:
     networks:
       - immich-internal
     env_file:
-      - /run/agenix/immich_db_pw
+      - /ssd/critical/immich/secrets.env
     environment:
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_DB: ${DB_DATABASE_NAME}

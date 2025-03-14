@@ -38,18 +38,6 @@ in
   # specify agenix secrets. will be mounted at /run/agenix/secret
   age.secrets = {
     beaststation_mail_password.file = ../../secrets/beaststation_mail_password.age;
-    docker_pw.file = ../../secrets/docker_pw.age;
-    telegram_watchtower_token.file = ../../secrets/telegram_watchtower_token.age;
-    db_pw.file = ../../secrets/db_pw.age;
-    nextcloud_admin_password.file = ../../secrets/nextcloud_admin_password.age;
-    nextcloud_smtp_password.file = ../../secrets/nextcloud_smtp_password.age;
-    jwt_secret.file = ../../secrets/jwt_secret.age;
-    bw_installation_id.file = ../../secrets/bw_installation_id.age;
-    bw_installation_key.file = ../../secrets/bw_installation_key.age;
-    schwaiger_admin_password.file = ../../secrets/schwaiger_admin_password.age;
-    gitlab_smtp_password.file = ../../secrets/gitlab_smtp_password.age;
-    registry_http_secret.file = ../../secrets/registry_http_secret.age;
-    immich_db_pw.file = ../../secrets/immich_db_pw.age;
   };
 
   environment = {

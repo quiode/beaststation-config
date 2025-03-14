@@ -6,4 +6,4 @@ The server itself runs on NixOS which is configured inside `nix`. The `README.md
 
 The actual services are all run inside docker containers. Their setup is specified with the docker compose files inside `compose` (see again the `README.md`).
 
-All data is stored on raid devices and the most critical data is also being backuped on an external server.
+All data is stored on raid devices and the most critical data is also being backed up on an external server.

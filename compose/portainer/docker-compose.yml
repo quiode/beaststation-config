@@ -1,6 +1,6 @@
 services:
   portainer:
-    image: 'portainer/portainer-ce:alpine'
+    image: 'portainer/portainer-ce:alpine
     restart: always
     container_name: portainer
     networks:
@@ -10,12 +10,12 @@ services:
       - /ssd/critical/portainer/data:/data
       - /etc/localtime:/etc/localtime:ro
     labels:
-      - 'traefik.http.routers.portainer.rule=Host(`portainer.dominik-schwaiger.ch`)'
-      - 'traefik.http.routers.portainer.tls=true'
-      - 'traefik.http.routers.portainer.tls.certresolver=letsencrypt'
-      - 'traefik.http.services.portainer.loadbalancer.server.port=9000'
-      - 'traefik.enable=true'
-      - 'traefik.docker.network=portainer'
+      traefik.http.routers.portainer.rule: Host(`portainer.dominik-schwaiger.ch`)
+      traefik.http.routers.portainer.tls: true
+      traefik.http.routers.portainer.tls.certresolver: letsencrypt
+      traefik.http.services.portainer.loadbalancer.server.port: 9000
+      traefik.enable: true
+      traefik.docker.network: portainer
 
 networks:
   portainer:
