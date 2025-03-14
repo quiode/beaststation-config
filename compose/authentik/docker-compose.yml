@@ -11,9 +11,9 @@ services:
       retries: 5
       timeout: 5s
     volumes:
-      - /ssd/critical/authentik/database:/var/lib/postgresql/data # TODO
+      - /ssd/critical/authentik/database:/var/lib/postgresql/data
     env_file:
-      - /ssd/critical/authentik/secrets.env # TODO
+      - /ssd/critical/authentik/secrets.env
     environment:
       POSTGRES_USER: authentik
       POSTGRES_DB: authentik
@@ -45,10 +45,10 @@ services:
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_POSTGRESQL__NAME: authentik
     volumes:
-      - /ssd/critical/authentik/media:/media # TODO
-      - /ssd/critical/authentik/custom-templates:/templates # TODO
+      - /ssd/critical/authentik/media:/media
+      - /ssd/critical/authentik/custom-templates:/templates
     env_file:
-      - /ssd/critical/authentik/secrets.env # TODO
+      - /ssd/critical/authentik/secrets.env
     depends_on:
       postgresql:
         condition: service_healthy
@@ -81,11 +81,11 @@ services:
     user: root
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /ssd/critical/authentik/media:/media # TODO
-      - /ssd/critical/authentik/certs:/certs # TODO
-      - /ssd/critical/authentik/custom-templates:/templates # TODO
+      - /ssd/critical/authentik/media:/media
+      - /ssd/critical/authentik/certs:/certs
+      - /ssd/critical/authentik/custom-templates:/templates
     env_file:
-      - /ssd/critical/authentik/secrets.env # TODO
+      - /ssd/critical/authentik/secrets.env
     depends_on:
       postgresql:
         condition: service_healthy
