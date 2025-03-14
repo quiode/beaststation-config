@@ -27,7 +27,6 @@ services:
       - onlyoffice
       - portainer
       - bitwarden
-      - stationboard
       - gitlab
       - autodiscover
       - registry
@@ -54,9 +53,6 @@ networks:
 
   bitwarden:
     name: bitwarden
-
-  stationboard:
-    name: stationboard
 
   gitlab:
     name: gitlab
