@@ -2,78 +2,59 @@
 
 Docker compose files for my server (Beaststation).
 
-## Required Secrets
+## Location
 
-These should mounted to `/run/agenix`.
-They should each define a set of environment variables and then are mounted as environment files.
+These should be saved to `/ssd/critical/service/secrets.env` for each service and mounted as env files.
 
-### Format
+## Secrets
 
-- `secret_name` in `/run/agenix/secret_name`
-
-  - `ENV` environemnt variable defined in the secret
-    - description
-
-  `other env vars that depend on above env vars`
-
-### Secrets
-
-- `docker_pw`
+- **Watchtower**
   - `REPO_PASSWORD`
     - password for docker repo
-- `telegram_watchtower_token`
   - `WATCHTOWER_NOTIFICATION_URL`
     - telegram url (token) for watchtower bot
-- `db_pw`
-
+- **Common Database Secret**
   - `DB_PW`
     - password for databases
-
   ```bash
   MYSQL_PASSWORD="${DB_PW}"
   MARIADB_ROOT_PASSWORD="${DB_PW}"
   MARIADB_PASSWORD="${DB_PW}"
   POSTGRES_PASSWORD="${DB_PW}"
   ```
-
-- `nextcloud_admin_password`
+- **Nextcloud**
   - `NEXTCLOUD_ADMIN_PASSWORD`
     - admin password for nextcloud
-- `nextcloud_smtp_password`
 
-  - `NEXTCLOUD_SMTP_PASSWORD`
+  - `SMTP_PASSWORD`
     - password for <mail@nextcloud.dominik-schwaiger.ch>
-
-  `globalSettings__mail__smtp__password="${SMTP_PASSWORD}"`
-
-- `jwt_secret`
+      `NEXTCLOUD_SMTP_PASSWORD="${SMTP_PASSWORD}"`
+      `globalSettings__mail__smtp__password="${SMTP_PASSWORD}"`
+- **Only Office**
   - `JWT_SECRET`
     - secret for jwt's (onlyoffice)
-- `bw_installation_id`
+- **Bitwarden**
   - `BW_INSTALLATION_ID`
     - get from <https://bitwarden.com/host/>
-- `bw_installation_key`
   - `BW_INSTALLATION_KEY`
     - get from <https://bitwarden.com/host/>
-- `schwaiger_admin_password`
+- **Personal Website**
   - `SCHWAIGER_ADMIN_PASSWORD`
     - password to enter admin panel of <https://dominik-schwaiger.ch>
-- `gitlab_smtp_password`
+- **Gitlab**
   - `GITLAB_SMTP_PASSWORD`
     - email password for gitlab
-- `registry_http_secret`
+- **Registry**
   - `REGISTRY_HTTP_SECRET`
     - http secret for docker registry
-- `immich_db_pw`
-
+- **Immich**
   - `DB_PASSWORD`
     - password for immich db
-
-  `POSTGRES_PASSWORD="${DB_PASSWORD}"`
+      `POSTGRES_PASSWORD="${DB_PASSWORD}"`
 
 ## Bind Volumes
 
-Critical data (which should be snapshotted more often and also should be backuped) is always saved under `pool/critical` while non-critical stuff is saved under `pool/non-critical`. There are two pools, `hdd` and `ssd`. Their names should make it clear which one is where. Big data or data which doesn't have to be accessed for a long time should be on the hdd while small data or data that has to be accessed often should be saved on the ssd.
+Critical data (which should be snapshotted more often and also should be backed up) is always saved under `pool/critical` while non-critical stuff is saved under `pool/non-critical`. There are two pools, `hdd` and `ssd`. Their names should make it clear which one is where. Big data or data which doesn't have to be accessed for a long time should be on the hdd while small data or data that has to be accessed often should be saved on the ssd.
 
 ### Data
 
@@ -122,7 +103,6 @@ Critical data (which should be snapshotted more often and also should be backupe
 
 ### Other
 
-- `/run/agenix/`
 - `/var/run/docker.sock`
 
 ## Ports

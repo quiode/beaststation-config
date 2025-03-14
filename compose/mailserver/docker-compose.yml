@@ -18,11 +18,11 @@ services:
     # https://docker-mailserver.github.io/docker-mailserver/latest/config/security/understanding-the-ports/
     # To avoid conflicts with yaml base-60 float, DO NOT remove the quotation marks.
     ports:
-      - '25:25' # SMTP  (explicit TLS => STARTTLS, Authentication is DISABLED => use port 465/587 instead)
-      - '143:143' # IMAP4 (explicit TLS => STARTTLS)
-      - '465:465' # ESMTP (implicit TLS)
-      - '587:587' # ESMTP (explicit TLS => STARTTLS)
-      - '993:993' # IMAP4 (implicit TLS)
+      - 25:25 # SMTP  (explicit TLS => STARTTLS, Authentication is DISABLED => use port 465/587 instead)
+      - 143:143 # IMAP4 (explicit TLS => STARTTLS)
+      - 465:465 # ESMTP (implicit TLS)
+      - 587:587 # ESMTP (explicit TLS => STARTTLS)
+      - 993:993 # IMAP4 (implicit TLS)
     volumes:
       - /ssd/critical/mailserver/mail-data/:/var/mail/
       - /ssd/critical/mailserver/config/:/tmp/docker-mailserver/
@@ -77,12 +77,12 @@ services:
       #- MAIL_UUID=7A981A9E-D5D0-4EF8-87FE-39FD6A506FAC
       #- LDAP_UUID=6ECB6BA9-2208-4ABF-9E60-4E9F4CD7309E
     labels:
-      - 'traefik.http.routers.autodiscover.rule=Host(`autodiscover.dominik-schwaiger.ch`) || Host(`autoconfig.dominik-schwaiger.ch`) || Host(`mail.dominik-schwaiger.ch`)' # this is needed for mail to work (mail has no own certificate)
-      - 'traefik.http.routers.autodiscover.tls=true'
-      - 'traefik.http.routers.autodiscover.tls.certresolver=letsencrypt'
-      - 'traefik.http.services.autodiscover.loadbalancer.server.port=8000'
-      - 'traefik.enable=true'
-      - 'traefik.docker.network=autodiscover'
+      traefik.http.routers.autodiscover.rule: Host(`autodiscover.dominik-schwaiger.ch`) || Host(`autoconfig.dominik-schwaiger.ch`) || Host(`mail.dominik-schwaiger.ch`) # this is needed for mail to work (mail has no own certificate)
+      traefik.http.routers.autodiscover.tls: true
+      traefik.http.routers.autodiscover.tls.certresolver: letsencrypt
+      traefik.http.services.autodiscover.loadbalancer.server.port: 8000
+      traefik.enable: true
+      traefik.docker.network: autodiscover
     volumes:
       - /etc/localtime:/etc/localtime:ro
 

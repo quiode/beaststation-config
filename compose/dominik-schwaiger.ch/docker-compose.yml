@@ -9,13 +9,13 @@ services:
       - /hdd/non-critical/dominik-schwaiger.ch/images:/dominik-schwaiger.ch/images
       - /etc/localtime:/etc/localtime:ro
     env_file:
-      - /run/agenix/schwaiger_admin_password
+      - /ssd/critical/dominik-schwaiger.ch/secrets.env
     labels:
-      - 'traefik.http.routers.website.rule=Host(`dominik-schwaiger.ch`)'
-      - 'traefik.http.routers.website.tls=true'
-      - 'traefik.http.routers.website.tls.certresolver=letsencrypt'
-      - 'traefik.enable=true'
-      - 'traefik.docker.network=dominik-schwaiger'
+      traefik.http.routers.website.rule: Host(`dominik-schwaiger.ch`)
+      traefik.http.routers.website.tls: true
+      traefik.http.routers.website.tls.certresolver: letsencrypt
+      traefik.enable: true
+      traefik.docker.network: dominik-schwaiger
 
 networks:
   dominik-schwaiger:

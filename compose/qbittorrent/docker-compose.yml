@@ -15,12 +15,12 @@ services:
     networks:
       - qbittorrent
     labels:
-      - 'traefik.http.routers.qbittorrent.rule=Host(`qbittorrent.dominik-schwaiger.ch`)'
-      - 'traefik.http.routers.qbittorrent.tls=true'
-      - 'traefik.http.routers.qbittorrent.tls.certresolver=letsencrypt'
-      - 'traefik.http.services.qbittorrent.loadbalancer.server.port=8080'
-      - 'traefik.enable=true'
-      - 'traefik.docker.network=qbittorrent'
+      - traefik.http.routers.qbittorrent.rule: Host(`qbittorrent.dominik-schwaiger.ch`)
+      - traefik.http.routers.qbittorrent.tls: true
+      - traefik.http.routers.qbittorrent.tls.certresolver: letsencrypt
+      - traefik.http.services.qbittorrent.loadbalancer.server.port: 8080
+      - traefik.enable: true
+      - traefik.docker.network: qbittorrent
 
 networks:
   qbittorrent:
