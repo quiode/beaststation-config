@@ -7,11 +7,6 @@ Docker compose files for my server (Beaststation).
 These should be saved to `/ssd/critical/service/secrets.env` for each service and mounted as env files.
 
 ## Secrets
-## Location
-
-These should be saved to `/ssd/critical/service/secrets.env` for each service and mounted as env files.
-
-## Secrets
 
 - **Watchtower**
   - `REPO_PASSWORD`
