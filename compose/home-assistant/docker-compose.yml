@@ -10,9 +10,9 @@ services:
       - /hdd/critical/home-assistant/backups:/config/backups
       - ./configuration.yaml:/config/configuration.yaml:ro
       - /etc/localtime:/etc/localtime:ro
-    #  - /run/dbus:/run/dbus:ro
+      - /run/dbus:/run/dbus:ro
     restart: always
-    #privileged: true
+    privileged: true
     #network_mode: host
     networks:
       - home-assistant
