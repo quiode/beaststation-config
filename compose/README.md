@@ -7,6 +7,11 @@ Docker compose files for my server (Beaststation).
 These should be saved to `/ssd/critical/service/secrets.env` for each service and mounted as env files.
 
 ## Secrets
+## Location
+
+These should be saved to `/ssd/critical/service/secrets.env` for each service and mounted as env files.
+
+## Secrets
 
 - **Watchtower**
   - `REPO_PASSWORD`
@@ -51,6 +56,10 @@ These should be saved to `/ssd/critical/service/secrets.env` for each service an
   - `DB_PASSWORD`
     - password for immich db
       `POSTGRES_PASSWORD="${DB_PASSWORD}"`
+- **Authentik**
+  - `AUTHENTIK_EMAIL__PASSWORD`
+  - `POSTGRES_PASSWORD`
+  - `AUTHENTIK_POSTGRESQL__PASSWORD`
 
 ## Bind Volumes
 
@@ -100,6 +109,10 @@ Critical data (which should be snapshotted more often and also should be backed 
 - `/hdd/critical/matrix/data/media`
 - `/ssd/critical/matrix/data`
 - `/ssd/critical/matrix/db`
+- `/ssd/critical/authentik/database`
+- `/ssd/critical/authentik/media`
+- `/ssd/critical/authentik/certs`
+- `/ssd/critical/authentik/custom-templates`
 
 ### Other
 
