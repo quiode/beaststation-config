@@ -42,7 +42,7 @@ in
 
   environment = {
     # packages
-    systemPackages = with pkgs; [ inputs.agenix.packages."${system}".default fastfetch onefetch btop sanoid dua gptfdisk htop pv zip unzip immich-cli speedtest-cli wget nvtopPackages.full zfs-prune-snapshots mdadm lvm2 drbd gnome-remote-desktop ];
+    systemPackages = with pkgs; [ inputs.agenix.packages."${system}".default fastfetch onefetch btop sanoid dua gptfdisk htop pv zip unzip immich-cli speedtest-cli wget nvtopPackages.full zfs-prune-snapshots mdadm lvm2 drbd gnome-remote-desktop nix-index xorg.xhost ];
 
     # custom /etc stuff
     etc = {
@@ -201,11 +201,12 @@ in
   services = {
     xrdp = {
       enable = true;
-      defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
+      defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
       openFirewall = true;
     };
 
     xserver = {
+      xkb.layout = "ch";
       enable = true;
       videoDrivers = [ "nvidia" ];
       displayManager.gdm.enable = true;
@@ -363,6 +364,11 @@ in
 
   # programs
   programs = {
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [ xorg.libX11 gdk-pixbuf gobject-introspection glib glibc libpseudo gtk2 pango cairo xlights at-spi2-atk ];
+    };
+
     vim = {
       enable = true;
       defaultEditor = true;
