@@ -42,7 +42,7 @@ in
 
   environment = {
     # packages
-    systemPackages = with pkgs; [ inputs.agenix.packages."${system}".default fastfetch onefetch btop sanoid dua gptfdisk htop pv zip unzip immich-cli speedtest-cli wget nvtopPackages.full zfs-prune-snapshots mdadm lvm2 drbd ];
+    systemPackages = with pkgs; [ inputs.agenix.packages."${system}".default fastfetch onefetch btop sanoid dua gptfdisk htop pv zip unzip immich-cli speedtest-cli wget nvtopPackages.full zfs-prune-snapshots mdadm lvm2 drbd gnome-remote-desktop ];
 
     # custom /etc stuff
     etc = {
@@ -65,6 +65,13 @@ in
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
+  };
+
+  systemd.targets = {
+    sleep.enable = false;
+    suspend.enable = false;
+    hibernate.enable = false;
+    hybrid-sleep.enable = false;
   };
 
   # Use the systemd-boot EFI boot loader.
@@ -160,7 +167,7 @@ in
     };
 
     # explicitly enable, needed for remote unlocking
-    useDHCP = true;
+    useDHCP = lib.mkForce true;
   };
 
   # Configure system-wide user settings
@@ -192,9 +199,17 @@ in
   };
 
   services = {
+    xrdp = {
+      enable = true;
+      defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
+      openFirewall = true;
+    };
+
     xserver = {
-      enable = false;
+      enable = true;
       videoDrivers = [ "nvidia" ];
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
     };
 
     # This setups a SSH server.
