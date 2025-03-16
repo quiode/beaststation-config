@@ -24,7 +24,7 @@ services:
       traefik.http.routers.home-assistant.tls: true
       traefik.http.routers.home-assistant.tls.certresolver: letsencrypt
       traefik.http.services.home-assistant.loadbalancer.server.port: 8123
-  
+
   esphome:
     image: ghcr.io/esphome/esphome
     container_name: esphome
@@ -42,14 +42,14 @@ services:
       traefik.http.routers.esphome.rule: Host(`esphome.dominik-schwaiger.ch`)
       traefik.http.routers.esphome.tls: true
       traefik.http.routers.esphome.tls.certresolver: letsencrypt
-      traefik.http.services.esphome.loadbalancer.server.port: 6052 
+      traefik.http.services.esphome.loadbalancer.server.port: 6052
       traefik.http.routers.esphome.middlewares: simple-auth@docker
 
 networks:
   home-assistant:
     name: home-assistant
     external: true
-  
+
   esphome:
     name: esphome
     external: true
