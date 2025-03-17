@@ -44,6 +44,13 @@ services:
         gitlab_rails['smtp_authentication'] = "login"
         gitlab_rails['gitlab_email_from'] = "gitlab@dominik-schwaiger.ch"
         gitlab_rails['gitlab_email_reply_to'] = "noreply@dominik-schwaiger.ch"
+
+        # Container Registry
+        registry['enable'] = true
+        registry_external_url 'https://registry.dominik-schwaiger.ch'
+        registry_nginx['enable'] = true
+        registry_nginx['redirect_http_to_https'] = false
+        registry_nginx['listen_port'] = 80
     ports:
       - 22:22
     volumes:
@@ -51,9 +58,10 @@ services:
       - /hdd/non-critical/gitlab/logs:/var/log/gitlab
       - /hdd/critical/gitlab/data:/var/opt/gitlab
       - /etc/localtime:/etc/localtime:ro
+      - ./registry-garbage-collect:/etc/cron.d/registry-garbage-collect:ro
     shm_size: '256m'
     labels:
-      traefik.http.routers.gitlab.rule: Host(`gitlab.dominik-schwaiger.ch`)
+      traefik.http.routers.gitlab.rule: Host(`gitlab.dominik-schwaiger.ch`) || Host(`registry.dominik-schwaiger.ch`)
       traefik.http.routers.gitlab.tls: true
       traefik.http.routers.gitlab.tls.certresolver: letsencrypt
       traefik.http.services.gitlab.loadbalancer.server.port: 80
