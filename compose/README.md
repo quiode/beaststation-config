@@ -82,7 +82,6 @@ Critical data (which should be snapshotted more often and also should be backed 
 - `/hdd/critical/gitlab/data`
 - `/hdd/non-critical/registry/data`
 - `/ssd/critical/registry/auth`
-- `/ssd/critical/traefik/auth`
 - `/ssd/non-critical/traefik/acme.json`
 - `/ssd/critical/jellyfin/config`
 - `/hdd/non-critical/jellyfin/media`
