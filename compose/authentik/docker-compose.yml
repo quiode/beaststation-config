@@ -31,11 +31,11 @@ services:
       retries: 5
       timeout: 3s
 
-  server:
+  authentik:
     image: ghcr.io/goauthentik/server
     restart: always
     container_name: authentik
-    command: server 
+    command: server
     networks:
       - authentik-internal
       - authentik-external
@@ -90,7 +90,7 @@ services:
       postgresql:
         condition: service_healthy
       redis:
-        condition: service_healthy 
+        condition: service_healthy
     networks:
       - authentik-internal
 
