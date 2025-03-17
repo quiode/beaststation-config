@@ -10,7 +10,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /ssd/non-critical/traefik/acme.json:/acme.json
       - ./traefik.yml:/etc/traefik/traefik.yml:ro
-      - /ssd/critical/registry/auth/htpasswd:/ssd/critical/registry/auth/htpasswd:ro
       - /etc/localtime:/etc/localtime:ro
     labels:
       traefik.http.middlewares.authentik.forwardauth.address: http://authentik:9000/outpost.goauthentik.io/auth/traefik
@@ -30,7 +29,6 @@ services:
       - bitwarden
       - gitlab
       - autodiscover
-      - registry
       - jellyfin
       - qbittorrent
       - immich
@@ -61,9 +59,6 @@ networks:
 
   autodiscover:
     name: autodiscover
-
-  registry:
-    name: registry
 
   jellyfin:
     name: jellyfin

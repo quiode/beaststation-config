@@ -44,9 +44,6 @@ These should be saved to `/ssd/critical/service/secrets.env` for each service an
 - **Gitlab**
   - `GITLAB_SMTP_PASSWORD`
     - email password for gitlab
-- **Registry**
-  - `REGISTRY_HTTP_SECRET`
-    - http secret for docker registry
 - **Immich**
   - `DB_PASSWORD`
     - password for immich db
@@ -80,8 +77,6 @@ Critical data (which should be snapshotted more often and also should be backed 
 - `/hdd/non-critical/gitlab/logs`
 - `/ssd/critical/gitlab/config`
 - `/hdd/critical/gitlab/data`
-- `/hdd/non-critical/registry/data`
-- `/ssd/critical/registry/auth`
 - `/ssd/non-critical/traefik/acme.json`
 - `/ssd/critical/jellyfin/config`
 - `/hdd/non-critical/jellyfin/media`
