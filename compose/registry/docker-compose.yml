@@ -19,10 +19,10 @@ services:
     container_name: registry-ui
     restart: always
     environment:
-      - DELETE_IMAGES=true
-      - REGISTRY_TITLE=Dominik's Docker Registry
-      - NGINX_PROXY_PASS_URL=http://registry:5000
-      - SINGLE_REGISTRY=true
+      DELETE_IMAGES: true
+      REGISTRY_TITLE: Dominik's Docker Registry
+      NGINX_PROXY_PASS_URL: http://registry:5000
+      SINGLE_REGISTRY: true
     volumes:
       - /etc/localtime:/etc/localtime:ro
     depends_on:
@@ -39,7 +39,7 @@ services:
       traefik.enable: true
       traefik.docker.network: registry
       traefik.http.middlewares.registry-auth.basicauth.usersfile: /ssd/critical/registry/auth/htpasswd
-      traefik.http.routers.registry.middlewares: registry-auth@docker
+      traefik.http.routers.registry.middlewares: authentik@docker
 
 networks:
   registry-internal:
