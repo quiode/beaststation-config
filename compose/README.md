@@ -44,6 +44,10 @@ These should be saved to `/ssd/critical/service/secrets.env` for each service an
 - **Gitlab**
   - `GITLAB_SMTP_PASSWORD`
     - email password for gitlab
+  - `OIDC_CLIENT_SECRET`
+    - authentik
+  - `OIDC_CLIENT_SECRET`
+    - authentik
 - **Immich**
   - `DB_PASSWORD`
     - password for immich db
