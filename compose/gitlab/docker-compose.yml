@@ -63,7 +63,7 @@ services:
         gitlab_rails['omniauth_block_auto_created_users'] = false
         gitlab_rails['omniauth_auto_link_saml_user'] = true
         gitlab_rails['omniauth_auto_link_user'] = ["openid_connect"]
-        gitlab_rails['omniauth_providers'] = [{name: 'openid_connect',label: 'My Company OIDC Login',args: {name: 'openid_connect',scope: ['openid','profile','email'],response_type: 'code',issuer: 'https://auth.dominik-schwaiger.ch/application/o/gitlab-slug/',discovery: true,client_auth_method: 'query',uid_field: 'preferred_username',send_scope_to_token_endpoint: 'true',pkce: true,client_options: {identifier: '${OIDC_CLIENT_ID}',secret: '${OIDC_CLIENT_SECRET}',redirect_uri: 'https://gitlab.dominik-schwaiger.ch/users/auth/openid_connect/callback'}}}]
+        gitlab_rails['omniauth_providers'] = [{name: 'openid_connect',label: 'My Company OIDC Login',args: {name: 'openid_connect',scope: ['openid','profile','email'],response_type: 'code',issuer: 'https://auth.dominik-schwaiger.ch/application/o/gitlab-slug/',discovery: true,client_auth_method: 'query',uid_field: 'preferred_username',send_scope_to_token_endpoint: 'true',pkce: true,client_options: {identifier: ENV['OIDC_CLIENT_ID'],secret: ENV['OIDC_CLIENT_SECRET'],redirect_uri: 'https://gitlab.dominik-schwaiger.ch/users/auth/openid_connect/callback'}}}]
     ports:
       - 22:22
     volumes:
