@@ -25,7 +25,6 @@ services:
       - nextcloud
       - dominik-schwaiger
       - onlyoffice
-      - portainer
       - bitwarden
       - gitlab
       - autodiscover
@@ -47,9 +46,6 @@ networks:
 
   onlyoffice:
     name: onlyoffice
-
-  portainer:
-    name: portainer
 
   bitwarden:
     name: bitwarden

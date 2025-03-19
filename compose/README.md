@@ -75,7 +75,6 @@ Critical data (which should be snapshotted more often and also should be backed 
 - `/ssd/critical/nextcloud/database`
 - `/ssd/critical/minecraft/server`
 - `/hdd/non-critical/minecraft/backups`
-- `/ssd/critical/portainer/data`
 - `/ssd/critical/bitwarden/data`
 - `/ssd/critical/bitwarden/database`
 - `/hdd/non-critical/bitwarden/logs`
