@@ -42,8 +42,8 @@ services:
       - /ssd/critical/authentik/secrets.env
       - /ssd/critical/authentik/ldap-secrets.env
     environment:
-      AUTHENTIK_HOST: authentik
-      AUTHENTIK_INSECURE: 'true'
+      AUTHENTIK_HOST: https://auth.dominik-schwaiger.ch
+      AUTHENTIK_INSECURE: 'false'
 
   authentik:
     image: ghcr.io/goauthentik/server
