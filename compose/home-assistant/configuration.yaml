@@ -27,7 +27,7 @@ notify:
 http:
   use_x_forwarded_for: true
   trusted_proxies:
-    - 172.0.0.0/8
+    - 172.16.0.0/12
 
 auth_header:
   username_header: X-authentik-username
