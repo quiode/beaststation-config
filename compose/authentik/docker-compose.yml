@@ -62,11 +62,9 @@ services:
     env_file:
       - /ssd/critical/authentik/secrets.env
     depends_on:
-      postgresql:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-      authentik_ldap:
+      - postgresql
+      - redis
+      - authentik_ldap
     labels:
       traefik.http.routers.authentik.rule: Host(`auth.dominik-schwaiger.ch`)
       traefik.http.routers.authentik.tls: true
@@ -99,10 +97,8 @@ services:
     env_file:
       - /ssd/critical/authentik/secrets.env
     depends_on:
-      postgresql:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
+      - postgresql
+      - redis
     networks:
       - authentik-internal
 
