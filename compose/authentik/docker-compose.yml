@@ -31,19 +31,19 @@ services:
       retries: 5
       timeout: 3s
 
-authentik_ldap:
-  image: ghcr.io/goauthentik/ldap
-  networks:
-    - authentik-internal
-  ports:
-    - 389:3389
-    - 636:6636
-  env_file:
-    - /ssd/critical/authentik/secrets.env
-    - /ssd/critical/authentik/ldap-secrets.env
-  environment:
-    AUTHENTIK_HOST: authentik
-    AUTHENTIK_INSECURE: 'true'
+  authentik_ldap:
+    image: ghcr.io/goauthentik/ldap
+    networks:
+      - authentik-internal
+    ports:
+      - 389:3389
+      - 636:6636
+    env_file:
+      - /ssd/critical/authentik/secrets.env
+      - /ssd/critical/authentik/ldap-secrets.env
+    environment:
+      AUTHENTIK_HOST: authentik
+      AUTHENTIK_INSECURE: 'true'
 
   authentik:
     image: ghcr.io/goauthentik/server
