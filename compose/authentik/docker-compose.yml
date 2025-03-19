@@ -59,7 +59,7 @@ services:
     volumes:
       - /ssd/critical/authentik/media:/media
       - /ssd/critical/authentik/custom-templates:/templates
-    env_file:
+      - /ssd/non-critical/traefik/acme.json:/certs/acme.json:ro
       - /ssd/critical/authentik/secrets.env
     depends_on:
       - postgresql
