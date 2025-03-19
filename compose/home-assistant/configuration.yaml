@@ -28,6 +28,8 @@ http:
   use_x_forwarded_for: true
   trusted_proxies:
     - '0.0.0.0/0'
+  auth_header:
+    username_header: X-authentik-username
 
 recorder:
   purge_keep_days: 150
