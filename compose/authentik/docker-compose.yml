@@ -31,6 +31,21 @@ services:
       retries: 5
       timeout: 3s
 
+  services:
+    authentik_ldap:
+      image: ghcr.io/goauthentik/ldap
+      networks:
+        - authentik-internal
+      ports:
+        - 389:3389
+        - 636:6636
+      environment:
+        AUTHENTIK_HOST: authentik
+        AUTHENTIK_INSECURE: 'true'
+        AUTHENTIK_TOKEN: ${LDAP_AUTHENTIK_TOKEN}
+    env_file:
+      - /ssd/critical/authentik/secrets.env
+
   authentik:
     image: ghcr.io/goauthentik/server
     restart: always
@@ -80,7 +95,6 @@ services:
     # (1000:1000 by default)
     user: root
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
       - /ssd/critical/authentik/media:/media
       - /ssd/critical/authentik/certs:/certs
       - /ssd/critical/authentik/custom-templates:/templates
