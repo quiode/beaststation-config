@@ -39,12 +39,12 @@ services:
       ports:
         - 389:3389
         - 636:6636
+      env_file:
+        - /ssd/critical/authentik/secrets.env
       environment:
         AUTHENTIK_HOST: authentik
         AUTHENTIK_INSECURE: 'true'
         AUTHENTIK_TOKEN: ${LDAP_AUTHENTIK_TOKEN}
-    env_file:
-      - /ssd/critical/authentik/secrets.env
 
   authentik:
     image: ghcr.io/goauthentik/server
