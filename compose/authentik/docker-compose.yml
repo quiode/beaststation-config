@@ -39,7 +39,6 @@ services:
     networks:
       - authentik-internal
       - authentik-external
-      - home-assistant
     environment:
       AUTHENTIK_REDIS__HOST: redis
       AUTHENTIK_POSTGRESQL__HOST: postgresql
@@ -56,7 +55,7 @@ services:
       redis:
         condition: service_healthy
     labels:
-      traefik.http.routers.authentik.rule: Host(`auth.dominik-schwaiger.ch`) || (Host(`home.dominik-schwaiger.ch`) && PathPrefix(`/path`) && !PathPrefix(`/path/token`))
+      traefik.http.routers.authentik.rule: Host(`auth.dominik-schwaiger.ch`)
       traefik.http.routers.authentik.tls: true
       traefik.http.routers.authentik.tls.certresolver: letsencrypt
       traefik.http.services.authentik.loadbalancer.server.port: 9000
@@ -100,8 +99,4 @@ networks:
 
   authentik-external:
     name: authentik
-    external: true
-
-  home-assistant:
-    name: home-assistant
     external: true
