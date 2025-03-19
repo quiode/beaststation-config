@@ -56,6 +56,9 @@ These should be saved to `/ssd/critical/service/secrets.env` for each service an
   - `AUTHENTIK_EMAIL__PASSWORD`
   - `POSTGRES_PASSWORD`
   - `AUTHENTIK_POSTGRESQL__PASSWORD`
+- **Open WebUI**
+  - `OAUTH_CLIENT_ID`
+  - `OAUTH_CLIENT_SECRET`
 
 ## Bind Volumes
 
