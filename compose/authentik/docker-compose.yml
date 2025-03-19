@@ -66,6 +66,7 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+      authentik_ldap:
     labels:
       traefik.http.routers.authentik.rule: Host(`auth.dominik-schwaiger.ch`)
       traefik.http.routers.authentik.tls: true
