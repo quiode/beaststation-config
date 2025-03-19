@@ -41,10 +41,10 @@ services:
         - 636:6636
       env_file:
         - /ssd/critical/authentik/secrets.env
+        - /ssd/critical/authentik/ldap-secrets.env
       environment:
         AUTHENTIK_HOST: authentik
         AUTHENTIK_INSECURE: 'true'
-        AUTHENTIK_TOKEN: ${LDAP_AUTHENTIK_TOKEN}
 
   authentik:
     image: ghcr.io/goauthentik/server
