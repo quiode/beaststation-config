@@ -23,7 +23,6 @@ services:
       traefik.http.routers.home-assistant.rule: Host(`home.dominik-schwaiger.ch`)
       traefik.http.routers.home-assistant.tls: true
       traefik.http.routers.home-assistant.tls.certresolver: letsencrypt
-      traefik.http.routers.home-assistant.middlewares: authentik@docker
       traefik.http.services.home-assistant.loadbalancer.server.port: 8123
 
   esphome:

@@ -29,8 +29,12 @@ http:
   trusted_proxies:
     - 172.16.0.0/12
 
-auth_header:
-  username_header: X-authentik-username
+auth_oidc:
+  client_id: !secret auth_client_id
+  client_secret: !secret auth_client_secret
+  discovery_url: 'https://auth.dominik-schwaiger.ch/application/o/home-assistant/.well-known/openid-configuration'
+  features:
+    automatic_user_linking: true
 
 recorder:
   purge_keep_days: 150
