@@ -34,8 +34,8 @@ services:
   authentik_ldap:
     image: ghcr.io/goauthentik/ldap
     ports:
-      - 389:389
-      - 636:636
+      - 389:3389
+      - 636:6636
     env_file:
       - /ssd/critical/authentik/secrets.env
       - /ssd/critical/authentik/ldap-secrets.env
