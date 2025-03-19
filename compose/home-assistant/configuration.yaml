@@ -29,6 +29,7 @@ http:
   trusted_proxies:
     - 0.0.0.0/0
     - 172.0.0.0/8
+    - 172.23.0.2
   auth_header:
     username_header: X-authentik-username
 
