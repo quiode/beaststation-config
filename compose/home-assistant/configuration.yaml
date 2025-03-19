@@ -28,6 +28,7 @@ http:
   use_x_forwarded_for: true
   trusted_proxies:
     - '0.0.0.0/0'
+    - '172.0.0.0/8'
   auth_header:
     username_header: X-authentik-username
 
