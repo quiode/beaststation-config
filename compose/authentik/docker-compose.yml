@@ -33,8 +33,6 @@ services:
 
   authentik_ldap:
     image: ghcr.io/goauthentik/ldap
-    networks:
-      - authentik-internal
     ports:
       - 389:3389
       - 636:6636
