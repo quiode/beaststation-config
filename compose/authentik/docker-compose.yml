@@ -33,6 +33,7 @@ services:
 
   authentik_ldap:
     image: ghcr.io/goauthentik/ldap
+    restart: always
     ports:
       - 389:3389
       - 636:6636
