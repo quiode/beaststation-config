@@ -9,7 +9,7 @@ x-env: &env
     NEXTCLOUD_ADMIN_USER: 'admin'
     REDIS_HOST: 'nextcloud-cache'
     APACHE_DISABLE_REWRITE_IP: '1'
-    TRUSTED_PROXIES: '192.168.90.0/24'
+    TRUSTED_PROXIES: '172.16.0.0/12'
     OVERWRITEHOST: 'nextcloud.dominik-schwaiger.ch'
     OVERWRITEPROTOCOL: 'https'
     OVERWRITEWEBROOT: '/'
