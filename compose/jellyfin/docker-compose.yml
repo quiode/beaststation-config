@@ -156,6 +156,15 @@ services:
       traefik.http.services.prowlarr.loadbalancer.server.port: 9696
       traefik.http.routers.prowlarr.middlewares: authentik@docker
 
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr
+    container_name: flaresolverr
+    environment:
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - jellyfin-internal
+    restart: always
+
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent
     container_name: qbittorrent
