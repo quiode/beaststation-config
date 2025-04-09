@@ -144,286 +144,291 @@ in
       enable = true;
       flags = [ "--all" ];
     };
-  };
-
-  # Set hostname
-  networking = {
-    hostName = "beaststation";
-    hostId = "d7f38611";
-
-    # enable firewall
-    firewall = {
-      enable = true;
-
-      allowedTCPPorts = [ 22 80 443 1194 2222 25565 25 143 389 465 587 636 993 ];
-      allowedUDPPorts = [ 22 80 443 1194 2222 25565 25 143 389 465 587 636 993 ];
+    daemon.settings = {
+      "default-address-pools" = [
+        { "base" = "172.29.0.0/16"; "size" = 24; }
+        { "base" = "172.30.0.0/16"; "size" = 24; }
+      ];
     };
 
-    # explicitly enable, needed for remote unlocking
-    useDHCP = true;
-  };
+    # Set hostname
+    networking = {
+      hostName = "beaststation";
+      hostId = "d7f38611";
 
-  # Configure system-wide user settings
-  users = {
-    groups = {
-      virt = { };
-      domina = { };
+      # enable firewall
+      firewall = {
+        enable = true;
+
+        allowedTCPPorts = [ 22 80 443 1194 2222 25565 25 143 389 465 587 636 993 ];
+        allowedUDPPorts = [ 22 80 443 1194 2222 25565 25 143 389 465 587 636 993 ];
+      };
+
+      # explicitly enable, needed for remote unlocking
+      useDHCP = true;
     };
 
+    # Configure system-wide user settings
     users = {
-      domina = {
-        isNormalUser = true;
-        openssh.authorizedKeys.keys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILWkILtyyPWk4UYWJaZoI5UqGKo/qlaJG5h7zfS69+ie mail@dominik-schwaiger.ch"
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINxfAbBPBerC/yizdTU3aWII4fsDWEwZBHmxMAhgNn7X quio@dominik-kaltbrunn-pc"
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIINYO9+aRrPHh8WDkpcY0xSxJeFZg3nyjuhXkLOlBKIm"
-        ];
-        extraGroups = [ "wheel" "docker" "video" ];
-        group = "domina";
+      groups = {
+        virt = { };
+        domina = { };
       };
 
-      virt = {
-        isNormalUser = true;
-        extraGroups = [ ];
-        group = "virt";
-        openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCvENmoNJtelL9NIB+c/KSanF5kajF+/SuS1FuA3n5a7l/XFEw0YHw8vRZqjsJYHHjCyKba0BZ0kVu96JtiLEcR6SE7rpESuJ8hVL0JS8sVCjp+jjpmMM60aOx7vXPqR6BiOnCK74EpucEXrotUl0KYD0TEwE9O1ArML9Pxz2VFQ/mFjmmGmOg46B3N302T6t4Ng+YzavUW9E5S1Lw5hxQPR2G4ujLSFeIwchTTqG7SpJfzmczJ8XPQ6SJ2fNTkXfTNBOBOe5d8g1XNrZz55njV9IWIIpnOPDpKfPYCuubiFgkQv89n7fpS/lLr1sNyYnGVowjamOI6GKzWmG+hqkpnLz0sx5clurr6nMYb6MlmFsBi9saBoWyVLAQOhrat882Sk3dd5NebEA5A53ctk4oVd92Wda6PYvaVsC5KC+fqztE1+Zvi8jJR21l3Yh/GmlRBplKp/WlUJ+MF9MD+/mOaU9Ca8EmibitIjEkv1/GnQHR2KsHaFBooF7pfBQh3mxhfE1RF6a1Y2zzSO5GDzdQlDCQmjvB8KT0vEScna5dhw9ys+sS8Q5pqtpouObUUL4DRFr27GUpzrdKNtrJ4bonWFhPeurQBsXEvpMT/Xl4rH0+2WNeiSmTv2+U8U1y7Ld+tQa296EfgZ+62CMQLV7JRuJYoPpkc6nNtCJ8FIJPrPw== joshua@board" "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIffUHUiY5LIzpG5EfwT6mbulPlwejd7rSztrJmMohP1 backup@pool" "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII9S1UMVtJr2CHLg2XuSMyl8m2F/ezKULST7kM7saY2r backup@home" "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC6sBthWuPYqE+Bds9QKfg9ka0L6CAXsf0NrEEIvbq6lJdUt34tp/IjPtJe0g0cydgXpdLk/hsOM1tn0h/hCXBy2YjUab/aJbRZPf+qXD9ZLg4o1w/nPc4a64BsLwYAdtiS9osq15zUpzibYRLaaKhLlF7v4LY0tiwU7hUO8kQs/jxDBDfvx4xTexCWHoWcBtX9xdQQSXqX3JKhVjQxMfsYxw1TJZ6LZduAIxo8kKKJ+WXl8JpORu+c98OQ++ed1UMIxaAeviOJ34+0EK/wDtakzqLUGXL7h5OZ07p7jBCiLo4WYhAMIwSS20tWP2J3aS02v0Xd+BAdsPW1iKIVlJGBK8XWDIlYn9+otJ+TR3DK9ROGFBKJlBCs7n7NBFchE/2NmI0O0DASm/jn6tjFumk7aOKvycCu102zTnxzpuO+1NlV/xmZS+DnQb/mQxZy+1CAKMmxBGoY+BiPHFpbpD7O59AY5fuOm2G/5J32CzKPXTuLdgjttzsPi/QkS7FFwh8= joshua@pad" ];
+      users = {
+        domina = {
+          isNormalUser = true;
+          openssh.authorizedKeys.keys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILWkILtyyPWk4UYWJaZoI5UqGKo/qlaJG5h7zfS69+ie mail@dominik-schwaiger.ch"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINxfAbBPBerC/yizdTU3aWII4fsDWEwZBHmxMAhgNn7X quio@dominik-kaltbrunn-pc"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIINYO9+aRrPHh8WDkpcY0xSxJeFZg3nyjuhXkLOlBKIm"
+          ];
+          extraGroups = [ "wheel" "docker" "video" ];
+          group = "domina";
+        };
+
+        virt = {
+          isNormalUser = true;
+          extraGroups = [ ];
+          group = "virt";
+          openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCvENmoNJtelL9NIB+c/KSanF5kajF+/SuS1FuA3n5a7l/XFEw0YHw8vRZqjsJYHHjCyKba0BZ0kVu96JtiLEcR6SE7rpESuJ8hVL0JS8sVCjp+jjpmMM60aOx7vXPqR6BiOnCK74EpucEXrotUl0KYD0TEwE9O1ArML9Pxz2VFQ/mFjmmGmOg46B3N302T6t4Ng+YzavUW9E5S1Lw5hxQPR2G4ujLSFeIwchTTqG7SpJfzmczJ8XPQ6SJ2fNTkXfTNBOBOe5d8g1XNrZz55njV9IWIIpnOPDpKfPYCuubiFgkQv89n7fpS/lLr1sNyYnGVowjamOI6GKzWmG+hqkpnLz0sx5clurr6nMYb6MlmFsBi9saBoWyVLAQOhrat882Sk3dd5NebEA5A53ctk4oVd92Wda6PYvaVsC5KC+fqztE1+Zvi8jJR21l3Yh/GmlRBplKp/WlUJ+MF9MD+/mOaU9Ca8EmibitIjEkv1/GnQHR2KsHaFBooF7pfBQh3mxhfE1RF6a1Y2zzSO5GDzdQlDCQmjvB8KT0vEScna5dhw9ys+sS8Q5pqtpouObUUL4DRFr27GUpzrdKNtrJ4bonWFhPeurQBsXEvpMT/Xl4rH0+2WNeiSmTv2+U8U1y7Ld+tQa296EfgZ+62CMQLV7JRuJYoPpkc6nNtCJ8FIJPrPw== joshua@board" "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIffUHUiY5LIzpG5EfwT6mbulPlwejd7rSztrJmMohP1 backup@pool" "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII9S1UMVtJr2CHLg2XuSMyl8m2F/ezKULST7kM7saY2r backup@home" "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC6sBthWuPYqE+Bds9QKfg9ka0L6CAXsf0NrEEIvbq6lJdUt34tp/IjPtJe0g0cydgXpdLk/hsOM1tn0h/hCXBy2YjUab/aJbRZPf+qXD9ZLg4o1w/nPc4a64BsLwYAdtiS9osq15zUpzibYRLaaKhLlF7v4LY0tiwU7hUO8kQs/jxDBDfvx4xTexCWHoWcBtX9xdQQSXqX3JKhVjQxMfsYxw1TJZ6LZduAIxo8kKKJ+WXl8JpORu+c98OQ++ed1UMIxaAeviOJ34+0EK/wDtakzqLUGXL7h5OZ07p7jBCiLo4WYhAMIwSS20tWP2J3aS02v0Xd+BAdsPW1iKIVlJGBK8XWDIlYn9+otJ+TR3DK9ROGFBKJlBCs7n7NBFchE/2NmI0O0DASm/jn6tjFumk7aOKvycCu102zTnxzpuO+1NlV/xmZS+DnQb/mQxZy+1CAKMmxBGoY+BiPHFpbpD7O59AY5fuOm2G/5J32CzKPXTuLdgjttzsPi/QkS7FFwh8= joshua@pad" ];
+        };
       };
     };
-  };
 
-  services = {
-    xserver = {
-      enable = false;
-      videoDrivers = [ "nvidia" ];
-    };
-
-    # This setups a SSH server.
-    openssh = {
-      enable = true;
-      settings = {
-        # Opinionated: forbid root login through SSH.
-        PermitRootLogin = "no";
-        # Opinionated: use keys only.
-        # Remove if you want to SSH using passwords
-        PasswordAuthentication = false;
+    services = {
+      xserver = {
+        enable = false;
+        videoDrivers = [ "nvidia" ];
       };
 
-      # use non-default 222 port for ssh
-      ports = [ 2222 ];
-    };
-
-    zfs = {
-      # zfs auto scrub
-      autoScrub.enable = true;
-
-      # enable zed -> email notifications for zfs
-      zed = {
+      # This setups a SSH server.
+      openssh = {
+        enable = true;
         settings = {
-          ZED_DEBUG_LOG = "/tmp/zed.debug.log";
-          ZED_EMAIL_ADDR = [ "root" ];
-          ZED_EMAIL_PROG = "${pkgs.msmtp}/bin/msmtp";
-          ZED_EMAIL_OPTS = "@ADDRESS@";
-
-          ZED_NOTIFY_INTERVAL_SECS = 3600;
-          ZED_NOTIFY_VERBOSE = true;
-
-          ZED_USE_ENCLOSURE_LEDS = true;
-          ZED_SCRUB_AFTER_RESILVER = true;
+          # Opinionated: forbid root login through SSH.
+          PermitRootLogin = "no";
+          # Opinionated: use keys only.
+          # Remove if you want to SSH using passwords
+          PasswordAuthentication = false;
         };
 
-        # this option does not work; will return error
-        enableMail = false;
+        # use non-default 222 port for ssh
+        ports = [ 2222 ];
       };
-    };
 
-    # automatic snapshots of zfs datasets
-    sanoid = {
-      enable = true;
+      zfs = {
+        # zfs auto scrub
+        autoScrub.enable = true;
 
-      templates = {
-        critical = {
-          # frequency
-          hourly = 36;
-          daily = 30;
-          monthly = 6;
-          yearly = 0;
+        # enable zed -> email notifications for zfs
+        zed = {
+          settings = {
+            ZED_DEBUG_LOG = "/tmp/zed.debug.log";
+            ZED_EMAIL_ADDR = [ "root" ];
+            ZED_EMAIL_PROG = "${pkgs.msmtp}/bin/msmtp";
+            ZED_EMAIL_OPTS = "@ADDRESS@";
 
-          # additional settings
-          autoprune = true;
-          autosnap = true;
-        };
+            ZED_NOTIFY_INTERVAL_SECS = 3600;
+            ZED_NOTIFY_VERBOSE = true;
 
-        non-critical = {
-          # frequency
-          hourly = 10;
-          daily = 7;
-          monthly = 1;
-          yearly = 0;
+            ZED_USE_ENCLOSURE_LEDS = true;
+            ZED_SCRUB_AFTER_RESILVER = true;
+          };
 
-          # additional settings
-          autoprune = true;
-          autosnap = true;
+          # this option does not work; will return error
+          enableMail = false;
         };
       };
 
-      datasets = {
-        "hdd/enc/critical" = {
-          use_template = [ "critical" ];
-          recursive = true;
+      # automatic snapshots of zfs datasets
+      sanoid = {
+        enable = true;
+
+        templates = {
+          critical = {
+            # frequency
+            hourly = 36;
+            daily = 30;
+            monthly = 6;
+            yearly = 0;
+
+            # additional settings
+            autoprune = true;
+            autosnap = true;
+          };
+
+          non-critical = {
+            # frequency
+            hourly = 10;
+            daily = 7;
+            monthly = 1;
+            yearly = 0;
+
+            # additional settings
+            autoprune = true;
+            autosnap = true;
+          };
         };
 
-        "hdd/enc/non-critical" = {
-          use_template = [ "non-critical" ];
-          recursive = true;
-        };
+        datasets = {
+          "hdd/enc/critical" = {
+            use_template = [ "critical" ];
+            recursive = true;
+          };
 
-        "rpool/ssd/critical" = {
-          use_template = [ "critical" ];
-          recursive = true;
-        };
+          "hdd/enc/non-critical" = {
+            use_template = [ "non-critical" ];
+            recursive = true;
+          };
 
-        "rpool/ssd/non-critical" = {
-          use_template = [ "non-critical" ];
-          recursive = true;
-        };
+          "rpool/ssd/critical" = {
+            use_template = [ "critical" ];
+            recursive = true;
+          };
 
-        "rpool/home" = {
-          use_template = [ "critical" ];
-          recursive = true;
-        };
+          "rpool/ssd/non-critical" = {
+            use_template = [ "non-critical" ];
+            recursive = true;
+          };
 
-        "rpool/nix" = {
-          use_template = [ "non-critical" ];
-          recursive = true;
-        };
+          "rpool/home" = {
+            use_template = [ "critical" ];
+            recursive = true;
+          };
 
-        "rpool/root" = {
-          use_template = [ "non-critical" ];
-          recursive = true;
-        };
+          "rpool/nix" = {
+            use_template = [ "non-critical" ];
+            recursive = true;
+          };
 
-        "rpool/var" = {
-          use_template = [ "non-critical" ];
-          recursive = true;
+          "rpool/root" = {
+            use_template = [ "non-critical" ];
+            recursive = true;
+          };
+
+          "rpool/var" = {
+            use_template = [ "non-critical" ];
+            recursive = true;
+          };
         };
       };
-    };
 
-    # automatic backup of zfs snapshots
-    syncoid = {
-      enable = true;
+      # automatic backup of zfs snapshots
+      syncoid = {
+        enable = true;
 
-      user = "syncoid";
-      group = "syncoid";
+        user = "syncoid";
+        group = "syncoid";
 
-      # use custom ssh key
-      sshKey = /etc/secrets/syncoid/id_ed25519;
+        # use custom ssh key
+        sshKey = /etc/secrets/syncoid/id_ed25519;
 
-      commonArgs = [ "--delete-target-snapshots" "--no-sync-snap" ];
+        commonArgs = [ "--delete-target-snapshots" "--no-sync-snap" ];
 
-      commands = {
-        "hdd/enc/critical" = {
-          source = "hdd/enc/critical";
-          target = "domina@yniederer.ch:backup/hdd";
-          sendOptions = "w";
-          extraArgs = [ "--sshport" "2222" ];
-          recursive = true;
-        };
+        commands = {
+          "hdd/enc/critical" = {
+            source = "hdd/enc/critical";
+            target = "domina@yniederer.ch:backup/hdd";
+            sendOptions = "w";
+            extraArgs = [ "--sshport" "2222" ];
+            recursive = true;
+          };
 
-        "rpool/ssd/critical" = {
-          source = "rpool/ssd/critical";
-          target = "domina@yniederer.ch:backup/ssd";
-          sendOptions = "w";
-          extraArgs = [ "--sshport" "2222" ];
-          recursive = true;
-        };
-      };
-    };
-  };
-
-  # set locale, time, etc.
-  time.timeZone = "Europe/Zurich";
-  i18n.defaultLocale = "en_GB.UTF-8";
-  console.keyMap = "de_CH-latin1";
-
-  # programs
-  programs = {
-    vim = {
-      enable = true;
-      defaultEditor = true;
-    };
-
-    git = {
-      enable = true;
-      config = {
-        user = {
-          email = "beaststation@dominik-schwaiger.ch";
-          name = "beaststation";
-        };
-
-        save = {
-          directory = [ "config" ];
+          "rpool/ssd/critical" = {
+            source = "rpool/ssd/critical";
+            target = "domina@yniederer.ch:backup/ssd";
+            sendOptions = "w";
+            extraArgs = [ "--sshport" "2222" ];
+            recursive = true;
+          };
         };
       };
     };
 
-    bash = {
-      # set alias for simple update
-      shellAliases = {
-        update = "nix flake update --commit-lock-file --flake /config/nix";
-        upgrade = "nh os switch /config/nix";
-        unlock = "sudo zfs load-key -a ; sudo zfs load-key -a -L prompt && sudo zfs mount -a";
-        occ = "sudo docker exec --user www-data nextcloud php occ";
+    # set locale, time, etc.
+    time.timeZone = "Europe/Zurich";
+    i18n.defaultLocale = "en_GB.UTF-8";
+    console.keyMap = "de_CH-latin1";
+
+    # programs
+    programs = {
+      vim = {
+        enable = true;
+        defaultEditor = true;
       };
 
-      loginShellInit = ''
-        # If not running interactively, don't do anything and return early
-        [[ $- == *i* ]] || return  
-        fastfetch
-      '';
-    };
+      git = {
+        enable = true;
+        config = {
+          user = {
+            email = "beaststation@dominik-schwaiger.ch";
+            name = "beaststation";
+          };
 
-    # enable mail sending through mail server
-    msmtp = {
-      enable = true;
-      setSendmail = true;
-      defaults = {
-        aliases = "/etc/aliases";
-        port = 465;
-        tls_trust_file = "/etc/ssl/certs/ca-certificates.crt";
-        tls = "on";
-        auth = "login";
-        tls_starttls = "off";
-      };
-      accounts = {
-        default = {
-          host = "mail.dominik-schwaiger.ch";
-          from = "beaststation@dominik-schwaiger.ch";
-          user = "beaststation@dominik-schwaiger.ch";
-          passwordeval = "${pkgs.coreutils}/bin/cat ${config.age.secrets.beaststation_mail_password.path}";
+          save = {
+            directory = [ "config" ];
+          };
         };
       };
-    };
 
-    # enable ssh agent
-    ssh = {
-      startAgent = true;
-      knownHosts = {
-        "[yniederer.ch]:2222".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOxx2JxRobdvqPUIDgl0xFHoF0UVjNGNGmQzqg0xr210";
+      bash = {
+        # set alias for simple update
+        shellAliases = {
+          update = "nix flake update --commit-lock-file --flake /config/nix";
+          upgrade = "nh os switch /config/nix";
+          unlock = "sudo zfs load-key -a ; sudo zfs load-key -a -L prompt && sudo zfs mount -a";
+          occ = "sudo docker exec --user www-data nextcloud php occ";
+        };
+
+        loginShellInit = ''
+          # If not running interactively, don't do anything and return early
+          [[ $- == *i* ]] || return  
+          fastfetch
+        '';
+      };
+
+      # enable mail sending through mail server
+      msmtp = {
+        enable = true;
+        setSendmail = true;
+        defaults = {
+          aliases = "/etc/aliases";
+          port = 465;
+          tls_trust_file = "/etc/ssl/certs/ca-certificates.crt";
+          tls = "on";
+          auth = "login";
+          tls_starttls = "off";
+        };
+        accounts = {
+          default = {
+            host = "mail.dominik-schwaiger.ch";
+            from = "beaststation@dominik-schwaiger.ch";
+            user = "beaststation@dominik-schwaiger.ch";
+            passwordeval = "${pkgs.coreutils}/bin/cat ${config.age.secrets.beaststation_mail_password.path}";
+          };
+        };
+      };
+
+      # enable ssh agent
+      ssh = {
+        startAgent = true;
+        knownHosts = {
+          "[yniederer.ch]:2222".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOxx2JxRobdvqPUIDgl0xFHoF0UVjNGNGmQzqg0xr210";
+        };
+      };
+
+      nh = {
+        enable = true;
+        clean.enable = true;
+        clean.extraArgs = "--keep-since 4d --keep 5";
+        flake = "/config/nix";
       };
     };
 
-    nh = {
-      enable = true;
-      clean.enable = true;
-      clean.extraArgs = "--keep-since 4d --keep 5";
-      flake = "/config/nix";
-    };
-  };
+    # optimize storage automatically
+    nix.optimise.automatic = true;
 
-  # optimize storage automatically
-  nix.optimise.automatic = true;
-
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "24.11";
-}
+    # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+    system.stateVersion = "24.11";
+  }
