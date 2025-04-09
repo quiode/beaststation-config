@@ -60,6 +60,8 @@ services:
     container_name: jellyseerr
     depends_on:
       - jellyfin
+      - sonarr
+      - radarr
     networks:
       - jellyseerr
       - jellyfin-internal
@@ -81,6 +83,8 @@ services:
   sonarr:
     image: lscr.io/linuxserver/sonarr
     container_name: sonarr
+    depends_on:
+      - qbittorrent
     environment:
       PUID: 1000
       PGID: 1000
@@ -105,6 +109,8 @@ services:
   radarr:
     image: lscr.io/linuxserver/radarr
     container_name: radarr
+    depends_on:
+      - qbittorrent
     environment:
       PUID: 1000
       PGID: 1000
