@@ -114,6 +114,7 @@ Critical data (which should be snapshotted more often and also should be backed 
 - `/ssd/critical/jellyseerr/config`
 - `/ssd/critical/sonarr/config`
 - `/ssd/critical/radarr/config`
+- `/ssd/critical/prowlarr/config`
 
 ### Other
 

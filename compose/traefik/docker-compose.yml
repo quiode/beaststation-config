@@ -39,6 +39,7 @@ services:
       - jellyseerr
       - radarr
       - sonarr
+      - prowlarr
 
 networks:
   nextcloud:
@@ -91,3 +92,6 @@ networks:
 
   sonarr:
     name: sonarr
+
+  prowlarr:
+    name: prowlarr
