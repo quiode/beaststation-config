@@ -23,13 +23,16 @@ These should be saved to `/ssd/critical/service/secrets.env` for each service an
   POSTGRES_PASSWORD="${DB_PW}"
   ```
 - **Nextcloud**
+
   - `NEXTCLOUD_ADMIN_PASSWORD`
+
     - admin password for nextcloud
 
   - `SMTP_PASSWORD`
     - password for <mail@nextcloud.dominik-schwaiger.ch>
       `NEXTCLOUD_SMTP_PASSWORD="${SMTP_PASSWORD}"`
       `globalSettings__mail__smtp__password="${SMTP_PASSWORD}"`
+
 - **Only Office**
   - `JWT_SECRET`
     - secret for jwt's (onlyoffice)
@@ -108,6 +111,10 @@ Critical data (which should be snapshotted more often and also should be backed 
 - `/ssd/critical/authentik/media`
 - `/ssd/critical/authentik/certs`
 - `/ssd/critical/authentik/custom-templates`
+- `/ssd/critical/jellyseerr/config`
+- `/ssd/critical/sonarr/config`
+- `/ssd/critical/radarr/config`
+- `/ssd/critical/prowlarr/config`
 
 ### Other
 

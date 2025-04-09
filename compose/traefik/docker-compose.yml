@@ -36,6 +36,10 @@ services:
       - matrix
       - esphome
       - authentik
+      - jellyseerr
+      - radarr
+      - sonarr
+      - prowlarr
 
 networks:
   nextcloud:
@@ -79,3 +83,15 @@ networks:
 
   authentik:
     name: authentik
+
+  jellyseerr:
+    name: jellyseerr
+
+  radarr:
+    name: radarr
+
+  sonarr:
+    name: sonarr
+
+  prowlarr:
+    name: prowlarr
