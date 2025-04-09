@@ -137,6 +137,8 @@ services:
   prowlarr:
     image: lscr.io/linuxserver/prowlarr
     container_name: prowlarr
+    depends_on:
+      - flaresolverr
     environment:
       PUID: 1000
       PGID: 1000
