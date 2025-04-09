@@ -91,7 +91,7 @@ services:
         - /etc/localtime:/etc/localtime:ro
         - /ssd/critical/sonarr/config:/config
         - /hdd/non-critical/jellyfin/media/shows:/tv #optional
-        - /hdd/non-critical/sonarr/downloads:/downloads #optional
+        - /hdd/non-critical/qbittorrent/downloads:/downloads #optional
       restart: always
       labels:
         traefik.enable: true
@@ -110,7 +110,7 @@ services:
       volumes:
         - /ssd/critical/radarr/config:/config
         - /hdd/non-critical/jellyfin/media/movies:/movies #optional
-        - /hdd/non-critical/radarr/downloads:/downloads #optional
+        - /hdd/non-critical/qbittorrent/downloads:/downloads #optional
         - /etc/localtime:/etc/localtime:ro
       networks:
         - jellyfin-internal
