@@ -16,7 +16,8 @@ services:
     restart: always
     runtime: nvidia
     networks:
-      - jellyfin
+      - jellyfin-internal
+      - jellyfin-external
     labels:
       traefik.enable: true
       ## HTTP Router
@@ -54,10 +55,150 @@ services:
       traefik.http.services.jellyfin.loadBalancer.passHostHeader: true
       traefik.docker.network: jellyfin
 
+  jellyseerr:
+    image: fallenbagel/jellyseerr
+    container_name: jellyseerr
+    depends_on:
+      - jellyfin
+    networks:
+      - jellyseerr
+      - jellyfin-internal
+    environment:
+      LOG_LEVEL: debug
+      PORT: 5055 #optional
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /ssd/critical/jellyseerr/config:/app/config
+    restart: always
+    labels:
+      traefik.enable: true
+      traefik.docker.network: jellyseerr
+      traefik.http.routers.jellyseerr.rule: Host(`jellyseerr.dominik-schwaiger.ch`)
+      traefik.http.routers.jellyseerr.tls: true
+      traefik.http.routers.jellyseerr.tls.certresolver: letsencrypt
+      traefik.http.services.jellyseerr.loadbalancer.server.port: 5055
+
+    sonarr:
+      image: lscr.io/linuxserver/sonarr
+      container_name: sonarr
+      environment:
+        PUID: 1000
+        PGID: 1000
+      networks:
+        - jellyfin-internal
+        - sonarr
+      volumes:
+        - /etc/localtime:/etc/localtime:ro
+        - /ssd/critical/sonarr/config:/config
+        - /hdd/non-critical/jellyfin/media/shows:/tv #optional
+        - /hdd/non-critical/sonarr/downloads:/downloads #optional
+      restart: always
+      labels:
+        traefik.enable: true
+        traefik.docker.network: sonarr
+        traefik.http.routers.sonarr.rule: Host(`sonarr.dominik-schwaiger.ch`)
+        traefik.http.routers.sonarr.tls: true
+        traefik.http.routers.sonarr.tls.certresolver: letsencrypt
+        traefik.http.services.sonarr.loadbalancer.server.port: 8989
+
+    radarr:
+      image: lscr.io/linuxserver/radarr
+      container_name: radarr
+      environment:
+        PUID: 1000
+        PGID: 1000
+      volumes:
+        - /ssd/critical/radarr/config:/config
+        - /hdd/non-critical/jellyfin/media/movies:/movies #optional
+        - /hdd/non-critical/radarr/downloads:/downloads #optional
+        - /etc/localtime:/etc/localtime:ro
+      networks:
+        - jellyfin-internal
+        - radarr
+      restart: always
+      labels:
+        traefik.enable: true
+        traefik.docker.network: radarr
+        traefik.http.routers.radarr.rule: Host(`radarr.dominik-schwaiger.ch`)
+        traefik.http.routers.radarr.tls: true
+        traefik.http.routers.radarr.tls.certresolver: letsencrypt
+        traefik.http.services.radarr.loadbalancer.server.port: 7878
+
+  jackett:
+    image: lscr.io/linuxserver/jackett
+    container_name: jackett
+    environment:
+      PUID: 1000
+      PGID: 1000
+      AUTO_UPDATE: true #optional
+      RUN_OPTS: true #optional
+    volumes:
+      - /ssd/critical/jackett/config:/config
+      - /hdd/non-critical/jackett/downloads:/downloads
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    networks:
+      - jellyfin-internal
+      - jackett
+    labels:
+      traefik.enable: true
+      traefik.docker.network: jackett
+      traefik.http.routers.jackett.rule: Host(`jackett.dominik-schwaiger.ch`)
+      traefik.http.routers.jackett.tls: true
+      traefik.http.routers.jackett.tls.certresolver: letsencrypt
+      traefik.http.services.jackett.loadbalancer.server.port: 9117
+
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent
+    container_name: qbittorrent
+    environment:
+      PUID: 1000
+      PGID: 1000
+      WEBUI_PORT: 8080
+      TORRENTING_PORT: 6881
+    volumes:
+      - /ssd/critical/qbittorrent/appdata:/config
+      - /hdd/non-critical/qbittorrent/downloads:/downloads
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    networks:
+      - jellyfin-internal
+      - qbittorrent
+    labels:
+      traefik.http.routers.qbittorrent.rule: Host(`qbittorrent.dominik-schwaiger.ch`)
+      traefik.http.routers.qbittorrent.tls: true
+      traefik.http.routers.qbittorrent.tls.certresolver: letsencrypt
+      traefik.http.routers.qbittorrent.middlewares: authentik@docker
+      traefik.http.services.qbittorrent.loadbalancer.server.port: 8080
+      traefik.enable: true
+      traefik.docker.network: qbittorrent
+
 volumes:
   cache:
 
 networks:
-  jellyfin:
+  jellyfin-internal:
+
+  jellyfin-external:
     name: jellyfin
+    external: true
+
+  jellyseerr:
+    name: jellyseerr
+    external: true
+
+  qbittorrent:
+    name: qbittorrent
+    external: true
+
+  jackett:
+    name: jackett
+    external: true
+
+  radarr:
+    name: radarr
+    external: true
+
+  sonarr:
+    name: sonarr
     external: true
