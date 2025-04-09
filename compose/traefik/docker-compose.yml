@@ -37,7 +37,6 @@ services:
       - esphome
       - authentik
       - jellyseerr
-      - jackett
       - radarr
       - sonarr
 
@@ -86,9 +85,6 @@ networks:
 
   jellyseerr:
     name: jellyseerr
-
-  jackett:
-    name: jackett
 
   radarr:
     name: radarr
