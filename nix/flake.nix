@@ -44,6 +44,7 @@
 
             home-manager.users.domina = import ./home-manager/domina.nix;
             home-manager.users.virt = import ./home-manager/virt.nix;
+            home-manager.users.vali = import ./home-manager/vali.nix;
           }
 
           # insert agenix
