@@ -52,7 +52,7 @@ services:
         # Container Registry
         registry['enable'] = true
         registry_external_url 'https://registry.dominik-schwaiger.ch'
-        registry['database'] = {'enabled' => false,'host' => 'registry-db','port' => 5432,'user' => 'registry','password' => ENV['POSTGRES_PASSWORD'],'dbname' => 'registry','sslmode' => 'disable'}
+        registry['database'] = {'enabled' => true,'host' => 'registry-db','port' => 5432,'user' => 'registry','password' => ENV['POSTGRES_PASSWORD'],'dbname' => 'registry','sslmode' => 'disable'}
         registry_nginx['enable'] = true
         registry_nginx['redirect_http_to_https'] = false
         registry_nginx['listen_port'] = 80
