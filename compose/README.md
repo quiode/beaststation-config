@@ -51,6 +51,8 @@ These should be saved to `/ssd/critical/service/secrets.env` for each service an
     - authentik
   - `OIDC_CLIENT_SECRET`
     - authentik
+  - **Gitlab Registry**
+    - `POSTGRES_PASSWORD`
 - **Immich**
   - `DB_PASSWORD`
     - password for immich db
@@ -115,6 +117,7 @@ Critical data (which should be snapshotted more often and also should be backed 
 - `/ssd/critical/sonarr/config`
 - `/ssd/critical/radarr/config`
 - `/ssd/critical/prowlarr/config`
+- `/ssd/critical/gitlab/registry/database`
 
 ### Other
 
