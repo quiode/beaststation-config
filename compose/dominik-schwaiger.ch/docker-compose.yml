@@ -1,6 +1,6 @@
 services:
   website:
-    image: quiooo/dominik-schwaiger.ch
+    image: registry.dominik-schwaiger.ch/quio/dominik-schwaiger-ch:main
     container_name: dominik-schwaiger.ch
     restart: always
     networks:
