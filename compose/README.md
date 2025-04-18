@@ -64,6 +64,9 @@ These should be saved to `/ssd/critical/service/secrets.env` for each service an
 - **Open WebUI**
   - `OAUTH_CLIENT_ID`
   - `OAUTH_CLIENT_SECRET`
+- **Factorio**
+  - `USERNAME`
+  - `TOKEN`
 
 ## Bind Volumes
 

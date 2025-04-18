@@ -13,3 +13,5 @@ services:
       - /ssd/critical/factorio:/factorio
       - ./server-whitelist.json:/factorio/config/server-whitelist.json
       - ./server-adminlist.json:/factorio/config/server-adminlist.json
+    env_file:
+      - /ssd/critical/factorio/secrets.env
