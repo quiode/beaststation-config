@@ -12,7 +12,6 @@ services:
       # To load an old save stop the server and run the command touch oldsave.zip. This resets the date. Then restart the server. Another option is to delete all saves except one.
       - /ssd/critical/factorio:/factorio
     environment:
-      UPDATE_MODS_ON_START: false
       DLC_SPACE_AGE: false
     env_file:
       - /ssd/critical/factorio/secrets.env
