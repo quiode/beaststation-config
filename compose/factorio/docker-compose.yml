@@ -13,5 +13,6 @@ services:
       - /ssd/critical/factorio:/factorio
     environment:
       UPDATE_MODS_ON_START: false
+      DLC_SPACE_AGE: false
     env_file:
       - /ssd/critical/factorio/secrets.env
