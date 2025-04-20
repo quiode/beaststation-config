@@ -135,8 +135,8 @@ in
           enable = true;
           port = 2222;
           authorizedKeys = [
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILWkILtyyPWk4UYWJaZoI5UqGKo/qlaJG5h7zfS69+ie mail@dominik-schwaiger.ch"
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINt4xvNKr0MsKk7qY9RJux9KGfUk2lCsnAeUO4NtJP8n quio@gaming-pc"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGpYUYVbj55SB3zK+W+oUq2AdO3sS27ZeTtGVYpdq3Dd quio@laptop"
           ];
           hostKeys = [
             /etc/secrets/initrd/ssh_host_rsa_key
