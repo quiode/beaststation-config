@@ -1,6 +1,6 @@
 services:
   bitwarden:
-    image: bitwarden/self-host:beta
+    image: ghcr.io/bitwarden/self-host:beta
     container_name: bitwarden
     env_file:
       - /ssd/critical/bitwarden/secrets.env
