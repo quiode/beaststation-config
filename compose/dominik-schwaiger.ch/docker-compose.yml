@@ -11,11 +11,18 @@ services:
     env_file:
       - /ssd/critical/dominik-schwaiger.ch/secrets.env
     labels:
+      traefik.enable: true
+      traefik.docker.network: dominik-schwaiger
+      # Main Router
       traefik.http.routers.website.rule: Host(`dominik-schwaiger.ch`)
       traefik.http.routers.website.tls: true
       traefik.http.routers.website.tls.certresolver: letsencrypt
-      traefik.enable: true
-      traefik.docker.network: dominik-schwaiger
+      # Images Router (For Caching)
+      traefik.http.routers.website-images.rule: Host(`dominik-schwaiger.ch`) && PathPrefix(`/images`) && !Path(`/images/images.json`)
+      traefik.http.routers.website-images.tls: true
+      traefik.http.routers.website-images.tls.certresolver: letsencrypt
+      traefik.http.middlewares.website-image-cache.plugin.httpCache.maxStale: 30
+      traefik.http.routers.website-images.middlewares: website-image-cache@docker
 
 networks:
   dominik-schwaiger:
