@@ -6,7 +6,7 @@ services:
     networks:
       - dominik-schwaiger
     volumes:
-      - /hdd/non-critical/dominik-schwaiger.ch/images:/dominik-schwaiger.ch/images
+      - /hdd/non-critical/dominik-schwaiger.ch/images:/dominik-schwaiger.ch/public/images
       - /etc/localtime:/etc/localtime:ro
     env_file:
       - /ssd/critical/dominik-schwaiger.ch/secrets.env
