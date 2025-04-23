@@ -43,6 +43,6 @@ certificatesResolvers:
 
 experimental:
   plugins:
-    plugin-simplecache:
+    simplecache:
       moduleName: "github.com/traefik/plugin-simplecache"
       version: "v0.2.1"
