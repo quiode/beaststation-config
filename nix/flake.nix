@@ -15,41 +15,40 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , home-manager
-    , agenix
-    , ...
-    } @ inputs:
-    let
-      inherit (self) outputs;
-    in
-    {
-      # NixOS configuration entrypoint
-      nixosConfigurations.beaststation = nixpkgs.lib.nixosSystem {
-        # set system
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs outputs; };
-        # > Our main nixos configuration file <
-        modules = [
-          ./nixos/configuration.nix
-
-          # make home-manager as a module of nixos
-          # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.users.domina = import ./home-manager/domina.nix;
-            home-manager.users.virt = import ./home-manager/virt.nix;
-            home-manager.users.vali = import ./home-manager/vali.nix;
-          }
-
-          # insert agenix
-          agenix.nixosModules.default
-        ];
+  outputs = inputs: let
+    system = "x86_64-linux";
+  in {
+    # NixOS configuration entrypoint
+    nixosConfigurations.beaststation = inputs.nixpkgs.lib.nixosSystem {
+      # set system
+      inherit system;
+      specialArgs = {
+        inherit inputs;
+        inherit (inputs) self;
       };
+      # > Our main nixos configuration file <
+      modules = [
+        ./nixos/configuration.nix
+
+        # make home-manager as a module of nixos
+        # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
+        inputs.home-manager.nixosModules.default
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+
+            users = {
+              domina = import ./home-manager/domina.nix;
+              virt = import ./home-manager/virt.nix;
+              vali = import ./home-manager/vali.nix;
+            };
+          };
+        }
+
+        # insert agenix
+        inputs.agenix.nixosModules.default
+      ];
     };
+  };
 }
