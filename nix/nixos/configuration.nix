@@ -271,7 +271,7 @@ in rec {
       };
 
       # use non-default 2222 port for ssh
-      ports = [boot.initrd.ssh.port];
+      ports = [boot.initrd.ssh.ports];
     };
 
     zfs = {
