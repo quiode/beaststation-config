@@ -74,7 +74,6 @@ Critical data (which should be snapshotted more often and also should be backed 
 
 ### Data
 
-- `/ssd/critical/openvpn`
 - `/ssd/critical/nextcloud/html`
 - `/hdd/critical/nextcloud/data`
 - `/ssd/critical/nextcloud/apps`
@@ -133,7 +132,6 @@ Critical data (which should be snapshotted more often and also should be backed 
 - 80 (proxy)
 - 443 (proxy)
 - 25565 (Minecraft)
-- 1194 (OpenVPN)
 - 22 (Gitlab) (host ssh port has to be changed -> currently set to 2222)
 - 389 (LDAP Authentik)
 - 636 (LDAP Authentik)
