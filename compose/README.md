@@ -122,6 +122,7 @@ Critical data (which should be snapshotted more often and also should be backed 
 - `/ssd/critical/prowlarr/config`
 - `/ssd/critical/gitlab/registry/database`
 - `/ssd/critical/factorio`
+- `/ssd/critical/wg-easy`
 
 ### Other
 
@@ -137,3 +138,4 @@ Critical data (which should be snapshotted more often and also should be backed 
 - 389 (LDAP Authentik)
 - 636 (LDAP Authentik)
 - 34197 (Factorio)
+- 51820 (wg-easy (VPN))
