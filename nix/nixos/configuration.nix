@@ -6,21 +6,22 @@
   config,
   pkgs,
   ...
-}:
-let
-  zfsCompatibleKernelPackages = lib.filterAttrs (
-    name: kernelPackages:
-    (builtins.match "linux_[0-9]+_[0-9]+" name) != null
-    && (builtins.tryEval kernelPackages).success
-    && (!kernelPackages.${config.boot.zfs.package.kernelModuleAttribute}.meta.broken)
-  ) pkgs.linuxKernel.packages;
+}: let
+  zfsCompatibleKernelPackages =
+    lib.filterAttrs (
+      name: kernelPackages:
+        (builtins.match "linux_[0-9]+_[0-9]+" name)
+        != null
+        && (builtins.tryEval kernelPackages).success
+        && (!kernelPackages.${config.boot.zfs.package.kernelModuleAttribute}.meta.broken)
+    )
+    pkgs.linuxKernel.packages;
   latestKernelPackage = lib.last (
     lib.sort (a: b: (lib.versionOlder a.kernel.version b.kernel.version)) (
       builtins.attrValues zfsCompatibleKernelPackages
     )
   );
-in
-{
+in {
   # You can import other NixOS modules here
   imports = [
     # If you want to use modules from other flakes (such as nixos-hardware):
@@ -88,7 +89,7 @@ in
   # Use the systemd-boot EFI boot loader.
   boot = {
     # enable zfs support explicitly
-    supportedFilesystems = [ "zfs" ];
+    supportedFilesystems = ["zfs"];
 
     loader = {
       efi.canTouchEfiVariables = true;
@@ -99,7 +100,7 @@ in
         configurationLimit = 10;
         mirroredBoots = [
           {
-            devices = [ "/dev/disk/by-id/nvme-CT500P3SSD8_24304A25BBDC-part1" ];
+            devices = ["/dev/disk/by-id/nvme-CT500P3SSD8_24304A25BBDC-part1"];
             path = "/boot-fallback";
           }
         ];
@@ -118,11 +119,11 @@ in
     kernelPackages = latestKernelPackage;
 
     # enable remote unlocking by ssh, so that zfs datasets can be encrypted on boot
-    kernelModules = [ "r8169" ];
-    kernelParams = [ "ip=dhcp" ];
+    kernelModules = ["r8169"];
+    kernelParams = ["ip=dhcp"];
 
     initrd = {
-      availableKernelModules = [ "r8169" ];
+      availableKernelModules = ["r8169"];
       network = {
         enable = true;
         postCommands = ''
@@ -169,7 +170,7 @@ in
     enableNvidia = true; # TODO: deprecated, but replacement doesn't supply Nvidia runtime for docker and without that automatic restart doesn't work
     autoPrune = {
       enable = true;
-      flags = [ "--all" ];
+      flags = ["--all"];
     };
     daemon.settings = {
       "default-address-pools" = [
@@ -213,9 +214,9 @@ in
   # Configure system-wide user settings
   users = {
     groups = {
-      virt = { };
-      domina = { };
-      vali = { };
+      virt = {};
+      domina = {};
+      vali = {};
     };
 
     users = {
@@ -235,7 +236,7 @@ in
 
       virt = {
         isNormalUser = true;
-        extraGroups = [ ];
+        extraGroups = [];
         group = "virt";
         openssh.authorizedKeys.keys = [
           "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCvENmoNJtelL9NIB+c/KSanF5kajF+/SuS1FuA3n5a7l/XFEw0YHw8vRZqjsJYHHjCyKba0BZ0kVu96JtiLEcR6SE7rpESuJ8hVL0JS8sVCjp+jjpmMM60aOx7vXPqR6BiOnCK74EpucEXrotUl0KYD0TEwE9O1ArML9Pxz2VFQ/mFjmmGmOg46B3N302T6t4Ng+YzavUW9E5S1Lw5hxQPR2G4ujLSFeIwchTTqG7SpJfzmczJ8XPQ6SJ2fNTkXfTNBOBOe5d8g1XNrZz55njV9IWIIpnOPDpKfPYCuubiFgkQv89n7fpS/lLr1sNyYnGVowjamOI6GKzWmG+hqkpnLz0sx5clurr6nMYb6MlmFsBi9saBoWyVLAQOhrat882Sk3dd5NebEA5A53ctk4oVd92Wda6PYvaVsC5KC+fqztE1+Zvi8jJR21l3Yh/GmlRBplKp/WlUJ+MF9MD+/mOaU9Ca8EmibitIjEkv1/GnQHR2KsHaFBooF7pfBQh3mxhfE1RF6a1Y2zzSO5GDzdQlDCQmjvB8KT0vEScna5dhw9ys+sS8Q5pqtpouObUUL4DRFr27GUpzrdKNtrJ4bonWFhPeurQBsXEvpMT/Xl4rH0+2WNeiSmTv2+U8U1y7Ld+tQa296EfgZ+62CMQLV7JRuJYoPpkc6nNtCJ8FIJPrPw== joshua@board"
@@ -247,7 +248,7 @@ in
 
       vali = {
         isNormalUser = true;
-        extraGroups = [ ];
+        extraGroups = [];
         group = "vali";
         openssh.authorizedKeys.keys = [
           "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAAWEDj/Yib6Mqs016jx7rtecWpytwfVl28eoHtPYCM9TVLq81VIHJSN37lbkc/JjiXCdIJy2Ta3A3CVV5k3Z37NbgAu23oKA2OcHQNaRTLtqWlcBf9fk9suOkP1A3NzAqzivFpBnZm3ytaXwU8LBJqxOtNqZcFVruO6fZxJtg2uE34mAw=="
@@ -259,7 +260,7 @@ in
   services = {
     xserver = {
       enable = false;
-      videoDrivers = [ "nvidia" ];
+      videoDrivers = ["nvidia"];
     };
 
     # This setups a SSH server.
@@ -274,7 +275,7 @@ in
       };
 
       # use non-default 222 port for ssh
-      ports = [ 2222 ];
+      ports = [2222];
     };
 
     zfs = {
@@ -285,7 +286,7 @@ in
       zed = {
         settings = {
           ZED_DEBUG_LOG = "/tmp/zed.debug.log";
-          ZED_EMAIL_ADDR = [ "root" ];
+          ZED_EMAIL_ADDR = ["root"];
           ZED_EMAIL_PROG = "${pkgs.msmtp}/bin/msmtp";
           ZED_EMAIL_OPTS = "@ADDRESS@";
 
@@ -333,42 +334,42 @@ in
 
       datasets = {
         "hdd/enc/critical" = {
-          use_template = [ "critical" ];
+          use_template = ["critical"];
           recursive = true;
         };
 
         "hdd/enc/non-critical" = {
-          use_template = [ "non-critical" ];
+          use_template = ["non-critical"];
           recursive = true;
         };
 
         "rpool/ssd/critical" = {
-          use_template = [ "critical" ];
+          use_template = ["critical"];
           recursive = true;
         };
 
         "rpool/ssd/non-critical" = {
-          use_template = [ "non-critical" ];
+          use_template = ["non-critical"];
           recursive = true;
         };
 
         "rpool/home" = {
-          use_template = [ "critical" ];
+          use_template = ["critical"];
           recursive = true;
         };
 
         "rpool/nix" = {
-          use_template = [ "non-critical" ];
+          use_template = ["non-critical"];
           recursive = true;
         };
 
         "rpool/root" = {
-          use_template = [ "non-critical" ];
+          use_template = ["non-critical"];
           recursive = true;
         };
 
         "rpool/var" = {
-          use_template = [ "non-critical" ];
+          use_template = ["non-critical"];
           recursive = true;
         };
       };
@@ -436,7 +437,7 @@ in
         };
 
         save = {
-          directory = [ "config" ];
+          directory = ["config"];
         };
       };
     };
@@ -452,7 +453,7 @@ in
 
       loginShellInit = ''
         # If not running interactively, don't do anything and return early
-        [[ $- == *i* ]] || return  
+        [[ $- == *i* ]] || return
         fastfetch
       '';
     };
@@ -483,8 +484,7 @@ in
     ssh = {
       startAgent = true;
       knownHosts = {
-        "[yniederer.ch]:2222".publicKey =
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOxx2JxRobdvqPUIDgl0xFHoF0UVjNGNGmQzqg0xr210";
+        "[yniederer.ch]:2222".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOxx2JxRobdvqPUIDgl0xFHoF0UVjNGNGmQzqg0xr210";
       };
     };
 
