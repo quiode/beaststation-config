@@ -334,46 +334,24 @@ in {
         };
       };
 
-      datasets = {
-        "hdd/enc/critical" = {
+      datasets = let
+        critical = {
           use_template = ["critical"];
           recursive = true;
         };
-
-        "hdd/enc/non-critical" = {
+        non-critical = {
           use_template = ["non-critical"];
           recursive = true;
         };
-
-        "rpool/ssd/critical" = {
-          use_template = ["critical"];
-          recursive = true;
-        };
-
-        "rpool/ssd/non-critical" = {
-          use_template = ["non-critical"];
-          recursive = true;
-        };
-
-        "rpool/home" = {
-          use_template = ["critical"];
-          recursive = true;
-        };
-
-        "rpool/nix" = {
-          use_template = ["non-critical"];
-          recursive = true;
-        };
-
-        "rpool/root" = {
-          use_template = ["non-critical"];
-          recursive = true;
-        };
-
-        "rpool/var" = {
-          use_template = ["non-critical"];
-          recursive = true;
-        };
+      in {
+        "hdd/enc/critical" = critical;
+        "hdd/enc/non-critical" = non-critical;
+        "rpool/ssd/critical" = critical;
+        "rpool/ssd/non-critical" = non-critical;
+        "rpool/home" = critical;
+        "rpool/nix" = non-critical;
+        "rpool/root" = non-critical;
+        "rpool/var" = non-critical;
       };
     };
 
