@@ -197,15 +197,15 @@ in {
     hostId = "d7f38611";
 
     # enable firewall
-    firewall = {
+    firewall = let
+      commonPorts = [
+        2222 # ssh
+      ];
+    in {
       enable = true;
 
-      allowedTCPPorts = [
-        2222
-      ];
-      allowedUDPPorts = [
-        2222
-      ];
+      allowedTCPPorts = commonPorts;
+      allowedUDPPorts = commonPorts;
     };
 
     # explicitly enable, needed for remote unlocking
