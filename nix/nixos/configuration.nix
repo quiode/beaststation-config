@@ -500,7 +500,6 @@ in {
 
   # optimize storage automatically
   nix.optimise.automatic = true;
-  nix.gc.automatic = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.11";
