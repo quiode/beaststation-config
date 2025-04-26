@@ -42,6 +42,7 @@ services:
       - radarr
       - sonarr
       - prowlarr
+      - wg-easy
 
 networks:
   nextcloud:
@@ -97,3 +98,6 @@ networks:
 
   prowlarr:
     name: prowlarr
+
+  wg-easy:
+    name: wg-easy
