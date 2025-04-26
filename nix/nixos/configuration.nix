@@ -21,7 +21,7 @@
       builtins.attrValues zfsCompatibleKernelPackages
     )
   );
-in {
+in rec {
   # You can import other NixOS modules here
   imports = [
     # If you want to use modules from other flakes (such as nixos-hardware):
@@ -135,11 +135,7 @@ in {
         ssh = {
           enable = true;
           port = 2222;
-          authorizedKeys = [
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINt4xvNKr0MsKk7qY9RJux9KGfUk2lCsnAeUO4NtJP8n quio@gaming-pc"
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGpYUYVbj55SB3zK+W+oUq2AdO3sS27ZeTtGVYpdq3Dd quio@laptop"
-            "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBL/+jpXlMFM8n4BqvAiPKshuQlHnEkwowrYjq9EExLzrCGpY8D47lAQYh/YkiwILYPHEiznfP7bLCvVifwp1QKI= quio@OnePlusNord"
-          ];
+          authorizedKeys = users.users.domina.openssh.authorizedKeys.keys;
           hostKeys = [
             /etc/secrets/initrd/ssh_host_rsa_key
             /etc/secrets/initrd/ssh_host_ed25519_key
@@ -197,15 +193,13 @@ in {
     hostId = "d7f38611";
 
     # enable firewall
-    firewall = {
+    firewall = let
+      commonPorts = services.openssh.ports;
+    in {
       enable = true;
 
-      allowedTCPPorts = [
-        2222
-      ];
-      allowedUDPPorts = [
-        2222
-      ];
+      allowedTCPPorts = commonPorts;
+      allowedUDPPorts = commonPorts;
     };
 
     # explicitly enable, needed for remote unlocking
@@ -276,8 +270,8 @@ in {
         PasswordAuthentication = false;
       };
 
-      # use non-default 222 port for ssh
-      ports = [2222];
+      # use non-default 2222 port for ssh
+      ports = [boot.initrd.ssh.ports];
     };
 
     zfs = {
