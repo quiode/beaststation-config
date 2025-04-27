@@ -19,7 +19,6 @@ services:
     labels:
       traefik.enable: true
       traefik.docker.network: stalwart
-
       traefik.http.routers.stalwart.rule: Host(`autodiscover.dominik-schwaiger.ch`) || Host(`autoconfig.dominik-schwaiger.ch`) || Host(`mail.dominik-schwaiger.ch`) || Host(`smtp.dominik-schwaiger.ch`) || Host(`imap.dominik-schwaiger.ch`) || Host(`mta-sts.dominik-schwaiger.ch`)
       traefik.http.routers.stalwart.tls: true
       traefik.http.routers.stalwart.tls.certresolver: letsencrypt
