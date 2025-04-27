@@ -37,7 +37,7 @@ certificatesResolvers:
   letsencrypt:
     acme:
       email: "mail@dominik-schwaiger.ch"
-      storage: "acme.json"
+      storage: "/etc/certs/acme.json"
       httpChallenge:
         entryPoint: "web"
 
