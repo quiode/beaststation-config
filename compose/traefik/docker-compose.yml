@@ -10,7 +10,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik.yml:/etc/traefik/traefik.yml:ro
       - /etc/localtime:/etc/localtime:ro
-      - acme/acme.json:/acme.json # for sharing certs with other services
+      - acme:/acme.json # for sharing certs with other services
       # For External Services
       - /hdd/non-critical/dominik-schwaiger.ch/cache:/hdd/non-critical/dominik-schwaiger.ch/cache # for caching the personal website
     labels:
@@ -52,7 +52,7 @@ services:
       - traefik
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - acme:/traefik:ro
+      - acme:/traefik/acme.json:ro
       - certs:/output
 
 # using volumes because data is temporary and small -> on ssd
