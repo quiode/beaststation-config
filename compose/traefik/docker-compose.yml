@@ -8,9 +8,9 @@ services:
       - 443:443
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /ssd/non-critical/traefik/acme.json:/acme.json
       - ./traefik.yml:/etc/traefik/traefik.yml:ro
       - /etc/localtime:/etc/localtime:ro
+      - acme:/etc/certs # for sharing certs with other services
       # For External Services
       - /hdd/non-critical/dominik-schwaiger.ch/cache:/hdd/non-critical/dominik-schwaiger.ch/cache # for caching the personal website
     labels:
@@ -29,7 +29,6 @@ services:
       - onlyoffice
       - bitwarden
       - gitlab
-      - autodiscover
       - jellyfin
       - qbittorrent
       - immich
@@ -43,6 +42,26 @@ services:
       - sonarr
       - prowlarr
       - wg-easy
+      - stalwart
+
+  traefik-certs-dumper:
+    image: ghcr.io/kereis/traefik-certs-dumper
+    container_name: traefik-certs-dumper
+    command: --restart-containers stalwart
+    restart: always
+    depends_on:
+      - traefik
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /etc/localtime:/etc/localtime:ro
+      - acme:/traefik:ro
+      - certs:/output
+
+# using volumes because data is temporary and small -> on ssd
+volumes:
+  acme:
+  certs:
+    name: traefik_certs
 
 networks:
   nextcloud:
@@ -59,9 +78,6 @@ networks:
 
   gitlab:
     name: gitlab
-
-  autodiscover:
-    name: autodiscover
 
   jellyfin:
     name: jellyfin
@@ -101,3 +117,6 @@ networks:
 
   wg-easy:
     name: wg-easy
+
+  stalwart:
+    name: stalwart

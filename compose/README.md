@@ -90,7 +90,6 @@ Critical data (which should be snapshotted more often and also should be backed 
 - `/hdd/non-critical/gitlab/logs`
 - `/ssd/critical/gitlab/config`
 - `/hdd/critical/gitlab/data`
-- `/ssd/non-critical/traefik/acme.json`
 - `/ssd/critical/jellyfin/config`
 - `/hdd/non-critical/jellyfin/media`
 - `/ssd/critical/qbittorrent/appdata`
@@ -103,8 +102,6 @@ Critical data (which should be snapshotted more often and also should be backed 
 - `/hdd/non-critical/ollama`
 - `/hdd/critical/open-webui`
 - `/ssd/non-critical/open-webui/cache`
-- `/ssd/critical/mailserver/mail-data`
-- `/ssd/critical/mailserver/config`
 - `/ssd/critical/home-assistant/config`
 - `/hdd/critical/home-assistant/backups`
 - `/ssd/critical/home-assistant/esphome`
@@ -122,6 +119,7 @@ Critical data (which should be snapshotted more often and also should be backed 
 - `/ssd/critical/gitlab/registry/database`
 - `/ssd/critical/factorio`
 - `/ssd/critical/wg-easy`
+- `/ssd/critical/stalwart`
 
 ### Other
 
@@ -137,3 +135,9 @@ Critical data (which should be snapshotted more often and also should be backed 
 - 636 (LDAP Authentik)
 - 34197 (Factorio)
 - 51820 (wg-easy (VPN))
+- 25 (SMTP - explicit TLS via STARTTLS, authentication disabled; use port 465/587 instead)
+- 143 (IMAP4 - explicit TLS via STARTTLS)
+- 465 (ESMTP - implicit TLS)
+- 587 (ESMTP - explicit TLS via STARTTLS)
+- 993 (IMAP4 - implicit TLS)
+- 4190 (ManageSieve - Sieve scripts)
