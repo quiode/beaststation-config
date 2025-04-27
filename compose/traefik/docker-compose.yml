@@ -52,7 +52,7 @@ services:
       - traefik
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - acme:/traefik/acme.json:ro
+      - acme:/traefik:ro
       - certs:/output
 
 # using volumes because data is temporary and small -> on ssd
