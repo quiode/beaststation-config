@@ -47,10 +47,12 @@ services:
   traefik-certs-dumper:
     image: ghcr.io/kereis/traefik-certs-dumper
     container_name: traefik-certs-dumper
+    command: --restart-containers stalwart
     restart: always
     depends_on:
       - traefik
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/localtime:/etc/localtime:ro
       - acme:/traefik:ro
       - certs:/output
