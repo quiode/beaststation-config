@@ -10,7 +10,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik.yml:/etc/traefik/traefik.yml:ro
       - /etc/localtime:/etc/localtime:ro
-      - acme:/etc/certs # for sharing certs with other services
+      - acme:/acme.json # for sharing certs with other services
       # For External Services
       - /hdd/non-critical/dominik-schwaiger.ch/cache:/hdd/non-critical/dominik-schwaiger.ch/cache # for caching the personal website
     labels:
