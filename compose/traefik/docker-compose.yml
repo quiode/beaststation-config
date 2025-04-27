@@ -29,7 +29,6 @@ services:
       - onlyoffice
       - bitwarden
       - gitlab
-      - autodiscover
       - jellyfin
       - qbittorrent
       - immich
@@ -77,9 +76,6 @@ networks:
 
   gitlab:
     name: gitlab
-
-  autodiscover:
-    name: autodiscover
 
   jellyfin:
     name: jellyfin
