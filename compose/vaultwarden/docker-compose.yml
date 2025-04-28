@@ -9,6 +9,8 @@ services:
     volumes:
       - /ssd/critical/vaultwarden:/data
       - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - /ssd/critical/vaultwarden/secrets.env
     networks:
       - vaultwarden
     labels:

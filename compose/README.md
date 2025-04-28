@@ -62,6 +62,9 @@ These should be saved to `/ssd/critical/service/secrets.env` for each service an
 - **Factorio**
   - `USERNAME`
   - `TOKEN`
+- **Vaultwarden**
+  - `YUBICO_CLIENT_ID`
+  - `YUBICO_SECRET_KEY`
 
 ## Bind Volumes
 
