@@ -41,7 +41,6 @@ These should be saved to `/ssd/critical/service/secrets.env` for each service an
     - get from <https://bitwarden.com/host/>
   - `BW_INSTALLATION_KEY`
     - get from <https://bitwarden.com/host/>
-  - `MARIADB_PASSWORD`
 - **Personal Website**
   - `SCHWAIGER_ADMIN_PASSWORD`
     - password to enter admin panel of <https://dominik-schwaiger.ch>
