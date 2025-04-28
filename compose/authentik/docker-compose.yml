@@ -80,7 +80,7 @@ services:
   worker:
     image: ghcr.io/goauthentik/server
     restart: always
-    container_name: authentik-worker
+    container_name: authentik_worker
     command: worker
     environment:
       AUTHENTIK_REDIS__HOST: redis
