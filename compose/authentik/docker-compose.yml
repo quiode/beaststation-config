@@ -96,7 +96,6 @@ services:
     user: root
     volumes:
       - /ssd/critical/authentik/media:/media
-      - certs:/certs # certs from traefik
       - /ssd/critical/authentik/custom-templates:/templates
     env_file:
       - /ssd/critical/authentik/secrets.env
@@ -111,9 +110,4 @@ networks:
 
   authentik-external:
     name: authentik
-    external: true
-
-volumes:
-  certs:
-    name: traefik_certs
     external: true
