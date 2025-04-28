@@ -15,7 +15,6 @@ services:
     volumes:
       - /ssd/critical/stalwart:/opt/stalwart-mail
       - /etc/localtime:/etc/localtime:ro
-      - certs:/data/certs:ro # certs from traefik
     labels:
       traefik.enable: true
       traefik.docker.network: stalwart
@@ -23,11 +22,6 @@ services:
       traefik.http.routers.stalwart.tls: true
       traefik.http.routers.stalwart.tls.certresolver: letsencrypt
       traefik.http.services.stalwart.loadbalancer.server.port: 8080
-
-volumes:
-  certs:
-    name: traefik_certs
-    external: true
 
 networks:
   stalwart:
