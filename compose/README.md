@@ -36,11 +36,6 @@ These should be saved to `/ssd/critical/service/secrets.env` for each service an
 - **Only Office**
   - `JWT_SECRET`
     - secret for jwt's (onlyoffice)
-- **Bitwarden**
-  - `BW_INSTALLATION_ID`
-    - get from <https://bitwarden.com/host/>
-  - `BW_INSTALLATION_KEY`
-    - get from <https://bitwarden.com/host/>
 - **Personal Website**
   - `SCHWAIGER_ADMIN_PASSWORD`
     - password to enter admin panel of <https://dominik-schwaiger.ch>
@@ -82,9 +77,7 @@ Critical data (which should be snapshotted more often and also should be backed 
 - `/ssd/critical/nextcloud/database`
 - `/ssd/critical/minecraft/server`
 - `/hdd/non-critical/minecraft/backups`
-- `/ssd/critical/bitwarden/data`
-- `/ssd/critical/bitwarden/database`
-- `/hdd/non-critical/bitwarden/logs`
+- `/ssd/critical/vaultwarden`
 - `/hdd/non-critical/dominik-schwaiger.ch/images`
 - `/ssd/critical/gitlab/runner/config`
 - `/hdd/non-critical/gitlab/logs`

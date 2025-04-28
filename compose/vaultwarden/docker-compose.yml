@@ -1,0 +1,25 @@
+services:
+  bitwarden:
+    vaultwarden:
+    image: vaultwarden/server
+    container_name: vaultwarden
+    restart: always
+    environment:
+      DOMAIN: "https://vaultwarden.dominik-schwaiger.ch"
+      SIGNUPS_ALLOWED: true
+    volumes:
+      - /ssd/critical/vaultwarden:/data
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - vaultwarden
+    labels:
+      traefik.enable: true
+      traefik.docker.network: vaultwarden
+      traefik.http.routers.vaultwarden.rule: Host(`vaultwarden.dominik-schwaiger.ch`)
+      traefik.http.routers.vaultwarden.tls: true
+      traefik.http.routers.vaultwarden.tls.certresolver: letsencrypt
+
+networks:
+  vaultwarden:
+    name: vaultwarden
+    external: true

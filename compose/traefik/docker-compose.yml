@@ -27,7 +27,7 @@ services:
       - nextcloud
       - dominik-schwaiger
       - onlyoffice
-      - bitwarden
+      - vaultwarden
       - gitlab
       - jellyfin
       - qbittorrent
@@ -73,8 +73,8 @@ networks:
   onlyoffice:
     name: onlyoffice
 
-  bitwarden:
-    name: bitwarden
+  vaultwarden:
+    name: vaultwarden
 
   gitlab:
     name: gitlab
