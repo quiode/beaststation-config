@@ -3,9 +3,6 @@ services:
     image: vaultwarden/server
     container_name: vaultwarden
     restart: always
-    environment:
-      DOMAIN: "https://vaultwarden.dominik-schwaiger.ch"
-      SIGNUPS_ALLOWED: true
     volumes:
       - /ssd/critical/vaultwarden:/data
       - /etc/localtime:/etc/localtime:ro
