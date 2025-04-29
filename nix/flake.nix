@@ -18,7 +18,7 @@
   outputs = inputs: let
     system = "x86_64-linux";
   in {
-    formatter.x86_64-linux = inputs.nixpkgs.legacyPackages.x86_64-linux.alejandra;
+    formatter.x86_64-linux = inputs.nixpkgs.alejandra;
 
     # NixOS configuration entrypoint
     nixosConfigurations.beaststation = inputs.nixpkgs.lib.nixosSystem {
