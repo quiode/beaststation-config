@@ -1,6 +1,6 @@
 let
   beaststation-domina = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAION61ovdLLEFvBSEnM0KHflttJFbOe3KDAwIShZM7uTd domina@beaststation";
-  laptop-quio = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGpYUYVbj55SB3zK+W+oUq2AdO3sS27ZeTtGVYpdq3Dd quio@laptop";
+  laptop-quio = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIU+TustXXTKC67YrMyTHsrw2w0IGx1DSA/0woBXJbGg quio@laptop";
   pc-quio = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINt4xvNKr0MsKk7qY9RJux9KGfUk2lCsnAeUO4NtJP8n quio@gaming-pc";
 
   users = [
