@@ -1,6 +1,8 @@
 # Beaststation Configuration
 
-This repository contains all configuration files (and thus all specification) for my server (*beaststation*).
+**NOTE: THIS REPOSITORY IS NO LONGER MAINTAINED. IT HAS BEEN MOVED TO [GITLAB](https://gitlab.dominik-schwaiger.ch/quio/nixos-configurations)!**
+
+This repository contains all configuration files (and thus all specification) for my server (_beaststation_).
 
 The server itself runs on NixOS which is configured inside `nix`. The `README.md` there should explain everything. Secrets (passwords and such) are stored inside `secrets`. The `README.md` there also should explain most.
 
